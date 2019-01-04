@@ -72,7 +72,6 @@ def show_book(id):
 
 @app.route('/api/books')
 def get_books():
-    print(list(map(lambda book: convert_book_to_data(book), BookRepository.get_all_books())))
     return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book), BookRepository.get_all_books()))}})
 
 @app.route('/', defaults={'path': ''})
