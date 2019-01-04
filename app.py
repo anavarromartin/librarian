@@ -13,7 +13,6 @@ books = [
         'id': 1
     }
 ]
-current_id = 2
 
 def validBook(book):
     if ("name" in book and "isbn" in book):
@@ -28,10 +27,9 @@ def add_book():
         new_book = {
             "name": request_data['name'],
             "isbn": request_data['isbn'],
-            "id": current_id
+            "id": _get_next_id()
         }
         books.insert(0, new_book)
-        current_id += 1
         return Response(json.dumps(new_book), 201, mimetype='application/json')
     else:
         return Response(
@@ -39,6 +37,9 @@ def add_book():
             400,
             mimetype='application/json'
         )
+
+def _get_next_id():
+    return max(map(lambda x: x['id'], books)) + 1
 
 @app.route('/api/books/<int:id>', methods=['PUT'])
 def update_book(id):
