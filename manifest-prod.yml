@@ -6,4 +6,4 @@ applications:
   services:
   - librarian-psql
   routes:
-  - librarian.apps.pcfone.io
+  - route: librarian.apps.pcfone.io
