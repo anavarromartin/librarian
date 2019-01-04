@@ -1,0 +1,5 @@
+applications:
+- name: librarian
+  memory: 512MB
+  timeout: 180
+  buildpack: https://github.com/cloudfoundry/python-buildpack.git
