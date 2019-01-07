@@ -3,11 +3,11 @@ from flask import Flask, jsonify, request, Response, send_from_directory
 import json
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from config import DevConfig
 import os
 
 app = Flask(__name__, static_folder='react_app/build')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(DevConfig)
 db = SQLAlchemy(app)
 
 from book_repository import *

@@ -21,7 +21,7 @@ class App extends Component {
       this.mode = this.mode.bind(this)
     }
 
-    // TODO: figure out how to do a secondary sort 
+    // TODO: figure out how to do a secondary sort when a > b
     mode(arr) {
       return arr.sort((a,b) =>
          arr.filter(v => v===a).length - arr.filter(v => v===b).length
