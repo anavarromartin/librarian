@@ -2,10 +2,12 @@ from flask import Flask, jsonify, request, Response
 import json
 from .models import Book
 from flask import Blueprint
+from flask_accept import accept
 
 book = Blueprint('book', __name__)
 
 @book.route('/api/books', methods=['POST'])
+@accept('application/json')
 def add_book():
     request_data = request.get_json()
     if(validBook(request_data)):
@@ -20,6 +22,7 @@ def add_book():
 
 
 @book.route('/api/books/<int:id>', methods=['PUT'])
+@accept('application/json')
 def update_book(id):
     request_data = request.get_json()
     existing_book = Book.get_book(id)
@@ -35,6 +38,7 @@ def update_book(id):
 
 
 @book.route('/api/books/<int:id>', methods=['DELETE'])
+@accept('application/json')
 def delete_book(id):
     try:
         Book.delete_book(id)
@@ -48,11 +52,13 @@ def delete_book(id):
 
 
 @book.route('/api/books/<int:id>')
+@accept('application/json')
 def show_book(id):
     return jsonify({'data': convert_book_to_data(Book.get_book(id))})
 
 
 @book.route('/api/books')
+@accept('application/json')
 def get_books():
     return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book), Book.get_all_books()))}})
 
