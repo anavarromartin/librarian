@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Scanner from '../Scanner/Scanner'
 import './Manage.css'
+import { Line } from 'rc-progress'
 
 const initialState = {
     scanning: false,
@@ -24,6 +25,7 @@ class Manage extends Component {
         this.mode = this.mode.bind(this)
         this._resultThresholdAchieved = this._resultThresholdAchieved.bind(this)
         this._saveBook = this._saveBook.bind(this)
+        this._percentage = this._percentage.bind(this)
     }
 
     // TODO: figure out how to do a secondary sort when a > b
@@ -89,6 +91,7 @@ class Manage extends Component {
         return (
             <div style={{ marginTop: '10px' }}>
                 <button onClick={this._scan}>{this.state.scanning ? 'Stop Scanning' : 'Scan Book ISBN'}</button>
+                {this.state.scanning && <div style={{marginTop: '10px', marginBottom: '10px', maxWidth: '500px'}}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c"/></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.candidateISBN}</div>
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.bookTitle}</div>
@@ -98,6 +101,10 @@ class Manage extends Component {
                 {this._resultThresholdAchieved() && !this.state.scanning && !this.state.error && <div><button type='submit' onClick={this._saveBook}>Add book</button></div>}
             </div>
         )
+    }
+
+    _percentage() {
+        return (this.state.results.length / 20) * 100
     }
 
     _resultThresholdAchieved() {
