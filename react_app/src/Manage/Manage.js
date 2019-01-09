@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Scanner from '../Scanner/Scanner'
 import './Manage.css'
 import { Line } from 'rc-progress'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 const initialState = {
     scanning: false,
@@ -90,15 +92,20 @@ class Manage extends Component {
     render() {
         return (
             <div style={{ marginTop: '10px' }}>
-                <button onClick={this._scan}>{this.state.scanning ? 'Stop Scanning' : 'Scan Book ISBN'}</button>
-                {this.state.scanning && <div style={{marginTop: '10px', marginBottom: '10px', maxWidth: '500px'}}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c"/></div>}
+                <div>
+                    <Link to="/" style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                        <Button variant="contained" color="primary">Back</Button>
+                    </Link>
+                    <Button onClick={this._scan} variant="contained" color="primary">{this.state.scanning ? 'Stop Scanning' : 'Scan Book ISBN'}</Button>
+                </div>
+                {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.candidateISBN}</div>
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.bookTitle}</div>
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.authors}</div>
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.error}</div>
                 {this._resultThresholdAchieved() && !this.state.scanning && <img src={this.state.imageLink} alt='Missing' />}
-                {this._resultThresholdAchieved() && !this.state.scanning && !this.state.error && <div><button type='submit' onClick={this._saveBook}>Add book</button></div>}
+                {this._resultThresholdAchieved() && !this.state.scanning && !this.state.error && <div><Button type='submit' variant="contained" color="secondary" onClick={this._saveBook}>Add book</Button></div>}
             </div>
         )
     }
