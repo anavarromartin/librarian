@@ -50,7 +50,7 @@ class ManageContainer extends Component {
         })
     }
 
-    async saveBook(bookTitle, candidateISBN) {
+    async saveBook(bookTitle, candidateISBN, authors, imageLink) {
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books`
 
         return fetch(url, {
@@ -64,6 +64,8 @@ class ManageContainer extends Component {
             body: JSON.stringify({
                 name: bookTitle,
                 isbn: candidateISBN,
+                authors: authors,
+                imageLink: imageLink,
             }),
         }).then(response => {
             if (response.ok) {

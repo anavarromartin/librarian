@@ -15,6 +15,8 @@ const initialState = {
     error: null
 }
 
+const SCAN_THRESHOLD_SIZE = 20
+
 class Manage extends Component {
     constructor(props) {
         super(props)
@@ -50,7 +52,7 @@ class Manage extends Component {
                 const book = res.data.items[0];
 
                 const title = book['volumeInfo']['title']
-                const authors = book['volumeInfo']['authors']
+                const authors = book['volumeInfo']['authors'].join(', ')
                 const imageLinks = book['volumeInfo']['imageLinks']
                 const imageLink = imageLinks && imageLinks['thumbnail']
 
@@ -83,7 +85,9 @@ class Manage extends Component {
     _saveBook() {
         this.props.saveBook(
             this.state.bookTitle,
-            this.state.candidateISBN
+            this.state.candidateISBN,
+            this.state.authors,
+            this.state.imageLink,
         ).then(_ => {
             this.setState(initialState)
         })
@@ -111,11 +115,11 @@ class Manage extends Component {
     }
 
     _percentage() {
-        return (this.state.results.length / 20) * 100
+        return (this.state.results.length / SCAN_THRESHOLD_SIZE) * 100
     }
 
     _resultThresholdAchieved() {
-        return this.state.results.length >= 20
+        return this.state.results.length >= SCAN_THRESHOLD_SIZE
     }
 
     _scan() {
@@ -150,7 +154,7 @@ class Manage extends Component {
     }
 
     _reachedMaxResults(nextResults) {
-        return nextResults.length >= 20
+        return nextResults.length >= SCAN_THRESHOLD_SIZE
     }
 }
 

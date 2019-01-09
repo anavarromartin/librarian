@@ -6,10 +6,12 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     isbn = db.Column(db.String(80))
+    authors = db.Column(db.String(80))
+    imageLink = db.Column(db.String(2000))
     office_id = db.Column(db.Integer(), db.ForeignKey('offices.id'))
 
-    def add_book(_name, _isbn):
-        new_book = Book(name=_name, isbn=_isbn)
+    def add_book(_name, _isbn, _authors, _imageLink):
+        new_book = Book(name=_name, isbn=_isbn, authors=_authors, imageLink=_imageLink)
         db.session.add(new_book)
         db.session.commit()
         db.session.refresh(new_book)

@@ -13,7 +13,7 @@ def update_book(id):
     request_data = request.get_json(force=True)
     existing_book = Book.get_book(id)
     if(validBook(request_data) and existing_book):
-        Book.update_book(request_data['id'], request_data['name'], request_data['isbn'])
+        Book.update_book(request_data['id'], request_data['name'], request_data['isbn'], request_data['authors'], request_data['imageLink'])
         return Response(json.dumps(convert_book_to_data(existing_book)), 204, mimetype='application/json')
     else:
         return Response(
@@ -44,7 +44,7 @@ def show_book(id):
 
 
 def validBook(book):
-    if ("name" in book and "isbn" in book):
+    if ("name" in book and "isbn" in book and "authors" in book):
         return True
     else:
         return False
@@ -53,5 +53,7 @@ def convert_book_to_data(book):
     return {
             'name': book.name,
             'isbn': book.isbn,
+            'authors': book.authors,
+            'imageLink': book.imageLink,
             'id': book.id
         }

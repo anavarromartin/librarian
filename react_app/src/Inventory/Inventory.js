@@ -32,7 +32,9 @@ const Inventory = (props) => {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
+                        <TableCell>Image</TableCell>
                         <TableCell>Book Title</TableCell>
+                        <TableCell>Authors</TableCell>
                         <TableCell align="right">ISBN</TableCell>
                     </TableRow>
                 </TableHead>
@@ -41,8 +43,10 @@ const Inventory = (props) => {
                         return (
                             <TableRow key={book.id} className={classes.tableRowHover}>
                                 <TableCell component="th" scope="row">
-                                    {book.name}
+                                    <img style={{height: '120px'}} src={book.imageLink} alt='missing'/>
                                 </TableCell>
+                                <TableCell>{book.name}</TableCell>
+                                <TableCell>{book.authors}</TableCell>
                                 <TableCell align="right">{book.isbn}</TableCell>
                             </TableRow>
                         );

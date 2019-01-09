@@ -41,7 +41,7 @@ def add_book(office_id):
     try:
         request_data = request.get_json(force=True)
         if(validBook(request_data)):
-            new_book = Office.add_book_to_office(office_id, Book(name=request_data['name'], isbn=request_data['isbn']))
+            new_book = Office.add_book_to_office(office_id, Book(name=request_data['name'], isbn=request_data['isbn'], authors=request_data['authors'], imageLink=request_data['imageLink']))
             return Response(json.dumps(convert_book_to_data(new_book)), 201, mimetype='application/json')
     except:
         return Response(
