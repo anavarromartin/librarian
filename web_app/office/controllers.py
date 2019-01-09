@@ -13,10 +13,27 @@ office = Blueprint('office', __name__)
 def get_offices():
     return jsonify({'data': {'offices': list(map(lambda office: convert_office_to_data(office), Office.get_all_offices()))}})
 
+
 @office.route('/api/offices/<int:id>')
 @accept('application/json')
 def show_office(id):
     return jsonify({'data': convert_office_to_data(Office.get_office(id))})
+
+
+@office.route('/api/offices', methods=['POST'])
+@accept('application/json')
+def add_office():
+    try:
+        request_data = request.get_json(force=True)
+        new_office = Office.add_office(request_data['name'])
+        return Response(json.dumps(convert_office_to_data(new_office)), 201, mimetype='application/json')
+    except:
+        return Response(
+            json.dumps({"error": "Invalid office"}),
+            400,
+            mimetype='application/json'
+        )
+
 
 @office.route('/api/offices/<int:office_id>/books', methods=['POST'])
 @accept('application/json')
@@ -32,6 +49,7 @@ def add_book(office_id):
             400,
             mimetype='application/json'
         )
+
 
 @office.route('/api/offices/<int:office_id>/books')
 @accept('application/json')

@@ -12,6 +12,14 @@ class Office(db.Model):
            lazy='dynamic'
     )
 
+    def add_office(_name):
+        new_office = Office(name=_name)
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        return new_office
+
+
     def add_book_to_office(_id, book):
         office = Office.query.filter_by(id=_id).first()
         office.books.append(book)
