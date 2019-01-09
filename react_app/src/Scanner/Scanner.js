@@ -13,7 +13,7 @@ class Scanner extends Component {
     render() {
         return (
             <div id="interactive" className="viewport">
-                <video className={{ 'videoCamera': true, 'scanningVideo': this._isMobileDevice() }} autoPlay={true} preload="auto" src="" muted={true} playsInline={true} />
+                <video className={this._isMobileDevice() ? null : 'scanningVideo'} autoPlay={true} preload="auto" src="" muted={true} playsInline={true} />
                 <canvas className="drawingBuffer" />
             </div>
         )
