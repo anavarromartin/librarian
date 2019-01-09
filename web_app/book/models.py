@@ -6,6 +6,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     isbn = db.Column(db.String(80))
+    office_id = db.Column(db.Integer(), db.ForeignKey('offices.id'))
 
     def add_book(_name, _isbn):
         new_book = Book(name=_name, isbn=_isbn)

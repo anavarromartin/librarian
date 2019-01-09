@@ -6,25 +6,11 @@ from flask_accept import accept
 
 book = Blueprint('book', __name__)
 
-@book.route('/api/books', methods=['POST'])
-@accept('application/json')
-def add_book():
-    request_data = request.get_json()
-    if(validBook(request_data)):
-        new_book = Book.add_book(request_data['name'], request_data['isbn'])
-        return Response(json.dumps(convert_book_to_data(new_book)), 201, mimetype='application/json')
-    else:
-        return Response(
-            json.dumps({"error": "Invalid book"}),
-            400,
-            mimetype='application/json'
-        )
-
 
 @book.route('/api/books/<int:id>', methods=['PUT'])
 @accept('application/json')
 def update_book(id):
-    request_data = request.get_json()
+    request_data = request.get_json(force=True)
     existing_book = Book.get_book(id)
     if(validBook(request_data) and existing_book):
         Book.update_book(request_data['id'], request_data['name'], request_data['isbn'])
