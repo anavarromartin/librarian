@@ -25,6 +25,9 @@ class Office(db.Model):
     def get_all_offices():
         return Office.query.all()
 
+    def get_all_books(_id):
+        return Office.query.filter_by(id=_id).first().books
+
     def __repr__(self):
         office = {
             'name': self.name

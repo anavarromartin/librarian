@@ -8,10 +8,11 @@
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "react-toastify": "^4.5.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

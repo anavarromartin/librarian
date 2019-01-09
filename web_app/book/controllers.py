@@ -43,12 +43,6 @@ def show_book(id):
     return jsonify({'data': convert_book_to_data(Book.get_book(id))})
 
 
-@book.route('/api/books')
-@accept('application/json')
-def get_books():
-    return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book), Book.get_all_books()))}})
-
-
 def validBook(book):
     if ("name" in book and "isbn" in book):
         return True

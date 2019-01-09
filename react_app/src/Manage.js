@@ -2,27 +2,28 @@ import React, { Component } from 'react'
 import Scanner from './Scanner'
 import './Manage.css'
 
-class Manage extends Component {
+const initialState = {
+    scanning: false,
+    results: [],
+    bookTitle: null,
+    candidateISBN: null,
+    imageLink: null,
+    authors: null,
+    error: null
+}
 
+class Manage extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            scanning: false,
-            results: [],
-            bookTitle: null,
-            candidateISBN: null,
-            imageLink: null,
-            authors: null,
-            error: null
-        }
+        this.state = initialState
 
         this._scan = this._scan.bind(this)
         this._onDetected = this._onDetected.bind(this)
         this._continueScanning = this._continueScanning.bind(this)
         this._reachedMaxResults = this._reachedMaxResults.bind(this)
         this.mode = this.mode.bind(this)
-        this.saveBook = this.saveBook.bind(this)
         this._resultThresholdAchieved = this._resultThresholdAchieved.bind(this)
+        this._saveBook = this._saveBook.bind(this)
     }
 
     // TODO: figure out how to do a secondary sort when a > b
@@ -32,10 +33,10 @@ class Manage extends Component {
         ).pop()
     }
 
-    getBookDetails(isbn) {
+    async getBookDetails(isbn) {
         var url = `${process.env.REACT_APP_BOOK_API_URL}${isbn}`
 
-        fetch(url).then(response =>
+        return fetch(url).then(response =>
             response.json().then(data => ({
                 data: data,
                 status: response.status
@@ -75,35 +76,12 @@ class Manage extends Component {
         })
     }
 
-    saveBook() {
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books`
-
-        fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                name: this.state.bookTitle,
-                isbn: this.state.candidateISBN,
-            }),
-        }).then(response => {
-            if (response.ok) {
-                return response
-            } else {
-                throw Error(`Request rejected with status ${response.status}`)
-            }
-        }).then(_ =>
-            this.props.history.push('/')
-        ).catch(error => {
-            this.setState({
-                error: 'Failed to save yo book'
-            })
-
-            throw error
+    _saveBook() {
+        this.props.saveBook(
+            this.state.bookTitle,
+            this.state.candidateISBN
+        ).then(_ => {
+            this.setState(initialState)
         })
     }
 
@@ -117,7 +95,7 @@ class Manage extends Component {
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.authors}</div>
                 <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.error}</div>
                 {this._resultThresholdAchieved() && !this.state.scanning && <img src={this.state.imageLink} alt='Missing' />}
-                {this._resultThresholdAchieved() && !this.state.scanning && <div><button type='submit' onClick={this.saveBook}>Add book</button></div>}
+                {this._resultThresholdAchieved() && !this.state.scanning && !this.state.error && <div><button type='submit' onClick={this._saveBook}>Add book</button></div>}
             </div>
         )
     }
