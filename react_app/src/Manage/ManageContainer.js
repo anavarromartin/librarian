@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Manage from './Manage'
-import Inventory from './Inventory'
+import Inventory from '../Inventory/Inventory'
 import { toast } from 'react-toastify'
 
 class ManageContainer extends Component {

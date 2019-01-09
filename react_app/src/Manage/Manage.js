@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Scanner from './Scanner'
+import Scanner from '../Scanner/Scanner'
 import './Manage.css'
 
 const initialState = {

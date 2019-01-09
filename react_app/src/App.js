@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import HomePage from './HomePage'
+import HomePage from './HomePage/HomePage'
 import { BrowserRouter, Route } from "react-router-dom"
-import ManageContainer from './ManageContainer'
+import ManageContainer from './Manage/ManageContainer'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
