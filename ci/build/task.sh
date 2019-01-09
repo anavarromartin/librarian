@@ -8,4 +8,5 @@ yarn global add create-react-app
 yarn
 CI="true" yarn test
 
+rm -rf node_modules
 yarn build
