@@ -14,4 +14,12 @@ set -ex
 
 cp -rf ./librarian/. ./updated-gist/
 
-ls -lR updated-gist
+rm -rf updated-gist/react_app/.gitignore updated-gist/.git
+
+cp -rf resource-gist/.git updated-gist/.git
+
+git config --global user.email "concourse@example.com"
+git config --global user.name "Concourse"
+
+git add .
+git commit -m "New Build"
