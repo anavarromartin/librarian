@@ -13,6 +13,8 @@ CI="true" yarn test
 
 yarn build
 
+rm -rf node_modules
+
 cd ../..
 
 cp -rf resource-gist/.git updated-gist/.git
