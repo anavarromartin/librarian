@@ -2,7 +2,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: kkarczmarczyk/node-yarn}
+  source: {repository: okdocker/pynode}
 
 inputs:
 - name: librarian
