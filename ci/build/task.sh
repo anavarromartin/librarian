@@ -2,7 +2,8 @@
 
 set -ex
 
-apt-get install zip
+apt-get update -y
+apt-get install zip -y
 
 cd ./librarian/react_app
 
