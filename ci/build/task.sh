@@ -2,7 +2,7 @@
 
 set -ex
 
-apt-get zip
+apt-get install zip
 
 cd ./librarian/react_app
 
