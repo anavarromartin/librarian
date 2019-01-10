@@ -6,8 +6,53 @@ jobs:
     trigger: true
   - task: build-task
     file: librarian/ci/build/task.yml
+  - put: cf
+    params:
+      command: push
+      space: playground
+      manifest: librarian/manifest.yml
+      path: librarian
+- name: push-to-staging
+  plan:
+  - get: librarian
+    trigger: false
+    passed:
+      - build
+  - put: cf
+    params:
+      command: push
+      space: Staging
+      manifest: librarian/manifest-staging.yml
+      path: librarian
+- name: push-to-prod
+  plan:
+  - get: librarian
+    trigger: false
+    passed:
+      - push-to-staging
+  - put: cf
+    params:
+      command: push
+      space: Production
+      manifest: librarian/manifest-prod.yml
+      path: librarian
+
+resource_types:
+- name: cf-cli-resource
+  type: docker-image
+  source:
+    repository: nulldriver/cf-cli-resource
+    tag: latest
 
 resources:
+- name: cf
+  type: cf-cli-resource
+  source:
+    api: https://api.run.pcfone.io
+    username: ((cf_username))
+    password: ((cf_password))
+    org: pivot-acourter
+
 - name: librarian
   type: git
   source:
