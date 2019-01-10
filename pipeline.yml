@@ -4,6 +4,7 @@ jobs:
   plan:
   - get: librarian
     trigger: true
+  - get: resource-gist
   - task: build-task
     file: librarian/ci/build/task.yml
   - put: resource-gist
@@ -15,6 +16,8 @@ jobs:
     trigger: true
     passed:
       - build
+  - task: unzip-task
+    file: librarian/ci/unzip/task.yml
   - put: cf
     params:
       command: push
@@ -27,24 +30,28 @@ jobs:
     trigger: false
     passed:
       - push-to-dev
+  - task: unzip-task
+    file: librarian/ci/unzip/task.yml
   - put: cf
     params:
       command: push
       space: Staging
-      manifest: resource-gist/manifest-staging.yml
-      path: resource-gist
+      manifest: librarian/manifest-staging.yml
+      path: librarian
 - name: push-to-prod
   plan:
   - get: resource-gist
     trigger: false
     passed:
       - push-to-staging
+  - task: unzip-task
+    file: librarian/ci/unzip/task.yml
   - put: cf
     params:
       command: push
       space: Production
-      manifest: resource-gist/manifest-prod.yml
-      path: resource-gist
+      manifest: librarian/manifest-prod.yml
+      path: librarian
 
 resource_types:
 - name: cf-cli-resource

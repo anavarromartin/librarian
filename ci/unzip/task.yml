@@ -1,0 +1,14 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: busybox}
+
+inputs:
+- name: resource-gist
+
+outputs:
+- name: librarian
+
+run:
+  path: librarian/ci/unzip/task.sh
