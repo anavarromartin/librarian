@@ -12,6 +12,6 @@ set -ex
 
 # cd ../..
 
-cp -r librarian/* updated-gist/*
+cp -r librarian/* updated-gist/
 
 ls -lR updated-gist
