@@ -12,13 +12,14 @@ set -ex
 
 # cd ../..
 
-cp -rf ./librarian/. ./updated-gist/
-
-rm -rf updated-gist/react_app/.gitignore updated-gist/.git
+# cp -rf ./librarian/. ./updated-gist/
+# rm -rf updated-gist/react_app/.gitignore updated-gist/.git
 
 cp -rf resource-gist/.git updated-gist/.git
 
 cd updated-gist
+
+tar cf librarian.tar ../librarian
 
 git config --global user.email "concourse@example.com"
 git config --global user.name "Concourse"
