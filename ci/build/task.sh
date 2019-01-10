@@ -12,7 +12,6 @@ set -ex
 
 # cd ../..
 
-mkdir updated-gist
 cp -r librarian/* updated-gist/*
 
 ls -lR updated-gist
