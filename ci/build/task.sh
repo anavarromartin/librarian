@@ -15,11 +15,12 @@ yarn build
 
 rm -rf node_modules
 
-cd ../..
+cd ..
 
-cp -rf resource-gist/.git updated-gist/.git
+cp -rf ../resource-gist/.git ../updated-gist/.git
+zip -r ../librarian.zip .
 
-zip -r librarian.zip librarian
+cd ..
 
 mv librarian.zip updated-gist
 
