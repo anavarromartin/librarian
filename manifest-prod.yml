@@ -3,6 +3,7 @@ applications:
   memory: 512MB
   timeout: 180
   buildpack: https://github.com/cloudfoundry/python-buildpack.git
+  command: python manage.py db upgrade && python app.py
   services:
   - librarian-psql
   routes:
