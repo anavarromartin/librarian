@@ -18,6 +18,8 @@ rm -rf updated-gist/react_app/.gitignore updated-gist/.git
 
 cp -rf resource-gist/.git updated-gist/.git
 
+cd updated-gist
+
 git config --global user.email "concourse@example.com"
 git config --global user.name "Concourse"
 
