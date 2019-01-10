@@ -19,7 +19,7 @@ cp -rf resource-gist/.git updated-gist/.git
 
 cd updated-gist
 
-tar cf librarian.tar ../librarian
+zip -r librarian.zip ../librarian
 
 git config --global user.email "concourse@example.com"
 git config --global user.name "Concourse"

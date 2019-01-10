@@ -12,46 +12,43 @@ jobs:
       repository: updated-gist
 - name: push-to-dev
   plan:
+  - get: librarian
   - get: resource-gist
     trigger: true
     passed:
       - build
-  - task: unzip-task
-    file: librarian/ci/unzip/task.yml
   - put: cf
     params:
       command: push
       space: playground
       manifest: librarian/manifest.yml
-      path: librarian
+      path: resource-gist/librarian.zip
 - name: push-to-staging
   plan:
+  - get: librarian
   - get: resource-gist
     trigger: false
     passed:
       - push-to-dev
-  - task: unzip-task
-    file: librarian/ci/unzip/task.yml
   - put: cf
     params:
       command: push
       space: Staging
       manifest: librarian/manifest-staging.yml
-      path: librarian
+      path: resource-gist/librarian.zip
 - name: push-to-prod
   plan:
+  - get: librarian
   - get: resource-gist
     trigger: false
     passed:
       - push-to-staging
-  - task: unzip-task
-    file: librarian/ci/unzip/task.yml
   - put: cf
     params:
       command: push
       space: Production
       manifest: librarian/manifest-prod.yml
-      path: librarian
+      path: resource-gist/librarian.zip
 
 resource_types:
 - name: cf-cli-resource
