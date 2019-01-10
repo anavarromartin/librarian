@@ -19,9 +19,11 @@ cd ../..
 
 cp -rf resource-gist/.git updated-gist/.git
 
-cd updated-gist
+zip -r librarian.zip librarian
 
-zip -r librarian.zip ../librarian
+mv librarian.zip updated-gist
+
+cd updated-gist
 
 git config --global user.email "concourse@example.com"
 git config --global user.name "Concourse"
