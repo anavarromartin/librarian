@@ -9,3 +9,7 @@ yarn
 CI="true" yarn test
 
 yarn build
+
+cd ../..
+
+cp -r librarian updated-gist
