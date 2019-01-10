@@ -2,18 +2,17 @@
 
 set -ex
 
-# cd ./librarian/react_app
+apt-get zip
 
-# yarn global add create-react-app
-# yarn
-# CI="true" yarn test
+cd ./librarian/react_app
 
-# yarn build
+yarn global add create-react-app
+yarn
+CI="true" yarn test
 
-# cd ../..
+yarn build
 
-# cp -rf ./librarian/. ./updated-gist/
-# rm -rf updated-gist/react_app/.gitignore updated-gist/.git
+cd ../..
 
 cp -rf resource-gist/.git updated-gist/.git
 
