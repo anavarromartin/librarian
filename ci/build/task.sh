@@ -2,14 +2,16 @@
 
 set -ex
 
-cd ./librarian/react_app
+# cd ./librarian/react_app
 
-yarn global add create-react-app
-yarn
-CI="true" yarn test
+# yarn global add create-react-app
+# yarn
+# CI="true" yarn test
 
-yarn build
+# yarn build
 
-cd ../..
+# cd ../..
 
 cp -r librarian updated-gist
+
+ls -lR updated-gist
