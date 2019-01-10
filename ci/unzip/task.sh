@@ -4,4 +4,4 @@ set -ex
 
 ls -lR .
 
-tar xf librarian.tar 
+tar xf resource-gist/librarian.tar 
