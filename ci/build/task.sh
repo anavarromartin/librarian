@@ -14,6 +14,7 @@ CI="true" yarn test
 yarn build
 
 rm -rf node_modules
+rm .gitignore
 
 cd ..
 
