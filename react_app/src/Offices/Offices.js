@@ -6,17 +6,22 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '100vh',
+    minHeight: '90vh',
     flexDirection: 'column'
 }
 
 class Offices extends Component {
     render() {
         return (
-            <div style={styles}>
-                <Link to="/dallas" style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color="primary">Dallas</Button>
-                </Link>
+            <div style={{ marginTop: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <span style={{ fontWeight: 'bold' }}>Offices</span>
+                </div>
+                <div style={styles}>
+                    <Link to="/dallas" style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="primary">Dallas</Button>
+                    </Link>
+                </div>
             </div>
         )
     }
