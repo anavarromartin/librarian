@@ -75,7 +75,7 @@ resources:
 - name: resource-gist-dev
   type: git
   source:
-    uri: git@gist.github.com:9f46877e9e6e162d94c5254c2ca2e8fa.git
+    uri: git@gist.github.com:6aa8d059ddfedc3b62393e00b5545509.git
     branch: master
     private_key: |
       -----BEGIN OPENSSH PRIVATE KEY-----
