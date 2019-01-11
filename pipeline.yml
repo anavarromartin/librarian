@@ -10,6 +10,7 @@ jobs:
   - put: resource-gist-dev
     params:
       repository: updated-gist
+      force: true
 - name: push-to-dev
   plan:
   - get: librarian
@@ -23,9 +24,11 @@ jobs:
       space: playground
       manifest: librarian/manifest.yml
       path: resource-gist-dev/librarian.zip
+      current_app_name: librarian
   - put: resource-gist-staging
     params:
       repository: resource-gist-dev
+      force: true
 - name: push-to-staging
   plan:
   - get: librarian
@@ -39,9 +42,11 @@ jobs:
       space: Staging
       manifest: librarian/manifest-staging.yml
       path: resource-gist-staging/librarian.zip
+      current_app_name: librarian
   - put: resource-gist-prod
     params:
       repository: resource-gist-staging
+      force: true
 - name: push-to-prod
   plan:
   - get: librarian
@@ -55,6 +60,7 @@ jobs:
       space: Production
       manifest: librarian/manifest-prod.yml
       path: resource-gist-prod/librarian.zip
+      current_app_name: librarian
 
 resource_types:
 - name: cf-cli-resource
