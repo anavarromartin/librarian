@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import HomePage from './HomePage/HomePage'
+import Offices from './Offices/Offices'
+import Office from './Offices/Office'
 import { BrowserRouter, Route } from "react-router-dom"
 import ManageContainer from './Manage/ManageContainer'
 import { ToastContainer } from 'react-toastify'
@@ -10,10 +11,11 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Route path="/" exact component={HomePage} />
-                    <Route path="/manage" component={ManageContainer} />
+                    <Route path="/" exact component={Offices} />
+                    <Route path="/:officeName" exact component={Office} />
+                    <Route path="/:officeName/manage" component={ManageContainer} />
 
-                    <ToastContainer autoClose={3000}/>
+                    <ToastContainer autoClose={3000} />
                 </div>
             </BrowserRouter>
         )

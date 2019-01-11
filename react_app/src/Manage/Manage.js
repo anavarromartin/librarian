@@ -95,9 +95,9 @@ class Manage extends Component {
 
     render() {
         return (
-            <div style={{ marginTop: '10px' }}>
+            <div>
                 <div>
-                    <Link to="/" style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    <Link to={`/${this.props.officeName}`} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
                     <Button onClick={this._scan} variant="contained" color="primary">{this.state.scanning ? 'Stop Scanning' : 'Scan Book ISBN'}</Button>
