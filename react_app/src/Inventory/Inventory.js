@@ -13,6 +13,8 @@ const styles = theme => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
+        overflowY: 'scroll',
+        height: 'calc(100vh - 89px)',
     },
     table: {
         minWidth: 700,
