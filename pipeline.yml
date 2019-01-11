@@ -19,7 +19,7 @@ jobs:
       - build
   - put: cf
     params:
-      command: push
+      command: zero-downtime-push
       space: playground
       manifest: librarian/manifest.yml
       path: resource-gist/librarian.zip
@@ -32,7 +32,7 @@ jobs:
       - push-to-dev
   - put: cf
     params:
-      command: push
+      command: zero-downtime-push
       space: Staging
       manifest: librarian/manifest-staging.yml
       path: resource-gist/librarian.zip
@@ -45,7 +45,7 @@ jobs:
       - push-to-staging
   - put: cf
     params:
-      command: push
+      command: zero-downtime-push
       space: Production
       manifest: librarian/manifest-prod.yml
       path: resource-gist/librarian.zip
