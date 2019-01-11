@@ -18,7 +18,7 @@ rm .gitignore
 
 cd ..
 
-cp -rf ../resource-gist/.git ../updated-gist/.git
+cp -rf ../resource-gist-dev/.git ../updated-gist/.git
 zip -r ../librarian.zip .
 
 cd ..

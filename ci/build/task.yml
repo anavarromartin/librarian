@@ -6,7 +6,7 @@ image_resource:
 
 inputs:
 - name: librarian
-- name: resource-gist
+- name: resource-gist-dev
 
 outputs:
 - name: updated-gist
