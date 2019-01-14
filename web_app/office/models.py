@@ -1,6 +1,7 @@
 from .. import db
 import json
 from ..book.models import Book
+from sqlalchemy import or_
 
 class Office(db.Model):
     __tablename__ = 'offices'
@@ -33,8 +34,12 @@ class Office(db.Model):
     def get_all_offices():
         return Office.query.all()
 
-    def get_all_books(_id):
-        return Office.query.filter_by(id=_id).first().books
+    def get_all_books(_id, search_criteria):
+        if(search_criteria != None and search_criteria != ''):
+            query = '%' + search_criteria + '%'
+            return Office.query.filter_by(id=_id).first().books.filter(or_(Book.name.ilike(query), Book.authors.ilike(query)))
+        else:
+            return Office.query.filter_by(id=_id).first().books
 
     def __repr__(self):
         office = {

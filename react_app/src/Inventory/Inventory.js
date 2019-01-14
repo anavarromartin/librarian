@@ -39,7 +39,7 @@ const Inventory = (props) => {
                         <TableCell>Book Title</TableCell>
                         <TableCell>Authors</TableCell>
                         <TableCell>ISBN</TableCell>
-                        <TableCell align="center">Remove?</TableCell>
+                        {props.canDelete && <TableCell align="center">Remove?</TableCell>}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -52,9 +52,9 @@ const Inventory = (props) => {
                                 <TableCell>{book.name}</TableCell>
                                 <TableCell>{book.authors}</TableCell>
                                 <TableCell>{book.isbn}</TableCell>
-                                <TableCell align="center">
-                                    <Button style={{background: 'red', color: 'white'}} variant="contained" color="inherit" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(book.id)}}>DELETE</Button>
-                                </TableCell>
+                                {props.canDelete && <TableCell align="center">
+                                    <Button style={{ background: 'red', color: 'white' }} variant="contained" color="inherit" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(book.id) }}>DELETE</Button>
+                                </TableCell>}
                             </TableRow>
                         )
                     })}
@@ -68,6 +68,7 @@ Inventory.propTypes = {
     classes: PropTypes.object.isRequired,
     books: PropTypes.array.isRequired,
     handleDelete: PropTypes.func,
+    canDelete: PropTypes.bool.isRequired,
 }
 
 export default withStyles(styles)(Inventory)

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Manage from './Manage'
 import Inventory from '../Inventory/Inventory'
-import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import SearchBar from 'material-ui-search-bar'
 
-class ManageContainer extends Component {
+class SearchContainer extends Component {
     constructor(props) {
         super(props)
 
@@ -12,37 +13,11 @@ class ManageContainer extends Component {
         }
 
         this.fetchBooks = this.fetchBooks.bind(this)
-        this.saveBook = this.saveBook.bind(this)
-        this.handleDelete = this.handleDelete.bind(this)
+        this.search = this.search.bind(this)
     }
 
     componentDidMount() {
         this.fetchBooks()
-    }
-
-    async handleDelete(bookId) {
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${bookId}`
-
-        return fetch(url, {
-            method: 'DELETE',
-            mode: 'cors',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-        }).then(response => {
-            if (response.ok) {
-                return response
-            } else {
-                throw Error(`Request rejected with status ${response.status}`)
-            }
-        }).then(_ => {
-            toast('Book deleted!')
-            this.fetchBooks()
-        }).catch(error => {
-            throw error
-        })
     }
 
     async fetchBooks() {
@@ -76,33 +51,33 @@ class ManageContainer extends Component {
         })
     }
 
-    async saveBook(bookTitle, candidateISBN, authors, imageLink) {
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books`
+    async search(searchCriteria) {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books?search=${searchCriteria}`
 
         return fetch(url, {
-            method: 'POST',
+            method: 'GET',
             mode: 'cors',
             credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            body: JSON.stringify({
-                name: bookTitle,
-                isbn: candidateISBN,
-                authors: authors,
-                imageLink: imageLink,
-            }),
         }).then(response => {
             if (response.ok) {
                 return response
             } else {
                 throw Error(`Request rejected with status ${response.status}`)
             }
-        }).then(_ => {
-            toast('Book saved!')
-            this.fetchBooks()
-        }).catch(error => {
+        }).then(response =>
+            response.json().then(content => ({
+                data: content.data,
+                status: response.status
+            }))
+        ).then(res =>
+            this.setState({
+                books: res.data.books
+            })
+        ).catch(error => {
             throw error
         })
     }
@@ -113,11 +88,21 @@ class ManageContainer extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <span style={{ fontWeight: 'bold', fontSize: '4em' }}>{this.props.match.params.officeName.charAt(0).toUpperCase() + this.props.match.params.officeName.slice(1)}</span>
                 </div>
-                <Manage officeName={this.props.match.params.officeName} saveBook={this.saveBook} officeId={this.props.location.state.officeId} />
-                <Inventory books={this.state.books} handleDelete={this.handleDelete} canDelete={true} />
+                <Link to={{ pathname: `/${this.props.match.params.officeName}`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    <Button variant="contained" color="primary">Back</Button>
+                </Link>
+                <SearchBar
+                    onCancelSearch={this.fetchBooks}
+                    onRequestSearch={(searchCriteria) => this.search(searchCriteria)}
+                    style={{
+                        margin: '0 auto',
+                        maxWidth: 800
+                    }}
+                />
+                <Inventory books={this.state.books} handleDelete={() => { }} canDelete={false} />
             </div>
         )
     }
 }
 
-export default ManageContainer
+export default SearchContainer

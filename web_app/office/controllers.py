@@ -5,6 +5,7 @@ from ..book.models import Book
 from flask import Blueprint
 from flask_accept import accept
 from ..book.controllers import convert_book_to_data, validBook
+import bleach
 
 office = Blueprint('office', __name__)
 
@@ -51,7 +52,12 @@ def add_book(office_id):
 @office.route('/api/offices/<int:office_id>/books')
 @accept('application/json')
 def get_books(office_id):
-    return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book), reversed(list(Office.get_all_books(office_id)))))}})
+    search_criteria = request.args.get('search')
+    if(search_criteria != None and search_criteria != ''):
+        sanitized_search_criteria = bleach.clean(search_criteria)
+    else:
+        sanitized_search_criteria = search_criteria
+    return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book), reversed(list(Office.get_all_books(office_id, sanitized_search_criteria)))))}})
 
 
 def convert_office_to_data(office):

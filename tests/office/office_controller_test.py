@@ -142,5 +142,90 @@ class OfficeControllerTest(unittest.TestCase):
         }
 
 
+    def test_returns_books_for_office_filtered_by_search_criteria_by_book_name(self):
+        new_office = Office(id=1, name="Dallas")
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        new_office.books.append(
+            Book(id=53,
+                 name="Test-driven Development",
+                 isbn="9780321146533",
+                 authors="Kent Beck",
+                 imageLink="http://books.google.com/books/content?id=1234"
+                 )
+        )
+        new_office.books.append(
+            Book(id=54,
+                 name="something random",
+                 isbn="9999999999999",
+                 authors="Rando More",
+                 imageLink="http://books.google.com/books/content?id=1234"
+                 )
+        )
+        db.session.commit()
+
+        response = self.client.get(
+            '/api/offices/1/books?search=test',
+            headers={'Accept': 'application/json'}
+        )
+        assert response.status_code == 200
+        assert json.loads(response.get_data(as_text=True)) == {
+            'data': {
+                'books': [
+                    {
+                        "authors": "Kent Beck",
+                        "id": 53,
+                        "imageLink": "http://books.google.com/books/content?id=1234",
+                        "isbn": "9780321146533",
+                                "name": "Test-driven Development"
+                    }
+                ]
+            }
+        }
+
+    def test_returns_books_for_office_filtered_by_search_criteria_by_book_author(self):
+        new_office = Office(id=1, name="Dallas")
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        new_office.books.append(
+            Book(id=53,
+                 name="Test-driven Development",
+                 isbn="9780321146533",
+                 authors="Kent Beck",
+                 imageLink="http://books.google.com/books/content?id=1234"
+                 )
+        )
+        new_office.books.append(
+            Book(id=54,
+                 name="something random",
+                 isbn="9999999999999",
+                 authors="Rando More",
+                 imageLink="http://books.google.com/books/content?id=1234"
+                 )
+        )
+        db.session.commit()
+
+        response = self.client.get(
+            '/api/offices/1/books?search=Kent',
+            headers={'Accept': 'application/json'}
+        )
+        assert response.status_code == 200
+        assert json.loads(response.get_data(as_text=True)) == {
+            'data': {
+                'books': [
+                    {
+                        "authors": "Kent Beck",
+                        "id": 53,
+                        "imageLink": "http://books.google.com/books/content?id=1234",
+                        "isbn": "9780321146533",
+                                "name": "Test-driven Development"
+                    }
+                ]
+            }
+        }
+
+
 if __name__ == '__main__':
     unittest.main()

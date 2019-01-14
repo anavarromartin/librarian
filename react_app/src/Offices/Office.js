@@ -21,7 +21,10 @@ const Office = (props) =>
             </Link>
         </div>
         <div style={styles}>
-            <Link to={{ pathname: `/${props.match.params.officeName}/manage`, state: { officeId: props.location.state.officeId } }} style={{ textDecoration: 'none' }}>
+            <Link to={{ pathname: `/${props.match.params.officeName}/search`, state: { officeId: props.location.state.officeId } }} style={{ textDecoration: 'none', margin: '10px' }}>
+                <Button style={{ height: '200px', width: '400px', fontSize: '4em' }} variant="contained" color="primary">Search</Button>
+            </Link>
+            <Link to={{ pathname: `/${props.match.params.officeName}/manage`, state: { officeId: props.location.state.officeId } }} style={{ textDecoration: 'none', margin: '10px' }}>
                 <Button style={{ height: '200px', width: '400px', fontSize: '4em' }} variant="contained" color="primary">Manage</Button>
             </Link>
         </div>
