@@ -111,7 +111,7 @@ class ManageContainer extends Component {
         return (
             <div style={{ marginTop: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <span style={{ fontWeight: 'bold' }}>{this.props.match.params.officeName.charAt(0).toUpperCase() + this.props.match.params.officeName.slice(1)}</span>
+                    <span style={{ fontWeight: 'bold', fontSize: '4em' }}>{this.props.match.params.officeName.charAt(0).toUpperCase() + this.props.match.params.officeName.slice(1)}</span>
                 </div>
                 <Manage officeName={this.props.match.params.officeName} saveBook={this.saveBook} officeId={this.props.location.state.officeId} />
                 <Inventory books={this.state.books} handleDelete={this.handleDelete} />

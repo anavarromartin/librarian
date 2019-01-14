@@ -60,13 +60,13 @@ class Offices extends Component {
         return (
             <div style={{ marginTop: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <span style={{ fontWeight: 'bold' }}>Offices</span>
+                    <span style={{ fontWeight: 'bold', fontSize: '4em' }}>Offices</span>
                 </div>
                 <div style={styles}>
                     {this.state.offices.map(function (office) {
                         return (
                             <Link key={office.id} to={{pathname: `/${office.name}`, state: {officeId: office.id}}} style={{ textDecoration: 'none' }}>
-                                <Button variant="contained" color="primary">{office.name}</Button>
+                                <Button style={{ height: '200px', width: '400px', fontSize: '4em' }} variant="contained" color="primary">{office.name}</Button>
                             </Link>
                         )
                     })}
