@@ -5,6 +5,7 @@ set -ex
 apt-get update -y
 apt-get install zip sqlite3 libsqlite3-dev -y
 
+pip install -r requirements
 flask db upgrade
 flask test
 
