@@ -8,6 +8,12 @@ apt-get install zip sqlite3 libsqlite3-dev -y
 cd librarian
 
 pip install -r requirements.txt
+
+export FLASK_APP=./app.py
+export FLASK_DEBUG=1
+export FLASK_RUN_PORT=3000
+export DATABASE_URL="postgresql://localhost:5432/librarian?user=postgres&password=postgres"
+
 flask test
 
 cd react_app
