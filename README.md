@@ -23,6 +23,7 @@
 
 ## Run tests
 1. `flask test`
+1. `cd react_app && CI=true yarn test`
 
 ## Run in the cloud
 
