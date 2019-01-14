@@ -13,10 +13,36 @@ class ManageContainer extends Component {
 
         this.fetchBooks = this.fetchBooks.bind(this)
         this.saveBook = this.saveBook.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     componentDidMount() {
         this.fetchBooks()
+    }
+
+    async handleDelete(bookId) {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${bookId}`
+
+        return fetch(url, {
+            method: 'DELETE',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        }).then(response => {
+            if (response.ok) {
+                return response
+            } else {
+                throw Error(`Request rejected with status ${response.status}`)
+            }
+        }).then(_ => {
+            toast('Book deleted!')
+            this.fetchBooks()
+        }).catch(error => {
+            throw error
+        })
     }
 
     async fetchBooks() {
@@ -88,7 +114,7 @@ class ManageContainer extends Component {
                     <span style={{ fontWeight: 'bold' }}>{this.props.match.params.officeName.charAt(0).toUpperCase() + this.props.match.params.officeName.slice(1)}</span>
                 </div>
                 <Manage officeName={this.props.match.params.officeName} saveBook={this.saveBook} />
-                <Inventory books={this.state.books} />
+                <Inventory books={this.state.books} handleDelete={this.handleDelete} />
             </div>
         )
     }

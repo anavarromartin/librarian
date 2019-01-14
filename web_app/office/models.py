@@ -13,7 +13,7 @@ class Office(db.Model):
     )
 
     def add_office(_name):
-        new_office = Office(name=_name)
+        new_office = Office(name=_name, books=list())
         db.session.add(new_office)
         db.session.commit()
         db.session.refresh(new_office)

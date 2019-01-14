@@ -3,7 +3,10 @@
 set -ex
 
 apt-get update -y
-apt-get install zip -y
+apt-get install zip sqlite3 libsqlite3-dev -y
+
+flask db upgrade
+flask test
 
 cd ./librarian/react_app
 

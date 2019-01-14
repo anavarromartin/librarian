@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
     root: {
@@ -20,9 +21,9 @@ const styles = theme => ({
         minWidth: 700,
     },
     tableRowHover: {
-      '&:hover': {
-        backgroundColor: theme.palette.grey[200],
-      },
+        '&:hover': {
+            backgroundColor: theme.palette.grey[200],
+        },
     },
 })
 
@@ -37,7 +38,8 @@ const Inventory = (props) => {
                         <TableCell>Image</TableCell>
                         <TableCell>Book Title</TableCell>
                         <TableCell>Authors</TableCell>
-                        <TableCell align="right">ISBN</TableCell>
+                        <TableCell>ISBN</TableCell>
+                        <TableCell align="center">Remove?</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -45,13 +47,16 @@ const Inventory = (props) => {
                         return (
                             <TableRow key={book.id} className={classes.tableRowHover}>
                                 <TableCell component="th" scope="row">
-                                    <img style={{height: '120px'}} src={book.imageLink} alt='missing'/>
+                                    <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                 </TableCell>
                                 <TableCell>{book.name}</TableCell>
                                 <TableCell>{book.authors}</TableCell>
-                                <TableCell align="right">{book.isbn}</TableCell>
+                                <TableCell>{book.isbn}</TableCell>
+                                <TableCell align="right">
+                                    <Button style={{background: 'red', color: 'white'}} variant="contained" color="inherit" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(book.id)}}>DELETE</Button>
+                                </TableCell>
                             </TableRow>
-                        );
+                        )
                     })}
                 </TableBody>
             </Table>
@@ -62,6 +67,7 @@ const Inventory = (props) => {
 Inventory.propTypes = {
     classes: PropTypes.object.isRequired,
     books: PropTypes.array.isRequired,
+    handleDelete: PropTypes.func,
 }
 
 export default withStyles(styles)(Inventory)
