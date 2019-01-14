@@ -65,7 +65,7 @@ class Offices extends Component {
                 <div style={styles}>
                     {this.state.offices.map(function (office) {
                         return (
-                            <Link key={office.id} to={`/${office.name}`} style={{ textDecoration: 'none' }}>
+                            <Link key={office.id} to={{pathname: `/${office.name}`, state: {officeId: office.id}}} style={{ textDecoration: 'none' }}>
                                 <Button variant="contained" color="primary">{office.name}</Button>
                             </Link>
                         )

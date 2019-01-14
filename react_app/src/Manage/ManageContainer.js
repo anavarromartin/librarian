@@ -46,7 +46,7 @@ class ManageContainer extends Component {
     }
 
     async fetchBooks() {
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books`
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books`
 
         return fetch(url, {
             method: 'GET',
@@ -77,7 +77,7 @@ class ManageContainer extends Component {
     }
 
     async saveBook(bookTitle, candidateISBN, authors, imageLink) {
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books`
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books`
 
         return fetch(url, {
             method: 'POST',
@@ -113,7 +113,7 @@ class ManageContainer extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <span style={{ fontWeight: 'bold' }}>{this.props.match.params.officeName.charAt(0).toUpperCase() + this.props.match.params.officeName.slice(1)}</span>
                 </div>
-                <Manage officeName={this.props.match.params.officeName} saveBook={this.saveBook} />
+                <Manage officeName={this.props.match.params.officeName} saveBook={this.saveBook} officeId={this.props.location.state.officeId} />
                 <Inventory books={this.state.books} handleDelete={this.handleDelete} />
             </div>
         )

@@ -97,7 +97,7 @@ class Manage extends Component {
         return (
             <div>
                 <div>
-                    <Link to={`/${this.props.officeName}`} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    <Link to={{ pathname: `/${this.props.officeName}`, state: { officeId: this.props.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
                     <Button onClick={this._scan} variant="contained" color="primary">{this.state.scanning ? 'Stop Scanning' : 'Scan Book ISBN'}</Button>
