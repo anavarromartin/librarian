@@ -8,7 +8,6 @@ apt-get install zip sqlite3 libsqlite3-dev -y
 cd librarian
 
 pip install -r requirements.txt
-flask db upgrade
 flask test
 
 cd react_app
