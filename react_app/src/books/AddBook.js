@@ -115,6 +115,7 @@ class AddBook extends Component {
                                 value={this.state.candidateISBN}
                                 onChange={this.handleChange('candidateISBN')}
                                 margin="normal"
+                                required={true}
                             />
                         </div>
                         <div>
@@ -124,6 +125,7 @@ class AddBook extends Component {
                                 onChange={this.handleChange('bookTitle')}
                                 margin="normal"
                                 required={true}
+                                style={{width: '20%'}}
                             />
                         </div>
                         <div>
@@ -141,7 +143,7 @@ class AddBook extends Component {
                             variant="contained"
                             color="secondary"
                             onClick={this._saveBook}
-                            disabled={!!!this.state.bookTitle || !!!this.state.authors}
+                            disabled={!(!!this.state.bookTitle && !!this.state.authors && !!this.state.candidateISBN)}
                         >
                             Add Book
                               </Button>
