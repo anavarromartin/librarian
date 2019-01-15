@@ -40,5 +40,6 @@ def convert_book_to_data(book):
             'isbn': book.isbn,
             'authors': book.authors,
             'imageLink': book.imageLink,
+            'category': book.category,
             'id': book.id
         }

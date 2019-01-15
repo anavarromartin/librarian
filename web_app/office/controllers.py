@@ -38,10 +38,20 @@ def add_book(office_id):
     try:
         request_data = request.get_json(force=True)
         if(validBook(request_data)):
-            new_book = Office.add_book_to_office(office_id, Book(
-                name=request_data['name'], isbn=request_data['isbn'], authors=request_data['authors'], imageLink=request_data['imageLink']))
+            for _ in range(int(request_data.get('quantity', 1))):
+                new_book = Office.add_book_to_office(
+                    office_id,
+                    Book(
+                        name=request_data['name'],
+                        isbn=request_data['isbn'],
+                        authors=request_data['authors'],
+                        imageLink=request_data['imageLink'],
+                        category=request_data['category']
+                    )
+                )
             return Response(json.dumps({'data': {'book': convert_book_to_data(new_book)}}), 201, mimetype='application/json')
-    except:
+    except Exception as exception:
+        print(exception)
         return Response(
             json.dumps({"error": "Invalid book"}),
             400,
@@ -51,7 +61,7 @@ def add_book(office_id):
 
 @office.route('/api/offices/<int:office_id>/books')
 @accept('application/json')
-def get_books(office_id):
+def get_books_by_office(office_id):
     search_criteria = request.args.get('search')
     if(search_criteria != None and search_criteria != ''):
         sanitized_search_criteria = bleach.clean(search_criteria)

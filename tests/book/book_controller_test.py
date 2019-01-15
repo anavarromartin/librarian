@@ -38,7 +38,8 @@ class BookControllerTest(unittest.TestCase):
                 "id": 53,
                 "imageLink": "http://books.google.com/books/content?id=1234",
                 "isbn": "9780321146533",
-                "name": "Test-driven Development"
+                "name": "Test-driven Development",
+                "category": ""
             }
         }
 

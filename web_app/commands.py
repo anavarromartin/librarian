@@ -7,8 +7,12 @@ TEST_PATH = os.path.join(PROJECT_ROOT, 'tests')
 
 
 @click.command()
-def test():
+@click.argument('single', required=False)
+def test(single):
     """Run the tests."""
     import pytest
-    rv = pytest.main([TEST_PATH, '--verbose'])
+    if(single == None):
+        rv = pytest.main([TEST_PATH, '--verbose'])
+    else:
+        rv = pytest.main([TEST_PATH, '--verbose', '-k', single])
     exit(rv)

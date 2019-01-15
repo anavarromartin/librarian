@@ -38,6 +38,7 @@ const Inventory = (props) => {
                         <TableCell>Image</TableCell>
                         <TableCell>Book Title</TableCell>
                         <TableCell>Authors</TableCell>
+                        <TableCell>Category</TableCell>
                         <TableCell>ISBN</TableCell>
                         {props.canDelete && <TableCell align="center">Remove?</TableCell>}
                     </TableRow>
@@ -51,6 +52,7 @@ const Inventory = (props) => {
                                 </TableCell>
                                 <TableCell>{book.name}</TableCell>
                                 <TableCell>{book.authors}</TableCell>
+                                <TableCell>{book.category}</TableCell>
                                 <TableCell>{book.isbn}</TableCell>
                                 {props.canDelete && <TableCell align="center">
                                     <Button style={{ background: 'red', color: 'white' }}

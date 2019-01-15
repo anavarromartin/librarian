@@ -4,6 +4,11 @@ import './AddBook.css'
 import { Line } from 'rc-progress'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import FormControl from '@material-ui/core/FormControl'
+import Input from '@material-ui/core/Input'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
 import Paper from '@material-ui/core/Paper'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -15,6 +20,8 @@ const initialState = {
     candidateISBN: '',
     imageLink: '',
     authors: '',
+    category: '',
+    quantity: 1,
     error: null
 }
 
@@ -67,6 +74,8 @@ class AddBook extends Component {
                 bookTitle: '',
                 authors: '',
                 imageLink: '',
+                category: '',
+                quantity: 1,
                 error: 'ISBN not found'
             })
         }
@@ -74,12 +83,14 @@ class AddBook extends Component {
 
     _saveBook(e) {
         e.preventDefault()
-        
+
         this.props.saveBook(
             this.state.bookTitle,
             this.state.candidateISBN,
             this.state.authors,
             this.state.imageLink,
+            this.state.category,
+            this.state.quantity,
         ).then(_ => {
             this.setState(initialState)
         })
@@ -125,7 +136,7 @@ class AddBook extends Component {
                                 onChange={this.handleChange('bookTitle')}
                                 margin="normal"
                                 required={true}
-                                style={{width: '20%'}}
+                                style={{ width: '20%' }}
                             />
                         </div>
                         <div>
@@ -137,6 +148,33 @@ class AddBook extends Component {
                                 required={true}
                             />
                         </div>
+                        <div>
+                            <FormControl style={{margin: '10px 0'}}>
+                                <InputLabel htmlFor="category-helper">Category</InputLabel>
+                                <Select
+                                    value={this.state.category}
+                                    onChange={this.handleChange('category')}
+                                    input={<Input name="age" id="category-helper" />}
+                                    style={{width: '165px'}}
+                                >
+                                    <MenuItem value={'Product'}>Product</MenuItem>
+                                    <MenuItem value={'Design'}>Design</MenuItem>
+                                    <MenuItem value={'Engineering'}>Engineering</MenuItem>
+                                    <MenuItem value={'D&I'}>D&I</MenuItem>
+                                    <MenuItem value={'Other'}>Other</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Quantity"
+                                value={this.state.quantity}
+                                onChange={this.handleChange('quantity')}
+                                margin="normal"
+                                required={true}
+                                type="number"
+                            />
+                        </div>
                         <Button
                             style={{ margin: '20px 0' }}
                             type='submit'
@@ -146,7 +184,7 @@ class AddBook extends Component {
                             disabled={!(!!this.state.bookTitle && !!this.state.authors && !!this.state.candidateISBN)}
                         >
                             Add Book
-                              </Button>
+                        </Button>
                     </form>
                 </Paper>
             </div>
@@ -200,6 +238,7 @@ class AddBook extends Component {
 AddBook.propTypes = {
     officeId: PropTypes.number.isRequired,
     officeName: PropTypes.string.isRequired,
+    saveBook: PropTypes.func.isRequired,
 }
 
 export default AddBook

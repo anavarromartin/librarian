@@ -48,7 +48,8 @@ class OfficeControllerTest(unittest.TestCase):
                                 "id": 53,
                                 "imageLink": "http://books.google.com/books/content?id=1234",
                                 "isbn": "9780321146533",
-                                "name": "Test-driven Development"
+                                "name": "Test-driven Development",
+                                "category": ""
                             }
                         ],
                         'id': 1,
@@ -90,7 +91,8 @@ class OfficeControllerTest(unittest.TestCase):
                 "authors": "Sandi Metz",
                 "imageLink": "http://books.google.com/books/content?id=1234",
                 "isbn": "9780321146533",
-                "name": "Practical Object Oriented Design In Ruby"
+                "name": "Practical Object Oriented Design In Ruby",
+                "category": ""
             }),
             headers={'Accept': 'application/json'}
         )
@@ -102,10 +104,45 @@ class OfficeControllerTest(unittest.TestCase):
                     "id": 1,
                     "imageLink": "http://books.google.com/books/content?id=1234",
                     "isbn": "9780321146533",
-                    "name": "Practical Object Oriented Design In Ruby"
+                    "name": "Practical Object Oriented Design In Ruby",
+                    "category": ""
                 }
             }
         }
+
+    def test_adds_multiple_of_a_book_to_an_office(self):
+        new_office = Office(id=1, name="Dallas")
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        db.session.commit()
+
+        response = self.client.post(
+            '/api/offices/1/books',
+            data=json.dumps({
+                "authors": "Sandi Metz",
+                "imageLink": "http://books.google.com/books/content?id=1234",
+                "isbn": "9780321146533",
+                "name": "Practical Object Oriented Design In Ruby",
+                "category": "Testing",
+                "quantity": "2"
+            }),
+            headers={'Accept': 'application/json'}
+        )
+        assert response.status_code == 201
+        assert json.loads(response.get_data(as_text=True)) == {
+            'data': {
+                'book': {
+                    "authors": "Sandi Metz",
+                    "id": 2,
+                    "imageLink": "http://books.google.com/books/content?id=1234",
+                    "isbn": "9780321146533",
+                    "name": "Practical Object Oriented Design In Ruby",
+                    "category": "Testing"
+                }
+            }
+        }
+        assert len(Book.query.all()) == 2
 
     def test_returns_all_books_for_office(self):
         new_office = Office(id=1, name="Dallas")
@@ -113,12 +150,13 @@ class OfficeControllerTest(unittest.TestCase):
         db.session.commit()
         db.session.refresh(new_office)
         new_office.books.append(
-            Book(id=53,
-                 name="Test-driven Development",
-                 isbn="9780321146533",
-                 authors="Kent Beck",
-                 imageLink="http://books.google.com/books/content?id=1234"
-                 )
+            Book(
+                id=53,
+                name="Test-driven Development",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
         )
         db.session.commit()
 
@@ -135,12 +173,12 @@ class OfficeControllerTest(unittest.TestCase):
                         "id": 53,
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
-                                "name": "Test-driven Development"
+                        "name": "Test-driven Development",
+                        "category": ""
                     }
                 ]
             }
         }
-
 
     def test_returns_books_for_office_filtered_by_search_criteria_by_book_name(self):
         new_office = Office(id=1, name="Dallas")
@@ -148,20 +186,22 @@ class OfficeControllerTest(unittest.TestCase):
         db.session.commit()
         db.session.refresh(new_office)
         new_office.books.append(
-            Book(id=53,
-                 name="Test-driven Development",
-                 isbn="9780321146533",
-                 authors="Kent Beck",
-                 imageLink="http://books.google.com/books/content?id=1234"
-                 )
+            Book(
+                id=53,
+                name="Test-driven Development",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
         )
         new_office.books.append(
-            Book(id=54,
-                 name="something random",
-                 isbn="9999999999999",
-                 authors="Rando More",
-                 imageLink="http://books.google.com/books/content?id=1234"
-                 )
+            Book(
+                id=54,
+                name="something random",
+                isbn="9999999999999",
+                authors="Rando More",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
         )
         db.session.commit()
 
@@ -178,7 +218,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "id": 53,
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
-                                "name": "Test-driven Development"
+                        "name": "Test-driven Development",
+                        "category": ""
                     }
                 ]
             }
@@ -190,20 +231,24 @@ class OfficeControllerTest(unittest.TestCase):
         db.session.commit()
         db.session.refresh(new_office)
         new_office.books.append(
-            Book(id=53,
-                 name="Test-driven Development",
-                 isbn="9780321146533",
-                 authors="Kent Beck",
-                 imageLink="http://books.google.com/books/content?id=1234"
-                 )
+            Book(
+                id=53,
+                name="Test-driven Development",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234",
+                category="Testing"
+            )
         )
         new_office.books.append(
-            Book(id=54,
-                 name="something random",
-                 isbn="9999999999999",
-                 authors="Rando More",
-                 imageLink="http://books.google.com/books/content?id=1234"
-                 )
+            Book(
+                id=54,
+                name="something random",
+                isbn="9999999999999",
+                authors="Rando More",
+                imageLink="http://books.google.com/books/content?id=1234",
+                category="Testing"
+            )
         )
         db.session.commit()
 
@@ -220,7 +265,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "id": 53,
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
-                                "name": "Test-driven Development"
+                        "name": "Test-driven Development",
+                        "category": "Testing"
                     }
                 ]
             }

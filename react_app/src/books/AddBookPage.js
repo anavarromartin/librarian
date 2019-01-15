@@ -12,7 +12,7 @@ class AddBookPage extends Component {
         this.saveBook = this.saveBook.bind(this)
     }
 
-    async saveBook(bookTitle, candidateISBN, authors, imageLink) {
+    async saveBook(bookTitle, candidateISBN, authors, imageLink, category, quantity) {
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books`
 
         const response = await fetch(url, {
@@ -28,6 +28,8 @@ class AddBookPage extends Component {
                 isbn: candidateISBN,
                 authors: authors,
                 imageLink: imageLink,
+                category: category,
+                quantity: quantity,
             }),
         })
 
