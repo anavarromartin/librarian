@@ -128,7 +128,7 @@ class AddBook extends Component {
                         </div>
                         <div>
                             <TextField
-                                label="Authors"
+                                label="Author(s)"
                                 value={this.state.authors}
                                 onChange={this.handleChange('authors')}
                                 margin="normal"
