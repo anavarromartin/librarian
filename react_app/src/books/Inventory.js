@@ -53,7 +53,13 @@ const Inventory = (props) => {
                                 <TableCell>{book.authors}</TableCell>
                                 <TableCell>{book.isbn}</TableCell>
                                 {props.canDelete && <TableCell align="center">
-                                    <Button style={{ background: 'red', color: 'white' }} variant="contained" color="inherit" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(book.id) }}>DELETE</Button>
+                                    <Button style={{ background: 'red', color: 'white' }}
+                                        variant="contained"
+                                        color="inherit"
+                                        onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(book.id) }}
+                                    >
+                                        DELETE
+                                      </Button>
                                 </TableCell>}
                             </TableRow>
                         )
@@ -67,7 +73,7 @@ const Inventory = (props) => {
 Inventory.propTypes = {
     classes: PropTypes.object.isRequired,
     books: PropTypes.array.isRequired,
-    handleDelete: PropTypes.func,
+    handleDelete: PropTypes.func.isRequired,
     canDelete: PropTypes.bool.isRequired,
 }
 

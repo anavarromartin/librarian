@@ -1,7 +1,7 @@
 .drawingBuffer {
   position: absolute;
-  top: 10%;
-  left: 0;
+  top: 180px;
+  left: 30px;
 }
 
 .scanningVideo {

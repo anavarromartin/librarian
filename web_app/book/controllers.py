@@ -29,7 +29,7 @@ def show_book(id):
 
 
 def validBook(book):
-    if ("name" in book and "isbn" in book and "authors" in book):
+    if ("name" in book and "authors" in book):
         return True
     else:
         return False

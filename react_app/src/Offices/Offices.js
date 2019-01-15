@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 const styles = {
     display: 'flex',
@@ -28,7 +28,7 @@ class Offices extends Component {
     async fetchOffices() {
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices`
 
-        return fetch(url, {
+        const response = await fetch(url, {
             method: 'GET',
             mode: 'cors',
             credentials: 'same-origin',
@@ -36,23 +36,16 @@ class Offices extends Component {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-        }).then(response => {
-            if (response.ok) {
-                return response
-            } else {
-                throw Error(`Request rejected with status ${response.status}`)
-            }
-        }).then(response =>
-            response.json().then(content => ({
-                data: content.data,
-                status: response.status
-            }))
-        ).then(res =>
-            this.setState({
-                offices: res.data.offices
-            })
-        ).catch(error => {
-            throw error
+        })
+
+        if (!response.ok) {
+            throw Error(`Request rejected with status ${response.status}`)
+        }
+
+        const content = await response.json()
+
+        this.setState({
+            offices: content.data.offices
         })
     }
 
@@ -65,7 +58,7 @@ class Offices extends Component {
                 <div style={styles}>
                     {this.state.offices.map(function (office) {
                         return (
-                            <Link key={office.id} to={{pathname: `/${office.name}`, state: {officeId: office.id}}} style={{ textDecoration: 'none' }}>
+                            <Link key={office.id} to={{ pathname: `/${office.name}`, state: { officeId: office.id } }} style={{ textDecoration: 'none' }}>
                                 <Button style={{ height: '200px', width: '400px', fontSize: '4em' }} variant="contained" color="primary">{office.name}</Button>
                             </Link>
                         )

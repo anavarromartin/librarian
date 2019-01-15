@@ -36,7 +36,9 @@ class Book(db.Model):
     def __repr__(self):
         book = {
             'name': self.name,
-            'isbn': self.isbn
+            'isbn': self.isbn,
+            'authors': self.authors,
+            'imageLink': self.imageLink
         }
         return json.dumps(book)
 

@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
-import Scanner from '../Scanner/Scanner'
+import Scanner from '../scanner/Scanner'
 import './Manage.css'
 import { Line } from 'rc-progress'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const initialState = {
     scanning: false,
     results: [],
-    bookTitle: null,
-    candidateISBN: null,
-    imageLink: null,
-    authors: null,
+    bookTitle: '',
+    candidateISBN: '',
+    imageLink: '',
+    authors: '',
     error: null
 }
 
@@ -42,47 +45,36 @@ class Manage extends Component {
     async getBookDetails(isbn) {
         var url = `${process.env.REACT_APP_BOOK_API_URL}${isbn}`
 
-        return fetch(url).then(response =>
-            response.json().then(data => ({
-                data: data,
-                status: response.status
-            }))
-        ).then(res => {
-            if (res.data.totalItems) {
-                const book = res.data.items[0];
+        const response = await fetch(url)
+        const res = await response.json()
 
-                const title = book['volumeInfo']['title']
-                const authors = book['volumeInfo']['authors'].join(', ')
-                const imageLinks = book['volumeInfo']['imageLinks']
-                const imageLink = imageLinks && imageLinks['thumbnail']
+        if (res.totalItems) {
+            const book = res.items[0];
 
-                this.setState({
-                    bookTitle: title,
-                    authors: authors,
-                    imageLink: imageLink,
-                    error: ''
-                })
-            } else {
-                this.setState({
-                    bookTitle: '',
-                    authors: '',
-                    imageLink: '',
-                    error: 'ISBN not found'
-                })
-            }
-        }).catch(error => {
+            const title = book['volumeInfo']['title']
+            const authors = book['volumeInfo']['authors'].join(', ')
+            const imageLinks = book['volumeInfo']['imageLinks']
+            const imageLink = imageLinks && imageLinks['thumbnail']
+
+            this.setState({
+                bookTitle: title,
+                authors: authors,
+                imageLink: imageLink,
+                error: ''
+            })
+        } else {
             this.setState({
                 bookTitle: '',
                 authors: '',
                 imageLink: '',
-                error: 'Something went wrong'
+                error: 'ISBN not found'
             })
-
-            throw error
-        })
+        }
     }
 
-    _saveBook() {
+    _saveBook(e) {
+        e.preventDefault()
+        
         this.props.saveBook(
             this.state.bookTitle,
             this.state.candidateISBN,
@@ -91,6 +83,12 @@ class Manage extends Component {
         ).then(_ => {
             this.setState(initialState)
         })
+    }
+
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        });
     }
 
     render() {
@@ -104,12 +102,51 @@ class Manage extends Component {
                 </div>
                 {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
-                <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.candidateISBN}</div>
-                <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.bookTitle}</div>
-                <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.authors}</div>
-                <div>{this._resultThresholdAchieved() && !this.state.scanning && this.state.error}</div>
-                {this._resultThresholdAchieved() && !this.state.scanning && <img src={this.state.imageLink} alt='Missing' />}
-                {this._resultThresholdAchieved() && !this.state.scanning && !this.state.error && <div><Button type='submit' variant="contained" color="secondary" onClick={this._saveBook}>Add book</Button></div>}
+                <div style={{ margin: '10px' }}>
+                    {this._resultThresholdAchieved() && !this.state.scanning && <img src={this.state.imageLink} alt='Missing' />}
+                    {this._resultThresholdAchieved() && !this.state.scanning && <div>{this.state.error}</div>}
+                </div>
+                <Paper>
+                    <form style={{ margin: '20px' }}>
+                        <div style={{ fontWeight: 'bold', fontSize: '2em' }}>Add Book</div>
+                        <div>
+                            <TextField
+                                label="ISBN"
+                                value={this.state.candidateISBN}
+                                onChange={this.handleChange('candidateISBN')}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                label="Title"
+                                value={this.state.bookTitle}
+                                onChange={this.handleChange('bookTitle')}
+                                margin="normal"
+                                required={true}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                label="Authors"
+                                value={this.state.authors}
+                                onChange={this.handleChange('authors')}
+                                margin="normal"
+                                required={true}
+                            />
+                        </div>
+                        <Button
+                            style={{ margin: '20px 0' }}
+                            type='submit'
+                            variant="contained"
+                            color="secondary"
+                            onClick={this._saveBook}
+                            disabled={!!!this.state.bookTitle || !!!this.state.authors}
+                        >
+                            Add Book
+                              </Button>
+                    </form>
+                </Paper>
             </div>
         )
     }
@@ -156,6 +193,11 @@ class Manage extends Component {
     _reachedMaxResults(nextResults) {
         return nextResults.length >= SCAN_THRESHOLD_SIZE
     }
+}
+
+Manage.propTypes = {
+    officeId: PropTypes.number.isRequired,
+    officeName: PropTypes.string.isRequired,
 }
 
 export default Manage
