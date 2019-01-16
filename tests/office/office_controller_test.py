@@ -138,7 +138,7 @@ class OfficeControllerTest(unittest.TestCase):
         }
         assert len(Book.query.all()) == 2
 
-    def test_returns_all_books_for_office(self):
+    def test_returns_all_books_for_office_ordered_by_name(self):
         new_office = Office(id=1, name="Dallas")
         db.session.add(new_office)
         db.session.commit()
@@ -148,6 +148,15 @@ class OfficeControllerTest(unittest.TestCase):
                 id=53,
                 name="Test-driven Development",
                 isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
+        )
+        new_office.books.append(
+            Book(
+                id=2,
+                name="Test-driven Development Second Edition",
+                isbn="2222222222222",
                 authors="Kent Beck",
                 imageLink="http://books.google.com/books/content?id=1234"
             )
@@ -168,6 +177,15 @@ class OfficeControllerTest(unittest.TestCase):
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
+                        "category": "",
+                        "quantity": 1
+                    },
+                    {
+                        "authors": "Kent Beck",
+                        "id": 2,
+                        "imageLink": "http://books.google.com/books/content?id=1234",
+                        "isbn": "2222222222222",
+                        "name": "Test-driven Development Second Edition",
                         "category": "",
                         "quantity": 1
                     }
@@ -210,10 +228,10 @@ class OfficeControllerTest(unittest.TestCase):
                 'books': [
                     {
                         "authors": "Kent Beck",
-                        "id": 53,
+                        "id": 54,
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
-                        "name": "Test-driven Development Second Edition",
+                        "name": "Test-driven Development",
                         "category": "",
                         "quantity": 2
                     }
