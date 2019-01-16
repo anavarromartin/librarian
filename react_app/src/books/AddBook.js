@@ -58,7 +58,7 @@ class AddBook extends Component {
     }
 
     handleClose(e, shouldUpdateQuantity) {
-        if(shouldUpdateQuantity) {
+        if (shouldUpdateQuantity) {
             this._saveBook(e)
         }
 
@@ -127,7 +127,7 @@ class AddBook extends Component {
 
         const res = await response.json()
 
-        if(res.data.book.id) {
+        if (res.data.book.id) {
             this.handleClickOpen()
         }
     }
@@ -206,7 +206,7 @@ class AddBook extends Component {
                                 <Select
                                     value={this.state.category}
                                     onChange={this.handleChange('category')}
-                                    input={<Input name="age" id="category-helper" />}
+                                    input={<Input name="category" id="category-helper" />}
                                     style={{ width: '165px' }}
                                 >
                                     <MenuItem value={'Product'}>Product</MenuItem>
@@ -218,15 +218,20 @@ class AddBook extends Component {
                             </FormControl>
                         </div>
                         <div>
-                            <TextField
-                                label="Quantity"
-                                value={this.state.quantity}
-                                onChange={this.handleChange('quantity')}
-                                margin="normal"
-                                required={true}
-                                type="number"
-                                style={{ width: '70px' }}
-                            />
+                            <FormControl style={{ margin: '10px 0' }}>
+                                <InputLabel htmlFor="quantity-helper">Quantity</InputLabel>
+                                <Select
+                                    value={this.state.quantity}
+                                    required={true}
+                                    onChange={this.handleChange('quantity')}
+                                    input={<Input name="quantity" id="quantity-helper" />}
+                                    style={{ width: '100px' }}
+                                >
+                                    {[...Array(20).keys()].map(function (number, index) {
+                                        return <MenuItem key={index} value={number + 1}>{number + 1}</MenuItem>
+                                    })}
+                                </Select>
+                            </FormControl>
                         </div>
                         <Button
                             style={{ margin: '20px 0' }}
