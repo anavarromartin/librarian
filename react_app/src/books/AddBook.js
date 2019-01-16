@@ -136,7 +136,7 @@ class AddBook extends Component {
                                 onChange={this.handleChange('bookTitle')}
                                 margin="normal"
                                 required={true}
-                                style={{ width: '20%' }}
+                                style={{ width: '300px' }}
                             />
                         </div>
                         <div>
@@ -146,6 +146,7 @@ class AddBook extends Component {
                                 onChange={this.handleChange('authors')}
                                 margin="normal"
                                 required={true}
+                                style={{ width: '300px' }}
                             />
                         </div>
                         <div>
@@ -173,6 +174,7 @@ class AddBook extends Component {
                                 margin="normal"
                                 required={true}
                                 type="number"
+                                style={{ width: '70px' }}
                             />
                         </div>
                         <Button
