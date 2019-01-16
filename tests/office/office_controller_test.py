@@ -285,6 +285,76 @@ class OfficeControllerTest(unittest.TestCase):
             }
         }
 
+    def test_returns_book_when_book_with_given_isbn_exists(self):
+        new_office = Office(id=1, name="Dallas")
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        new_office.books.append(
+            Book(
+                id=53,
+                name="Test-driven Development",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
+        )
+        db.session.commit()
+
+        response = self.client.get(
+            '/api/offices/1/books/9780321146533',
+            headers={'Accept': 'application/json'}
+        )
+        assert response.status_code == 200
+        assert json.loads(response.get_data(as_text=True)) == {
+            'data': {
+                'book': {
+                    "authors": "Kent Beck",
+                    "id": 53,
+                    "imageLink": "http://books.google.com/books/content?id=1234",
+                    "isbn": "9780321146533",
+                    "name": "Test-driven Development",
+                    "category": "",
+                    "quantity": 1
+                }
+            }
+        }
+
+    def test_returns_object_with_empty_fields_when_no_book_with_given_isbn_exists(self):
+        new_office = Office(id=1, name="Dallas")
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        new_office.books.append(
+            Book(
+                id=53,
+                name="Test-driven Development",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
+        )
+        db.session.commit()
+
+        response = self.client.get(
+            '/api/offices/1/books/2222222222222',
+            headers={'Accept': 'application/json'}
+        )
+        assert response.status_code == 200
+        assert json.loads(response.get_data(as_text=True)) == {
+            'data': {
+                'book': {
+                    'name': '',
+                    'isbn': '',
+                    'authors': '',
+                    'imageLink': '',
+                    'category': '',
+                    'quantity': 1,
+                    'id': ''
+                }
+            }
+        }
+
     def test_returns_books_for_office_filtered_by_search_criteria_by_book_author(self):
         new_office = Office(id=1, name="Dallas")
         db.session.add(new_office)

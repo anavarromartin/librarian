@@ -34,13 +34,25 @@ def validBook(book):
     else:
         return False
 
+
 def convert_book_to_data(book, quantity):
-    return {
-            'name': book.name,
-            'isbn': book.isbn,
-            'authors': book.authors,
-            'imageLink': book.imageLink,
-            'category': book.category,
+    if(book == None):
+        return {
+            'name': '',
+            'isbn': '',
+            'authors': '',
+            'imageLink': '',
+            'category': '',
             'quantity': quantity,
-            'id': book.id
+            'id': ''
         }
+
+    return {
+        'name': book.name,
+        'isbn': book.isbn,
+        'authors': book.authors,
+        'imageLink': book.imageLink,
+        'category': book.category,
+        'quantity': quantity,
+        'id': book.id
+    }

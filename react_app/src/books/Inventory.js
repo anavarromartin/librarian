@@ -100,7 +100,6 @@ class Inventory extends Component {
                                     </Button>
                                         <Dialog
                                             open={this.state.open}
-                                            onClose={this.handleClose}
                                             aria-labelledby="alert-dialog-title"
                                             aria-describedby="alert-dialog-description"
                                             disableBackdropClick={true}

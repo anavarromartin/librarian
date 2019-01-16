@@ -12,6 +12,11 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Paper from '@material-ui/core/Paper'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 const initialState = {
     scanning: false,
@@ -22,7 +27,8 @@ const initialState = {
     authors: '',
     category: '',
     quantity: 1,
-    error: null
+    error: null,
+    open: false,
 }
 
 const SCAN_THRESHOLD_SIZE = 20
@@ -40,6 +46,25 @@ class AddBook extends Component {
         this._resultThresholdAchieved = this._resultThresholdAchieved.bind(this)
         this._saveBook = this._saveBook.bind(this)
         this._percentage = this._percentage.bind(this)
+        this.handleClickOpen = this.handleClickOpen.bind(this)
+        this.handleClose = this.handleClose.bind(this)
+        this.checkDuplicateBook = this.checkDuplicateBook.bind(this)
+    }
+
+    handleClickOpen() {
+        this.setState({
+            open: true
+        })
+    }
+
+    handleClose(e, shouldUpdateQuantity) {
+        if(shouldUpdateQuantity) {
+            this._saveBook(e)
+        }
+
+        this.setState({
+            open: false
+        })
     }
 
     // TODO: figure out how to do a secondary sort when a > b
@@ -69,6 +94,8 @@ class AddBook extends Component {
                 imageLink: imageLink,
                 error: ''
             })
+
+            this.checkDuplicateBook(isbn)
         } else {
             this.setState({
                 bookTitle: '',
@@ -78,6 +105,30 @@ class AddBook extends Component {
                 quantity: 1,
                 error: 'ISBN not found'
             })
+        }
+    }
+
+    async checkDuplicateBook(isbn) {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.officeId}/books/${isbn}`
+
+        const response = await fetch(url, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        })
+
+        if (!response.ok) {
+            throw Error(`Request rejected with status ${response.status}`)
+        }
+
+        const res = await response.json()
+
+        if(res.data.book.id) {
+            this.handleClickOpen()
         }
     }
 
@@ -150,13 +201,13 @@ class AddBook extends Component {
                             />
                         </div>
                         <div>
-                            <FormControl style={{margin: '10px 0'}}>
+                            <FormControl style={{ margin: '10px 0' }}>
                                 <InputLabel htmlFor="category-helper">Category</InputLabel>
                                 <Select
                                     value={this.state.category}
                                     onChange={this.handleChange('category')}
                                     input={<Input name="age" id="category-helper" />}
-                                    style={{width: '165px'}}
+                                    style={{ width: '165px' }}
                                 >
                                     <MenuItem value={'Product'}>Product</MenuItem>
                                     <MenuItem value={'Design'}>Design</MenuItem>
@@ -189,6 +240,28 @@ class AddBook extends Component {
                         </Button>
                     </form>
                 </Paper>
+                <Dialog
+                    open={this.state.open}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                    disableBackdropClick={true}
+                    disableEscapeKeyDown={true}
+                >
+                    <DialogTitle id="alert-dialog-title">Existing Book: Update Quantity?</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            This book exists in the library. Would you like to update the quantity?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={(e) => { this.handleClose(e, false) }} color="primary">
+                            No
+                        </Button>
+                        <Button onClick={(e) => { this.handleClose(e, true) }} color="inherit" style={{ background: 'green', color: 'white' }} autoFocus>
+                            Yes
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         )
     }

@@ -60,6 +60,12 @@ def add_book_to_office(office_id):
         )
 
 
+@office.route('/api/offices/<int:office_id>/books/<string:isbn>')
+@accept('application/json')
+def get_book_by_office_and_isbn(office_id, isbn):
+    return jsonify({'data': {'book': convert_book_to_data(Office.get_book_by_isbn(office_id, isbn), 1)}})
+
+
 @office.route('/api/offices/<int:office_id>/books')
 @accept('application/json')
 def get_books_by_office(office_id):
