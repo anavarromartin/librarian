@@ -11,6 +11,8 @@ class BookControllerTest(unittest.TestCase):
         self.client = app.test_client()
         db.app = app
         db.create_all()
+        db.session.query(Book).delete()
+        db.session.commit()
 
     def tearDown(self):
         db.session.query(Book).delete()
@@ -39,7 +41,8 @@ class BookControllerTest(unittest.TestCase):
                 "imageLink": "http://books.google.com/books/content?id=1234",
                 "isbn": "9780321146533",
                 "name": "Test-driven Development",
-                "category": ""
+                "category": "",
+                "quantity": 1
             }
         }
 

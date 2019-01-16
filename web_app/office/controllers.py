@@ -6,6 +6,7 @@ from flask import Blueprint
 from flask_accept import accept
 from ..book.controllers import convert_book_to_data, validBook
 import bleach
+import itertools
 
 office = Blueprint('office', __name__)
 
@@ -34,7 +35,7 @@ def add_office():
 
 @office.route('/api/offices/<int:office_id>/books', methods=['POST'])
 @accept('application/json')
-def add_book(office_id):
+def add_book_to_office(office_id):
     try:
         request_data = request.get_json(force=True)
         if(validBook(request_data)):
@@ -49,7 +50,7 @@ def add_book(office_id):
                         category=request_data['category']
                     )
                 )
-            return Response(json.dumps({'data': {'book': convert_book_to_data(new_book)}}), 201, mimetype='application/json')
+            return Response(json.dumps({'data': {'book': convert_book_to_data(new_book, 1)}}), 201, mimetype='application/json')
     except Exception as exception:
         print(exception)
         return Response(
@@ -67,12 +68,25 @@ def get_books_by_office(office_id):
         sanitized_search_criteria = bleach.clean(search_criteria)
     else:
         sanitized_search_criteria = search_criteria
-    return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book), reversed(list(Office.get_all_books(office_id, sanitized_search_criteria)))))}})
+
+    return jsonify({'data': {'books': _group(list(Office.get_all_books(office_id, sanitized_search_criteria)))}})
+
+
+def _convert_group_to_data(book_group):
+    group_data = list(book_group[1])
+    return convert_book_to_data(group_data[0], len(group_data))
+
+
+def _group(books):
+    books_grouped_by_isbn = itertools.groupby(
+        books,
+        lambda book: book.isbn
+    )
+    return list(map(lambda book_group: _convert_group_to_data(book_group), books_grouped_by_isbn))
 
 
 def convert_office_to_data(office):
     return {
         'name': office.name,
-        'books': list(map(lambda book: convert_book_to_data(book), office.books)),
         'id': office.id
     }

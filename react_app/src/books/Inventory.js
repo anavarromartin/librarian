@@ -39,6 +39,7 @@ const Inventory = (props) => {
                         <TableCell>Book Title</TableCell>
                         <TableCell>Authors</TableCell>
                         <TableCell>Category</TableCell>
+                        <TableCell>Quantity</TableCell>
                         <TableCell>ISBN</TableCell>
                         {props.canDelete && <TableCell align="center">Remove?</TableCell>}
                     </TableRow>
@@ -53,6 +54,7 @@ const Inventory = (props) => {
                                 <TableCell>{book.name}</TableCell>
                                 <TableCell>{book.authors}</TableCell>
                                 <TableCell>{book.category}</TableCell>
+                                <TableCell>{book.quantity}</TableCell>
                                 <TableCell>{book.isbn}</TableCell>
                                 {props.canDelete && <TableCell align="center">
                                     <Button style={{ background: 'red', color: 'white' }}
@@ -61,7 +63,7 @@ const Inventory = (props) => {
                                         onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(book.id) }}
                                     >
                                         DELETE
-                                      </Button>
+                                    </Button>
                                 </TableCell>}
                             </TableRow>
                         )

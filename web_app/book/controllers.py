@@ -25,7 +25,7 @@ def delete_book(id):
 @book.route('/api/books/<int:id>')
 @accept('application/json')
 def show_book(id):
-    return jsonify({'data': convert_book_to_data(Book.get_book(id))})
+    return jsonify({'data': convert_book_to_data(Book.get_book(id), 1)})
 
 
 def validBook(book):
@@ -34,12 +34,13 @@ def validBook(book):
     else:
         return False
 
-def convert_book_to_data(book):
+def convert_book_to_data(book, quantity):
     return {
             'name': book.name,
             'isbn': book.isbn,
             'authors': book.authors,
             'imageLink': book.imageLink,
             'category': book.category,
+            'quantity': quantity,
             'id': book.id
         }

@@ -12,6 +12,9 @@ class OfficeControllerTest(unittest.TestCase):
         self.client = app.test_client()
         db.app = app
         db.create_all()
+        db.session.query(Book).delete()
+        db.session.query(Office).delete()
+        db.session.commit()
 
     def tearDown(self):
         db.session.query(Book).delete()
@@ -42,16 +45,6 @@ class OfficeControllerTest(unittest.TestCase):
             'data': {
                 'offices': [
                     {
-                        'books': [
-                            {
-                                "authors": "Kent Beck",
-                                "id": 53,
-                                "imageLink": "http://books.google.com/books/content?id=1234",
-                                "isbn": "9780321146533",
-                                "name": "Test-driven Development",
-                                "category": ""
-                            }
-                        ],
                         'id': 1,
                         'name': 'Dallas'
                     }
@@ -71,7 +64,6 @@ class OfficeControllerTest(unittest.TestCase):
         assert json.loads(response.get_data(as_text=True)) == {
             'data': {
                 'office': {
-                    'books': [],
                     'id': 1,
                     'name': 'Seattle'
                 }
@@ -105,7 +97,8 @@ class OfficeControllerTest(unittest.TestCase):
                     "imageLink": "http://books.google.com/books/content?id=1234",
                     "isbn": "9780321146533",
                     "name": "Practical Object Oriented Design In Ruby",
-                    "category": ""
+                    "category": "",
+                    "quantity": 1
                 }
             }
         }
@@ -138,7 +131,8 @@ class OfficeControllerTest(unittest.TestCase):
                     "imageLink": "http://books.google.com/books/content?id=1234",
                     "isbn": "9780321146533",
                     "name": "Practical Object Oriented Design In Ruby",
-                    "category": "Testing"
+                    "category": "Testing",
+                    "quantity": 1
                 }
             }
         }
@@ -174,7 +168,54 @@ class OfficeControllerTest(unittest.TestCase):
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
-                        "category": ""
+                        "category": "",
+                        "quantity": 1
+                    }
+                ]
+            }
+        }
+
+    def test_returns_all_books_for_office_grouped_by_isbn(self):
+        new_office = Office(id=1, name="Dallas")
+        db.session.add(new_office)
+        db.session.commit()
+        db.session.refresh(new_office)
+        new_office.books.append(
+            Book(
+                id=53,
+                name="Test-driven Development Second Edition",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
+        )
+        new_office.books.append(
+            Book(
+                id=54,
+                name="Test-driven Development",
+                isbn="9780321146533",
+                authors="Kent Beck",
+                imageLink="http://books.google.com/books/content?id=1234"
+            )
+        )
+        db.session.commit()
+
+        response = self.client.get(
+            '/api/offices/1/books',
+            headers={'Accept': 'application/json'}
+        )
+        assert response.status_code == 200
+        assert json.loads(response.get_data(as_text=True)) == {
+            'data': {
+                'books': [
+                    {
+                        "authors": "Kent Beck",
+                        "id": 53,
+                        "imageLink": "http://books.google.com/books/content?id=1234",
+                        "isbn": "9780321146533",
+                        "name": "Test-driven Development Second Edition",
+                        "category": "",
+                        "quantity": 2
                     }
                 ]
             }
@@ -219,7 +260,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
-                        "category": ""
+                        "category": "",
+                        "quantity": 1
                     }
                 ]
             }
@@ -266,7 +308,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "imageLink": "http://books.google.com/books/content?id=1234",
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
-                        "category": "Testing"
+                        "category": "Testing",
+                        "quantity": 1
                     }
                 ]
             }
