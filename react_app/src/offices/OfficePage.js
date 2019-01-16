@@ -12,7 +12,8 @@ class Office extends Component {
         super(props)
 
         this.state = {
-            books: []
+            books: [],
+            searchCriteria: '',
         }
 
         this.fetchBooks = this.fetchBooks.bind(this)
@@ -32,6 +33,10 @@ class Office extends Component {
     }
 
     async search(searchCriteria) {
+        this.setState({
+            searchCriteria: searchCriteria
+        })
+
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books?search=${searchCriteria}`
 
         await this._getBooks(url);
@@ -97,7 +102,8 @@ class Office extends Component {
                         maxWidth: 800
                     }}
                 />
-                <div style={{marginLeft: '10px'}}>Results: {this.state.books.length}</div>
+                {this.state.books.length > 0 && <div style={{ marginLeft: '10px' }}>Results: {this.state.books.length}</div>}
+                {this.state.books.length === 0 && this.state.searchCriteria.length > 0 && <div style={{ marginLeft: '10px' }}>No books matching [{this.state.searchCriteria}]</div>}
                 <Inventory books={this.state.books} canDelete={true} handleDelete={this.handleDelete} />
             </div>
         )

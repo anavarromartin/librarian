@@ -37,7 +37,7 @@ class Office(db.Model):
     def get_all_books(_id, search_criteria):
         if(search_criteria != None and search_criteria != ''):
             query = '%' + search_criteria + '%'
-            return Office.query.filter_by(id=_id).first().books.filter(or_(Book.name.ilike(query), Book.authors.ilike(query))).order_by(Book.name)
+            return Office.query.filter_by(id=_id).first().books.filter(or_(Book.name.ilike(query), Book.authors.ilike(query), Book.category.ilike(query))).order_by(Book.name)
         else:
             return Office.query.filter_by(id=_id).first().books.order_by(Book.name)
 
