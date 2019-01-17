@@ -3,12 +3,14 @@ import json
 from .models import Book
 from flask import Blueprint
 from flask_accept import accept
+import flask_login
 
 book = Blueprint('book', __name__)
 
 
 @book.route('/api/books/<int:id>', methods=['DELETE'])
 @accept('application/json')
+@flask_login.login_required
 def delete_book(id):
     try:
         Book.delete_book(id)
