@@ -7,6 +7,7 @@ from flask_accept import accept
 from ..book.controllers import convert_book_to_data, validBook
 import bleach
 import itertools
+from flask_jwt_extended import jwt_required
 
 office = Blueprint('office', __name__)
 
@@ -35,6 +36,7 @@ def add_office():
 
 @office.route('/api/offices/<int:office_id>/books', methods=['POST'])
 @accept('application/json')
+@jwt_required
 def add_book_to_office(office_id):
     try:
         request_data = request.get_json(force=True)

@@ -132,19 +132,19 @@ class AddBook extends Component {
         }
     }
 
-    _saveBook(e) {
+    async _saveBook(e) {
         e.preventDefault()
 
-        this.props.saveBook(
+        await this.props.saveBook(
             this.state.bookTitle,
             this.state.candidateISBN,
             this.state.authors,
             this.state.imageLink,
             this.state.category,
             this.state.quantity,
-        ).then(_ => {
-            this.setState(initialState)
-        })
+        )
+
+        this.setState(initialState)
     }
 
     handleChange = name => event => {

@@ -22,6 +22,7 @@ class AddBookPage extends Component {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${window.localStorage.access_token}`,
             },
             body: JSON.stringify({
                 name: bookTitle,

@@ -4,12 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from web_app.book.models import Book
 from web_app.office.models import Office
+from flask_jwt_extended import JWTManager, create_access_token
 
 
 class OfficeControllerTest(unittest.TestCase):
     def setUp(self):
         app = create_app('config.TestConfig')
+        self.app = JWTManager(app)
+        with app.test_request_context():
+            self.access_token = create_access_token('test')
         self.client = app.test_client()
+
         db.app = app
         db.create_all()
         db.session.query(Book).delete()
@@ -86,7 +91,10 @@ class OfficeControllerTest(unittest.TestCase):
                 "name": "Practical Object Oriented Design In Ruby",
                 "category": ""
             }),
-            headers={'Accept': 'application/json'}
+            headers={
+                'Accept': 'application/json',
+                'Authorization': 'Bearer {}'.format(self.access_token)
+            }
         )
         assert response.status_code == 201
         assert json.loads(response.get_data(as_text=True)) == {
@@ -120,7 +128,10 @@ class OfficeControllerTest(unittest.TestCase):
                 "category": "Testing",
                 "quantity": "2"
             }),
-            headers={'Accept': 'application/json'}
+            headers={
+                'Accept': 'application/json',
+                'Authorization': 'Bearer {}'.format(self.access_token)
+            }
         )
         assert response.status_code == 201
         assert json.loads(response.get_data(as_text=True)) == {

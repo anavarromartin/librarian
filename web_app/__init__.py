@@ -25,6 +25,7 @@ def register_commands(app):
 def create_app(object_name):
     from .book.controllers import book
     from .office.controllers import office
+    from .login.controllers import loginController
 
     app = Flask(__name__, static_folder='react_app/build')
     app.config.from_object(object_name)
@@ -34,6 +35,7 @@ def create_app(object_name):
 
     app.register_blueprint(book)
     app.register_blueprint(office)
+    app.register_blueprint(loginController)
 
     register_commands(app)
 

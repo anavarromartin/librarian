@@ -3,11 +3,15 @@ from web_app import create_app, db
 from flask_sqlalchemy import SQLAlchemy
 import json
 from web_app.book.models import Book
+from flask_jwt_extended import JWTManager, create_access_token
 
 
 class BookControllerTest(unittest.TestCase):
     def setUp(self):
         app = create_app('config.TestConfig')
+        self.app = JWTManager(app)
+        with app.test_request_context():
+            self.access_token = create_access_token('test')
         self.client = app.test_client()
         db.app = app
         db.create_all()
@@ -59,7 +63,10 @@ class BookControllerTest(unittest.TestCase):
 
         response = self.client.delete(
             '/api/books/53',
-            headers={'Accept': 'application/json'}
+            headers={
+                'Accept': 'application/json',
+                'Authorization': 'Bearer {}'.format(self.access_token)
+            }
         )
         assert response.status_code == 200
         assert Book.query.filter_by(id=53).first() == None

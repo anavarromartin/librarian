@@ -1,11 +1,13 @@
 import os
 from web_app import create_app
 from flask import send_from_directory
+from flask import Flask, jsonify, request
+from flask_jwt_extended import JWTManager
 
 env = os.environ.get('WEBAPP_ENV', 'dev')
 app = create_app('config.%sConfig' % env.capitalize())
 port = int(os.getenv('PORT', '3000'))
-
+jwt = JWTManager(app)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

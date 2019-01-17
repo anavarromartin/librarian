@@ -3,12 +3,14 @@ import json
 from .models import Book
 from flask import Blueprint
 from flask_accept import accept
+from flask_jwt_extended import jwt_required
 
 book = Blueprint('book', __name__)
 
 
 @book.route('/api/books/<int:id>', methods=['DELETE'])
 @accept('application/json')
+@jwt_required
 def delete_book(id):
     try:
         Book.delete_book(id)

@@ -71,6 +71,7 @@ class Office extends Component {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${window.localStorage.access_token}`,
             }
         })
 
@@ -90,9 +91,9 @@ class Office extends Component {
                     <Link to={{ pathname: `/` }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
-                    <Link to={{ pathname: `/${this.props.match.params.officeName}/add-book`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    {!!window.localStorage.access_token && <Link to={{ pathname: `/${this.props.match.params.officeName}/add-book`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Add Book</Button>
-                    </Link>
+                    </Link>}
                 </div>
                 <SearchBar
                     onCancelSearch={this.fetchBooks}
@@ -104,7 +105,7 @@ class Office extends Component {
                 />
                 {this.state.books.length > 0 && <div style={{ marginLeft: '10px' }}>Results: {this.state.books.length}</div>}
                 {this.state.books.length === 0 && this.state.searchCriteria.length > 0 && <div style={{ marginLeft: '10px' }}>No books matching [{this.state.searchCriteria}]</div>}
-                <Inventory books={this.state.books} canDelete={true} handleDelete={this.handleDelete} />
+                <Inventory books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
             </div>
         )
     }
