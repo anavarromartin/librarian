@@ -20,7 +20,7 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
         overflowY: 'scroll',
-        height: 'calc(100vh - 150px)',
+        height: 'calc(100vh - 235px)',
     },
     table: {
         minWidth: 700,
