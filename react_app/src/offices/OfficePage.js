@@ -20,6 +20,7 @@ class Office extends Component {
         this.search = this.search.bind(this)
         this._getBooks = this._getBooks.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.checkoutBook = this.checkoutBook.bind(this)
     }
 
     componentDidMount() {
@@ -83,6 +84,31 @@ class Office extends Component {
         this.fetchBooks()
     }
 
+    async checkoutBook(bookId, borrowerName, borrowerEmail) {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${bookId}?checkout=true`
+
+        const response = await fetch(url, {
+            method: 'PATCH',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                name: borrowerName,
+                email: borrowerEmail,
+            }),
+        })
+
+        if (!response.ok) {
+            throw Error(`Request rejected with status ${response.status}`)
+        }
+
+        toast('Book successfully checked out!')
+        this.fetchBooks()
+    }
+
     render() {
         return (
             <div style={{ marginTop: '10px' }}>
@@ -105,7 +131,7 @@ class Office extends Component {
                 />
                 {this.state.books.length > 0 && <div style={{ marginLeft: '10px' }}>Results: {this.state.books.length}</div>}
                 {this.state.books.length === 0 && this.state.searchCriteria.length > 0 && <div style={{ marginLeft: '10px' }}>No books matching [{this.state.searchCriteria}]</div>}
-                <Inventory books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
+                <Inventory checkoutBook={this.checkoutBook} books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
             </div>
         )
     }

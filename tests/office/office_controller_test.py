@@ -106,7 +106,8 @@ class OfficeControllerTest(unittest.TestCase):
                     "isbn": "9780321146533",
                     "name": "Practical Object Oriented Design In Ruby",
                     "category": "",
-                    "quantity": 1
+                    "quantity": 1,
+                    "available_quantity": 1
                 }
             }
         }
@@ -143,7 +144,8 @@ class OfficeControllerTest(unittest.TestCase):
                     "isbn": "9780321146533",
                     "name": "Practical Object Oriented Design In Ruby",
                     "category": "Testing",
-                    "quantity": 1
+                    "quantity": 1,
+                    "available_quantity": 1
                 }
             }
         }
@@ -189,7 +191,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
                         "category": "",
-                        "quantity": 1
+                        "quantity": 1,
+                        "available_quantity": 1
                     },
                     {
                         "authors": "Kent Beck",
@@ -198,7 +201,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "isbn": "2222222222222",
                         "name": "Test-driven Development Second Edition",
                         "category": "",
-                        "quantity": 1
+                        "quantity": 1,
+                        "available_quantity": 1
                     }
                 ]
             }
@@ -244,7 +248,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
                         "category": "",
-                        "quantity": 2
+                        "quantity": 2,
+                        "available_quantity": 2
                     }
                 ]
             }
@@ -290,7 +295,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
                         "category": "",
-                        "quantity": 1
+                        "quantity": 1,
+                        "available_quantity": 1
                     }
                 ]
             }
@@ -326,7 +332,8 @@ class OfficeControllerTest(unittest.TestCase):
                     "isbn": "9780321146533",
                     "name": "Test-driven Development",
                     "category": "",
-                    "quantity": 1
+                    "quantity": 1,
+                    "available_quantity": 1
                 }
             }
         }
@@ -360,7 +367,8 @@ class OfficeControllerTest(unittest.TestCase):
                     'authors': '',
                     'imageLink': '',
                     'category': '',
-                    'quantity': 1,
+                    'quantity': 0,
+                    "available_quantity": 0,
                     'id': ''
                 }
             }
@@ -408,7 +416,8 @@ class OfficeControllerTest(unittest.TestCase):
                         "isbn": "9780321146533",
                         "name": "Test-driven Development",
                         "category": "Testing",
-                        "quantity": 1
+                        "quantity": 1,
+                        "available_quantity": 1
                     }
                 ]
             }

@@ -11,6 +11,12 @@ class Book(db.Model):
     imageLink = db.Column(db.String(2000))
     category = db.Column(db.String(80))
     office_id = db.Column(db.Integer(), db.ForeignKey('offices.id'))
+    checkout_histories = db.relationship(
+           'CheckoutHistory',
+           backref='checkout_history',
+           lazy='dynamic',
+           cascade='delete'
+    )
 
     def __init__(self, name, isbn, authors, imageLink, category='', id=None):
         self.id = id
@@ -20,19 +26,12 @@ class Book(db.Model):
         self.imageLink = imageLink
         self.category = category
 
+    def is_available(self):
+        histories = list(self.checkout_histories)
+        if len(histories) == 0:
+            return True
 
-    def add_book(_name, _isbn, _authors, _imageLink, _category=''):
-        new_book = Book(
-            name=_name,
-            isbn=_isbn,
-            authors=_authors,
-            imageLink=_imageLink,
-            category=_category
-        )
-        db.session.add(new_book)
-        db.session.commit()
-        db.session.refresh(new_book)
-        return new_book
+        return histories[-1].checkin_time != None
 
     def get_book(_id):
         return Book.query.filter_by(id=_id).first()
@@ -41,13 +40,9 @@ class Book(db.Model):
         return Book.query.all()
 
     def delete_book(_id):
-        Book.query.filter_by(id=_id).delete()
-        db.session.commit()
-
-    def update_book(_id, _name, _isbn):
-        existing_book = Book.query.filter_by(id=_id).first()
-        existing_book.name = _name
-        existing_book.isbn = _isbn
+        book_query = Book.query.filter_by(id=_id)
+        book_query.first().checkout_histories.delete()
+        book_query.delete()
         db.session.commit()
 
     def __repr__(self):

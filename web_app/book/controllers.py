@@ -4,6 +4,7 @@ from .models import Book
 from flask import Blueprint
 from flask_accept import accept
 from flask_jwt_extended import jwt_required
+from ..checkout_histories.models import CheckoutHistory
 
 book = Blueprint('book', __name__)
 
@@ -27,7 +28,30 @@ def delete_book(id):
 @book.route('/api/books/<int:id>')
 @accept('application/json')
 def show_book(id):
-    return jsonify({'data': convert_book_to_data(Book.get_book(id), 1)})
+    book = Book.get_book(id)
+    return jsonify({'data': convert_book_to_data(book, 1, 1 if book.is_available() else 0)})
+
+
+@book.route('/api/books/<int:book_id>', methods=['PATCH'])
+@accept('application/json')
+def update_book_status(book_id):
+    checkout = request.args.get('checkout')
+    if checkout is None:
+        return Response(
+            json.dumps({"error": "Invalid checkout request"}),
+            400,
+            mimetype='application/json'
+        )
+
+    updated_book = Book.get_book(book_id)
+    if checkout == 'true' and updated_book.is_available():
+        email = request.get_json(force=True).get('email')
+        name = request.get_json(force=True).get('name')
+        CheckoutHistory.add_checkout_history(email, name, book_id)
+    elif checkout == 'false' and not updated_book.is_available():
+        CheckoutHistory.update_checkin(list(updated_book.checkout_histories)[-1].id)
+
+    return jsonify({'data': convert_book_to_data(updated_book, 1, 1 if updated_book.is_available() else 0)})
 
 
 def validBook(book):
@@ -37,7 +61,7 @@ def validBook(book):
         return False
 
 
-def convert_book_to_data(book, quantity):
+def convert_book_to_data(book, quantity, available_quantity):
     if(book == None):
         return {
             'name': '',
@@ -45,7 +69,8 @@ def convert_book_to_data(book, quantity):
             'authors': '',
             'imageLink': '',
             'category': '',
-            'quantity': quantity,
+            'quantity': 0,
+            'available_quantity': 0,
             'id': ''
         }
 
@@ -56,5 +81,6 @@ def convert_book_to_data(book, quantity):
         'imageLink': book.imageLink,
         'category': book.category,
         'quantity': quantity,
+        'available_quantity': available_quantity,
         'id': book.id
     }

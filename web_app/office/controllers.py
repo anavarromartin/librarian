@@ -52,7 +52,7 @@ def add_book_to_office(office_id):
                         category=request_data['category']
                     )
                 )
-            return Response(json.dumps({'data': {'book': convert_book_to_data(new_book, 1)}}), 201, mimetype='application/json')
+            return Response(json.dumps({'data': {'book': convert_book_to_data(new_book, 1, 1)}}), 201, mimetype='application/json')
     except Exception as exception:
         print(exception)
         return Response(
@@ -65,7 +65,8 @@ def add_book_to_office(office_id):
 @office.route('/api/offices/<int:office_id>/books/<string:isbn>')
 @accept('application/json')
 def get_book_by_office_and_isbn(office_id, isbn):
-    return jsonify({'data': {'book': convert_book_to_data(Office.get_book_by_isbn(office_id, isbn), 1)}})
+    book = Office.get_book_by_isbn(office_id, isbn)
+    return jsonify({'data': {'book': convert_book_to_data(book, 1, 1 if book is not None and book.is_available() else 0)}})
 
 
 @office.route('/api/offices/<int:office_id>/books')
@@ -82,7 +83,19 @@ def get_books_by_office(office_id):
 
 def _convert_group_to_data(book_group):
     group_data = list(book_group[1])
-    return convert_book_to_data(group_data[0], len(group_data))
+
+    available_quantity = 0
+    first_available_book = None
+    for book in group_data:
+        if book.is_available():
+            available_quantity += 1
+            if first_available_book is None:
+                first_available_book = book
+    
+    if first_available_book is None:
+        first_available_book = group_data[0]
+
+    return convert_book_to_data(first_available_book, len(group_data), available_quantity)
 
 
 def _group(books):
