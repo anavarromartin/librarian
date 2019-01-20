@@ -46,7 +46,8 @@ class BookControllerTest(unittest.TestCase):
                 "isbn": "9780321146533",
                 "name": "Test-driven Development",
                 "category": "",
-                "quantity": 1
+                "quantity": 1,
+                "available_quantity": 1
             }
         }
 

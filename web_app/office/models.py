@@ -41,8 +41,8 @@ class Office(db.Model):
         else:
             return Office.query.filter_by(id=_id).first().books.order_by(Book.name)
 
-    def get_book_by_isbn(_id, isbn):
-        return Office.query.filter_by(id=_id).first().books.filter_by(isbn=isbn).first()
+    def get_books_by_isbn(_id, isbn):
+        return list(Office.query.filter_by(id=_id).first().books.filter_by(isbn=isbn))
 
     def __repr__(self):
         office = {

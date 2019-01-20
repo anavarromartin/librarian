@@ -20,6 +20,7 @@ class Office extends Component {
         this.search = this.search.bind(this)
         this._getBooks = this._getBooks.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.checkoutBook = this.checkoutBook.bind(this)
     }
 
     componentDidMount() {
@@ -53,16 +54,16 @@ class Office extends Component {
             },
         })
         if (!response.ok) {
-            throw Error(`Request rejected with status ${response.status}`);
+            throw Error(`Request rejected with status ${response.status}`)
         }
-        const content = await response.json();
+        const content = await response.json()
         this.setState({
             books: content.data.books
         })
     }
 
-    async handleDelete(bookId) {
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${bookId}`
+    async handleDelete(book) {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${book.id}`
 
         const response = await fetch(url, {
             method: 'DELETE',
@@ -79,7 +80,32 @@ class Office extends Component {
             throw Error(`Request rejected with status ${response.status}`)
         }
 
-        toast('Book deleted!')
+        toast(`${book.name} successfully deleted!`)
+        this.fetchBooks()
+    }
+
+    async checkoutBook(book, borrowerName, borrowerEmail) {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${book.id}?checkout=true`
+
+        const response = await fetch(url, {
+            method: 'PATCH',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                name: borrowerName,
+                email: borrowerEmail,
+            }),
+        })
+
+        if (!response.ok) {
+            throw Error(`Request rejected with status ${response.status}`)
+        }
+
+        toast(`Thank you! You've checked out ${book.name} by ${book.authors}.`)
         this.fetchBooks()
     }
 
@@ -90,6 +116,9 @@ class Office extends Component {
                 <div>
                     <Link to={{ pathname: `/` }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
+                    </Link>
+                    <Link to={{ pathname: `/${this.props.match.params.officeName}/checkin`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                        <Button variant="contained" color="primary">Scan To Checkin</Button>
                     </Link>
                     {!!window.localStorage.access_token && <Link to={{ pathname: `/${this.props.match.params.officeName}/add-book`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Add Book</Button>
@@ -105,7 +134,7 @@ class Office extends Component {
                 />
                 {this.state.books.length > 0 && <div style={{ marginLeft: '10px' }}>Results: {this.state.books.length}</div>}
                 {this.state.books.length === 0 && this.state.searchCriteria.length > 0 && <div style={{ marginLeft: '10px' }}>No books matching [{this.state.searchCriteria}]</div>}
-                <Inventory books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
+                <Inventory checkoutBook={this.checkoutBook} books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
             </div>
         )
     }

@@ -127,7 +127,7 @@ class AddBook extends Component {
 
         const res = await response.json()
 
-        if (res.data.book.id) {
+        if (res.data.books.length > 0) {
             this.handleClickOpen()
         }
     }
@@ -271,6 +271,16 @@ class AddBook extends Component {
         )
     }
 
+    componentWillUnmount() {
+        this.setState({
+            scanning: false,
+            results: [],
+            error: null,
+            candidateISBN: '',
+            books: [],
+        })
+    }
+    
     _percentage() {
         return (this.state.results.length / SCAN_THRESHOLD_SIZE) * 100
     }

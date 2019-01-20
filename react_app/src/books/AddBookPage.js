@@ -38,7 +38,7 @@ class AddBookPage extends Component {
             throw Error(`Request rejected with status ${response.status}`)
         }
 
-        toast('Book saved!')
+        toast(`${bookTitle} added to library!`)
     }
 
     render() {

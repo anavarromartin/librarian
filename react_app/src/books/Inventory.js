@@ -13,6 +13,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import { TextField, FormControl, Input, InputLabel, FormHelperText } from '@material-ui/core'
 
 const styles = theme => ({
     root: {
@@ -39,10 +40,18 @@ class Inventory extends Component {
         this.state = {
             open: false,
             book: null,
+            name: '',
+            email: '',
+            checkoutBook: null,
+            openCheckoutDialog: false,
         }
 
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this)
+        this.handleCheckout = this.handleCheckout.bind(this)
+        this._checkoutBook = this._checkoutBook.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.isInvalidEmail = this.isInvalidEmail.bind(this)
     }
 
     handleClickOpen(book) {
@@ -52,13 +61,42 @@ class Inventory extends Component {
         })
     }
 
-    handleClose(shouldDelete, book_id) {
+    handleClose(shouldDelete, book) {
         if (shouldDelete) {
-            this.props.handleDelete(book_id)
+            this.props.handleDelete(book)
         }
         this.setState({
             open: false
         })
+    }
+
+    handleCheckout(book) {
+        this.setState({
+            openCheckoutDialog: true,
+            checkoutBook: book,
+        })
+    }
+
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        });
+    }
+
+    async _checkoutBook() {
+        await this.props.checkoutBook(this.state.checkoutBook, this.state.name, this.state.email)
+
+        this.setState({
+            checkoutBook: null,
+            openCheckoutDialog: false,
+            name: '',
+            email: '',
+        })
+    }
+
+    isInvalidEmail() {
+        var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return this.state.email.length > 0 && !emailRegex.test(String(this.state.email).toLowerCase())
     }
 
     render() {
@@ -70,10 +108,11 @@ class Inventory extends Component {
                     <TableHead>
                         <TableRow>
                             <TableCell>Image</TableCell>
+                            <TableCell>Checkout?</TableCell>
                             <TableCell>Book Title</TableCell>
                             <TableCell>Authors</TableCell>
                             <TableCell>Category</TableCell>
-                            <TableCell>Quantity</TableCell>
+                            <TableCell>Available Quantity</TableCell>
                             <TableCell>ISBN</TableCell>
                             {this.props.canDelete && <TableCell align="center">Remove?</TableCell>}
                         </TableRow>
@@ -85,10 +124,14 @@ class Inventory extends Component {
                                     <TableCell component="th" scope="row">
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
+                                    <TableCell>
+                                        {book.available_quantity > 0 && <Button variant="contained" color="primary" onClick={() => { this.handleCheckout(book) }}>Checkout</Button>}
+                                        {book.available_quantity === 0 && <div>None available</div>}
+                                    </TableCell>
                                     <TableCell>{book.name}</TableCell>
                                     <TableCell>{book.authors}</TableCell>
                                     <TableCell>{book.category}</TableCell>
-                                    <TableCell>{book.quantity}</TableCell>
+                                    <TableCell>{book.available_quantity} of {book.quantity}</TableCell>
                                     <TableCell>{book.isbn}</TableCell>
                                     {this.props.canDelete && <TableCell align="center">
                                         <Button style={{ background: 'red', color: 'white' }}
@@ -109,13 +152,14 @@ class Inventory extends Component {
                                             <DialogContent>
                                                 <DialogContentText id="alert-dialog-description">
                                                     Are you sure you want to delete {this.state.book && this.state.book.name}?
+                                                    Deleting will remove the first non checked out book unless none are available.
                                             </DialogContentText>
                                             </DialogContent>
                                             <DialogActions>
                                                 <Button onClick={() => { this.handleClose(false) }} color="primary">
                                                     No
                                             </Button>
-                                                <Button onClick={() => { this.handleClose(true, this.state.book && this.state.book.id) }} color="inherit" style={{ background: 'red', color: 'white' }} autoFocus>
+                                                <Button onClick={() => { this.handleClose(true, this.state.book) }} color="inherit" style={{ background: 'red', color: 'white' }} autoFocus>
                                                     Yes
                                             </Button>
                                             </DialogActions>
@@ -126,6 +170,36 @@ class Inventory extends Component {
                         })}
                     </TableBody>
                 </Table>
+                <Dialog
+                    open={this.state.openCheckoutDialog}
+                    disableBackdropClick={true}
+                    disableEscapeKeyDown={true}
+                >
+                    <DialogTitle>Checkout Book?</DialogTitle>
+                    <DialogContent>
+                        <FormControl error={this.isInvalidEmail()} aria-describedby="component-error-text">
+                            <InputLabel htmlFor="component-error">Email</InputLabel>
+                            <Input id="component-error" type="email" required={true} style={{ width: '300px' }} value={this.state.email} onChange={this.handleChange('email')} autoFocus />
+                            {this.isInvalidEmail() && <FormHelperText id="component-error-text">Invalid Email Address</FormHelperText>}
+                        </FormControl>
+                        <TextField
+                            label="Borrower Name"
+                            value={this.state.name}
+                            onChange={this.handleChange('name')}
+                            margin="normal"
+                            required={true}
+                            style={{ width: '300px' }}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => { this.setState({ openCheckoutDialog: false, checkoutBook: null, name: '', email: '' }) }} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={this._checkoutBook} disabled={!(!!this.state.name && !!this.state.email && !this.isInvalidEmail())} variant="contained" color="primary" autoFocus>
+                            Yes, Checkout
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Paper>
         )
     }
