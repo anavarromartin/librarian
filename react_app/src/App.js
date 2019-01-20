@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import AddBookPage from './books/AddBookPage'
 import LoginPage from './login/LoginPage'
 import CheckinPage from './books/CheckinPage'
+import ReportPage from './report/ReportPage'
 
 class App extends Component {
     render() {
@@ -20,6 +21,7 @@ class App extends Component {
                     <Route path="/" exact component={OfficesPage} />
                     <Route path="/:officeName/add-book" render={(props) => !!window.localStorage.access_token ? <AddBookPage {...props} /> : <Redirect to='/' />} />
                     <Route path="/:officeName/checkin" component={CheckinPage} />
+                    <Route path="/:officeName/report" component={ReportPage} />
 
                     <ToastContainer autoClose={3000} />
                 </div>

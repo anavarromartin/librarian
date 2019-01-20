@@ -108,7 +108,7 @@ class Inventory extends Component {
                     <TableHead>
                         <TableRow>
                             <TableCell>Image</TableCell>
-                            <TableCell>Checkout?</TableCell>
+                            <TableCell>Check Out?</TableCell>
                             <TableCell>Book Title</TableCell>
                             <TableCell>Authors</TableCell>
                             <TableCell>Category</TableCell>
@@ -125,7 +125,7 @@ class Inventory extends Component {
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
                                     <TableCell>
-                                        {book.available_quantity > 0 && <Button variant="contained" color="primary" onClick={() => { this.handleCheckout(book) }}>Checkout</Button>}
+                                        {book.available_quantity > 0 && <Button variant="contained" color="primary" onClick={() => { this.handleCheckout(book) }}>Check Out</Button>}
                                         {book.available_quantity === 0 && <div>None available</div>}
                                     </TableCell>
                                     <TableCell>{book.name}</TableCell>
@@ -175,7 +175,7 @@ class Inventory extends Component {
                     disableBackdropClick={true}
                     disableEscapeKeyDown={true}
                 >
-                    <DialogTitle>Checkout Book?</DialogTitle>
+                    <DialogTitle>Check Out Book?</DialogTitle>
                     <DialogContent>
                         <FormControl error={this.isInvalidEmail()} aria-describedby="component-error-text">
                             <InputLabel htmlFor="component-error">Email</InputLabel>
@@ -196,7 +196,7 @@ class Inventory extends Component {
                             Cancel
                         </Button>
                         <Button onClick={this._checkoutBook} disabled={!(!!this.state.name && !!this.state.email && !this.isInvalidEmail())} variant="contained" color="primary" autoFocus>
-                            Yes, Checkout
+                            Yes, Check Out
                         </Button>
                     </DialogActions>
                 </Dialog>

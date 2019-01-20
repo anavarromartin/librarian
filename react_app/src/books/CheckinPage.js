@@ -13,6 +13,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Header from '../common/Header'
 
 const styles = theme => ({
     root: {
@@ -35,6 +36,7 @@ const initialState = {
     candidateISBN: '',
     error: null,
     books: [],
+    fetching: false,
 }
 
 const SCAN_THRESHOLD_SIZE = 20
@@ -56,6 +58,10 @@ class CheckinPage extends Component {
     }
 
     async getBook(isbn) {
+        this.setState({
+            fetching: true,
+        })
+
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books/${isbn}`
 
         const response = await fetch(url, {
@@ -66,6 +72,10 @@ class CheckinPage extends Component {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
+        })
+
+        this.setState({
+            fetching: false,
         })
 
         if (!response.ok) {
@@ -129,6 +139,7 @@ class CheckinPage extends Component {
 
         return (
             <div style={{ marginTop: '10px' }}>
+                <Header {...this.props} />
                 <div>
                     <Link to={{ pathname: `/${this.props.match.params.officeName}`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
@@ -138,8 +149,8 @@ class CheckinPage extends Component {
                 {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
                 <div style={{ margin: '10px' }}>
-                    {this._resultThresholdAchieved() && !this.state.scanning && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
-                    {this._resultThresholdAchieved() && !this.state.scanning && this.state.books.length === 0 && <div>Bad Scan, please scan again.</div>}
+                    {this._resultThresholdAchieved() && !this.state.scanning && !!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
+                    {this._resultThresholdAchieved() && !this.state.scanning && !!this.fetching && this.state.books.length === 0 && <div>Bad Scan, please scan again.</div>}
                     {this._resultThresholdAchieved() && !this.state.scanning && <div>{this.state.error}</div>}
                 </div>
                 <Paper className={classes.root}>

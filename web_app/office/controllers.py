@@ -72,8 +72,13 @@ def get_books_by_office_and_isbn(office_id, isbn):
 @office.route('/api/offices/<int:office_id>/books')
 @accept('application/json')
 def get_books_by_office(office_id):
+    checked_out_books_only = request.args.get('checked-out')
+    if checked_out_books_only is not None and checked_out_books_only == 'true':
+        checked_out_books = list(Office.get_all_checked_out_books(office_id))
+        return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book, 1, 0), checked_out_books))}})
+
     search_criteria = request.args.get('search')
-    if(search_criteria != None and search_criteria != ''):
+    if search_criteria != None and search_criteria != '':
         sanitized_search_criteria = bleach.clean(search_criteria)
     else:
         sanitized_search_criteria = search_criteria
@@ -91,7 +96,7 @@ def _convert_group_to_data(book_group):
             available_quantity += 1
             if first_available_book is None:
                 first_available_book = book
-    
+
     if first_available_book is None:
         first_available_book = group_data[0]
 

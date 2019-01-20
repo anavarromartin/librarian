@@ -118,7 +118,10 @@ class Office extends Component {
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
                     <Link to={{ pathname: `/${this.props.match.params.officeName}/checkin`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
-                        <Button variant="contained" color="primary">Scan To Checkin</Button>
+                        <Button variant="contained" color="primary">Scan To Check In</Button>
+                    </Link>
+                    <Link to={{ pathname: `/${this.props.match.params.officeName}/report`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                        <Button variant="contained" color="primary">Report</Button>
                     </Link>
                     {!!window.localStorage.access_token && <Link to={{ pathname: `/${this.props.match.params.officeName}/add-book`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Add Book</Button>

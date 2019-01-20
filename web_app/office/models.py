@@ -2,6 +2,7 @@ from .. import db
 import json
 from ..book.models import Book
 from sqlalchemy import or_
+import sys
 
 class Office(db.Model):
     __tablename__ = 'offices'
@@ -40,6 +41,16 @@ class Office(db.Model):
             return Office.query.filter_by(id=_id).first().books.filter(or_(Book.name.ilike(query), Book.authors.ilike(query), Book.category.ilike(query))).order_by(Book.name)
         else:
             return Office.query.filter_by(id=_id).first().books.order_by(Book.name)
+
+    def get_all_checked_out_books(_id):
+        books = list(Office.query.filter_by(id=_id).first().books)
+        checked_out_books = []
+        for book in books:
+            if book.is_available() is False:
+                checked_out_books.append(book)
+
+        checked_out_books.sort(key=lambda a: a.checkout_histories[-1].checkout_time, reverse=True)
+        return checked_out_books
 
     def get_books_by_isbn(_id, isbn):
         return list(Office.query.filter_by(id=_id).first().books.filter_by(isbn=isbn))
