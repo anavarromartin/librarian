@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Scanner from '../scanner/Scanner'
-import './AddBook.css'
+import './CheckinPage.css'
 import { Line } from 'rc-progress'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
@@ -149,8 +149,8 @@ class CheckinPage extends Component {
                 {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
                 <div style={{ margin: '10px' }}>
-                    {this._resultThresholdAchieved() && !this.state.scanning && !!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
-                    {this._resultThresholdAchieved() && !this.state.scanning && !!this.fetching && this.state.books.length === 0 && <div>Bad Scan, please scan again.</div>}
+                    {this._resultThresholdAchieved() && !this.state.scanning && !!!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
+                    {this._resultThresholdAchieved() && !this.state.scanning && !!!this.fetching && this.state.books.length === 0 && <div>Bad Scan or Book not in Library, please scan again.</div>}
                     {this._resultThresholdAchieved() && !this.state.scanning && <div>{this.state.error}</div>}
                 </div>
                 <Paper className={classes.root}>
@@ -165,7 +165,7 @@ class CheckinPage extends Component {
                         <TableBody>
                             {this.bookWithCheckoutHistoryStillCheckedOut().map(function (bookWithCheckoutHistory, index) {
                                 if (!!!bookWithCheckoutHistory.checkoutHistory) {
-                                    return;
+                                    return null;
                                 }
 
                                 return (

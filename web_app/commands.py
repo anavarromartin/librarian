@@ -12,7 +12,7 @@ def test(single):
     """Run the tests."""
     import pytest
     if(single == None):
-        rv = pytest.main([TEST_PATH, '--verbose'])
+        rv = pytest.main([TEST_PATH, '-vv'])
     else:
-        rv = pytest.main([TEST_PATH, '--verbose', '-k', single])
+        rv = pytest.main([TEST_PATH, '-vv', '-k', single])
     exit(rv)

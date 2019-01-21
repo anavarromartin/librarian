@@ -4,7 +4,7 @@ from .models import Office
 from ..book.models import Book
 from flask import Blueprint
 from flask_accept import accept
-from ..book.controllers import convert_book_to_data, validBook
+from ..book.controllers import convert_book_to_data, convert_book_to_overview_data, validBook
 import bleach
 import itertools
 from flask_jwt_extended import jwt_required
@@ -66,7 +66,7 @@ def add_book_to_office(office_id):
 @accept('application/json')
 def get_books_by_office_and_isbn(office_id, isbn):
     books = Office.get_books_by_isbn(office_id, isbn)
-    return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book, 1, 1 if book is not None and book.is_available() else 0), books))}})
+    return jsonify({'data': {'books': list(map(lambda book: convert_book_to_data(book, 1, 1 if book.is_available() else 0), books))}})
 
 
 @office.route('/api/offices/<int:office_id>/books')
@@ -100,7 +100,7 @@ def _convert_group_to_data(book_group):
     if first_available_book is None:
         first_available_book = group_data[0]
 
-    return convert_book_to_data(first_available_book, len(group_data), available_quantity)
+    return convert_book_to_overview_data(first_available_book, len(group_data), available_quantity)
 
 
 def _group(books):

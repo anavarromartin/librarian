@@ -5,6 +5,7 @@ from flask import Blueprint
 from flask_accept import accept
 from flask_jwt_extended import jwt_required
 from ..checkout_histories.models import CheckoutHistory
+from ..office.models import Office
 
 book = Blueprint('book', __name__)
 
@@ -23,13 +24,6 @@ def delete_book(id):
             400,
             mimetype='application/json'
         )
-
-
-@book.route('/api/books/<int:id>')
-@accept('application/json')
-def show_book(id):
-    book = Book.get_book(id)
-    return jsonify({'data': convert_book_to_data(book, 1, 1 if book.is_available() else 0)})
 
 
 @book.route('/api/books/<int:book_id>', methods=['PATCH'])
@@ -64,18 +58,6 @@ def validBook(book):
 
 
 def convert_book_to_data(book, quantity, available_quantity):
-    if(book == None):
-        return {
-            'name': '',
-            'isbn': '',
-            'authors': '',
-            'imageLink': '',
-            'category': '',
-            'quantity': 0,
-            'available_quantity': 0,
-            'id': ''
-        }
-
     return {
         'name': book.name,
         'isbn': book.isbn,
@@ -85,6 +67,25 @@ def convert_book_to_data(book, quantity, available_quantity):
         'quantity': quantity,
         'available_quantity': available_quantity,
         'checkout_histories': list(map(lambda checkout_history: _convert_checkout_history_to_data(checkout_history), book.checkout_histories)),
+        'id': book.id
+    }
+
+
+def convert_book_to_overview_data(book, quantity, available_quantity):
+    all_histories_for_book = []
+    for bookIter in Office.get_books_by_isbn(_id=book.office_id, isbn=book.isbn):
+        for checkout_history in bookIter.checkout_histories:
+            all_histories_for_book.append(checkout_history)
+
+    return {
+        'name': book.name,
+        'isbn': book.isbn,
+        'authors': book.authors,
+        'imageLink': book.imageLink,
+        'category': book.category,
+        'quantity': quantity,
+        'available_quantity': available_quantity,
+        'checkout_histories': list(map(lambda checkout_history: _convert_checkout_history_to_data(checkout_history), all_histories_for_book)),
         'id': book.id
     }
 

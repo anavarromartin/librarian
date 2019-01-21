@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { TextField, FormControl, Input, InputLabel, FormHelperText } from '@material-ui/core'
+import { withRouter } from 'react-router'
 
 const styles = theme => ({
     root: {
@@ -52,6 +53,17 @@ class Inventory extends Component {
         this._checkoutBook = this._checkoutBook.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.isInvalidEmail = this.isInvalidEmail.bind(this)
+        this.navigateToBookDetail = this.navigateToBookDetail.bind(this)
+    }
+
+    navigateToBookDetail(book) {
+        this.props.history.push({
+            pathname: `/${this.props.match.params.officeName}/books/${book.id}`,
+            state: {
+                officeId: this.props.location.state.officeId, 
+                book: book,
+            }
+        })
     }
 
     handleClickOpen(book) {
@@ -118,10 +130,10 @@ class Inventory extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.books.map(book => {
+                        {this.props.books.map((book, index) => {
                             return (
-                                <TableRow key={book.id} className={classes.tableRowHover}>
-                                    <TableCell component="th" scope="row">
+                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if(e.target.nodeName !== 'SPAN') {this.navigateToBookDetail(book)} }}>
+                                    <TableCell>
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
                                     <TableCell>
@@ -212,4 +224,4 @@ Inventory.propTypes = {
     canDelete: PropTypes.bool.isRequired,
 }
 
-export default withStyles(styles)(Inventory)
+export default withRouter(withStyles(styles)(Inventory))

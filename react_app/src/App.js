@@ -8,6 +8,7 @@ import AddBookPage from './books/AddBookPage'
 import LoginPage from './login/LoginPage'
 import CheckinPage from './books/CheckinPage'
 import ReportPage from './report/ReportPage'
+import BookDetail from './books/BookDetail'
 
 class App extends Component {
     render() {
@@ -22,6 +23,7 @@ class App extends Component {
                     <Route path="/:officeName/add-book" render={(props) => !!window.localStorage.access_token ? <AddBookPage {...props} /> : <Redirect to='/' />} />
                     <Route path="/:officeName/checkin" component={CheckinPage} />
                     <Route path="/:officeName/report" component={ReportPage} />
+                    <Route path="/:officeName/books/:book_id" component={BookDetail} />
 
                     <ToastContainer autoClose={3000} />
                 </div>

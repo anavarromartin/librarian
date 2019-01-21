@@ -33,10 +33,10 @@ class Scanner extends Component {
                     facingMode: "environment"
                 },
                 area: { // defines rectangle of the detection/localization area
-                    top: "15%",    // top offset
-                    right: "15%",  // right offset
-                    left: "15%",   // left offset
-                    bottom: "15%"  // bottom offset
+                    top: "10%",    // top offset
+                    right: "10%",  // right offset
+                    left: "10%",   // left offset
+                    bottom: "10%"  // bottom offset
                 }
             },
             locator: {

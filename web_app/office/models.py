@@ -2,7 +2,6 @@ from .. import db
 import json
 from ..book.models import Book
 from sqlalchemy import or_
-import sys
 
 class Office(db.Model):
     __tablename__ = 'offices'
