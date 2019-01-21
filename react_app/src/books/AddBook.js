@@ -128,6 +128,10 @@ class AddBook extends Component {
         const res = await response.json()
 
         if (res.data.books.length > 0) {
+            this.setState({
+                category: res.data.books[0].category,
+            })
+
             this.handleClickOpen()
         }
     }
