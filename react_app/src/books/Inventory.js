@@ -60,7 +60,7 @@ class Inventory extends Component {
         this.props.history.push({
             pathname: `/${this.props.match.params.officeName}/books/${book.id}`,
             state: {
-                officeId: this.props.location.state.officeId, 
+                officeId: this.props.location.state.officeId,
                 book: book,
             }
         })
@@ -132,7 +132,7 @@ class Inventory extends Component {
                     <TableBody>
                         {this.props.books.map((book, index) => {
                             return (
-                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if(e.target.nodeName !== 'SPAN') {this.navigateToBookDetail(book)} }}>
+                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (e.target.nodeName !== 'SPAN') { this.navigateToBookDetail(book) } }}>
                                     <TableCell>
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
@@ -189,19 +189,23 @@ class Inventory extends Component {
                 >
                     <DialogTitle>Check Out Book?</DialogTitle>
                     <DialogContent>
-                        <FormControl error={this.isInvalidEmail()} aria-describedby="component-error-text">
-                            <InputLabel htmlFor="component-error">Email</InputLabel>
-                            <Input id="component-error" type="email" required={true} style={{ width: '300px' }} value={this.state.email} onChange={this.handleChange('email')} autoFocus />
-                            {this.isInvalidEmail() && <FormHelperText id="component-error-text">Invalid Email Address</FormHelperText>}
-                        </FormControl>
-                        <TextField
-                            label="Borrower Name"
-                            value={this.state.name}
-                            onChange={this.handleChange('name')}
-                            margin="normal"
-                            required={true}
-                            style={{ width: '300px' }}
-                        />
+                        <div>
+                            <FormControl error={this.isInvalidEmail()} aria-describedby="component-error-text">
+                                <InputLabel htmlFor="component-error">Email</InputLabel>
+                                <Input id="component-error" type="email" required={true} style={{ width: '250px' }} value={this.state.email} onChange={this.handleChange('email')} autoFocus />
+                                {this.isInvalidEmail() && <FormHelperText id="component-error-text">Invalid Email Address</FormHelperText>}
+                            </FormControl>
+                        </div>
+                        <div>
+                            <TextField
+                                label="Borrower Name"
+                                value={this.state.name}
+                                onChange={this.handleChange('name')}
+                                margin="normal"
+                                required={true}
+                                style={{ width: '250px' }}
+                            />
+                        </div>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => { this.setState({ openCheckoutDialog: false, checkoutBook: null, name: '', email: '' }) }} color="primary">
