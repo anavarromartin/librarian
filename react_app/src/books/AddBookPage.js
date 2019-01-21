@@ -35,6 +35,11 @@ class AddBookPage extends Component {
         })
 
         if (!response.ok) {
+            if(response.status === 401) {
+                this.props.history.push('/login')
+                return
+            }
+
             throw Error(`Request rejected with status ${response.status}`)
         }
 

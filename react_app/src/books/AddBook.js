@@ -280,7 +280,7 @@ class AddBook extends Component {
             books: [],
         })
     }
-    
+
     _percentage() {
         return (this.state.results.length / SCAN_THRESHOLD_SIZE) * 100
     }
@@ -290,7 +290,18 @@ class AddBook extends Component {
     }
 
     _scan() {
-        this.setState({ results: [], scanning: !this.state.scanning, error: '' })
+        this.setState({
+            results: [],
+            scanning: !this.state.scanning,
+            bookTitle: '',
+            candidateISBN: '',
+            imageLink: '',
+            authors: '',
+            category: '',
+            quantity: 1,
+            error: null,
+            open: false,
+        })
     }
 
     _onDetected(result) {
