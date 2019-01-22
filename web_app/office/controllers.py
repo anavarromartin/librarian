@@ -48,8 +48,8 @@ def add_book_to_office(office_id):
                         name=request_data['name'],
                         isbn=request_data['isbn'],
                         authors=request_data['authors'],
-                        imageLink=request_data['imageLink'],
-                        category=request_data['category']
+                        imageLink=request_data.get('imageLink', ''),
+                        category=request_data.get('category', '')
                     )
                 )
             return Response(json.dumps({'data': {'book': convert_book_to_data(new_book, 1, 1)}}), 201, mimetype='application/json')
