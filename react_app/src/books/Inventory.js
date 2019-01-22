@@ -92,7 +92,7 @@ class Inventory extends Component {
     handleChange = name => event => {
         this.setState({
             [name]: event.target.value,
-        });
+        })
     }
 
     async _checkoutBook() {

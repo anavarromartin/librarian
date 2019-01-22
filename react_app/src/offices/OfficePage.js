@@ -111,6 +111,11 @@ class Office extends Component {
         }
 
         toast(`Thank you! You've checked out ${book.name} by ${book.authors}.`)
+
+        this.setState({
+            searchCriteria: '',
+        })
+
         this.fetchBooks()
     }
 
@@ -133,6 +138,7 @@ class Office extends Component {
                     </Link>}
                 </div>
                 <SearchBar
+                    value={this.state.searchCriteria}
                     onCancelSearch={this.fetchBooks}
                     onRequestSearch={(searchCriteria) => this.search(searchCriteria)}
                     style={{
