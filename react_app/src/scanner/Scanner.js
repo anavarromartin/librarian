@@ -24,12 +24,23 @@ class Scanner extends Component {
     }
 
     componentDidMount() {
+        let width = window.innerWidth
+        let height = window.innerHeight - 300
+
+        if(width > 640) {
+            width = 640
+        }
+
+        if(height > 480) {
+            height = 480
+        }
+
         Quagga.init({
             inputStream: {
                 type: "LiveStream",
                 constraints: {
-                    width: 640,
-                    height: 480,
+                    width: width,
+                    height: height,
                     facingMode: "environment"
                 },
                 area: { // defines rectangle of the detection/localization area
