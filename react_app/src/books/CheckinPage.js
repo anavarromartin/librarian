@@ -13,6 +13,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Input from '@material-ui/core/Input'
 import Header from '../common/Header'
 
 const styles = theme => ({
@@ -134,6 +135,12 @@ class CheckinPage extends Component {
         }, this)
     }
 
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        })
+    }
+
     render() {
         const { classes } = this.props
 
@@ -145,13 +152,17 @@ class CheckinPage extends Component {
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
                     {!this.state.scanning && <Button onClick={this._scan} variant="contained" color="primary">Scan Again</Button>}
+                    <form style={{margin: '10px'}}>
+                        <Input value={this.state.candidateISBN} onChange={this.handleChange('candidateISBN')} placeholder="ISBN" />
+                        <Button disabled={!!!this.state.candidateISBN} onClick={(e) => { e.preventDefault(); this.setState({scanning: false}); this.getBook(this.state.candidateISBN);}} style={{marginLeft: '10px'}} type="submit" variant="contained" color="primary">CheckIn Manually</Button>
+                    </form>
                 </div>
                 {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
                 <div style={{ margin: '10px' }}>
-                    {this._resultThresholdAchieved() && !this.state.scanning && !!!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
-                    {this._resultThresholdAchieved() && !this.state.scanning && !!!this.fetching && this.state.books.length === 0 && <div>Bad Scan or Book not in Library, please scan again.</div>}
-                    {this._resultThresholdAchieved() && !this.state.scanning && <div>{this.state.error}</div>}
+                    {!this.state.scanning && !!!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
+                    {!this.state.scanning && !!!this.fetching && this.state.books.length === 0 && <div>Bad Scan or Book not in Library, please scan again.</div>}
+                    {!this.state.scanning && <div>{this.state.error}</div>}
                 </div>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
