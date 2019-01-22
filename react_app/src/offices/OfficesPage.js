@@ -8,7 +8,7 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: '900px',
+    width: '85vw',
     margin: 'auto',
 }
 
@@ -60,8 +60,8 @@ class Offices extends Component {
                 <div style={styles}>
                     {this.state.offices.map(function (office) {
                         return (
-                            <Link key={office.id} to={{ pathname: `/${office.name}`, state: { officeId: office.id } }} style={{ textDecoration: 'none', margin: '10px' }}>
-                                <Button style={{ height: '100px', width: '200px', fontSize: '2em' }} variant="contained" color="primary">{office.name}</Button>
+                            <Link key={office.id} to={{ pathname: `/${office.name}`, state: { officeId: office.id } }} style={{ textDecoration: 'none', margin: '5px' }}>
+                                <Button style={{ height: '75px', width: '125px', fontSize: '1.5em', fontWeight: 'bold' }} variant="contained" color="primary">{office.name}</Button>
                             </Link>
                         )
                     })}
