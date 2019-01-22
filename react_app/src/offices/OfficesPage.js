@@ -6,8 +6,10 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '90vh',
-    flexDirection: 'column'
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '900px',
+    margin: 'auto',
 }
 
 class Offices extends Component {
@@ -59,7 +61,7 @@ class Offices extends Component {
                     {this.state.offices.map(function (office) {
                         return (
                             <Link key={office.id} to={{ pathname: `/${office.name}`, state: { officeId: office.id } }} style={{ textDecoration: 'none', margin: '10px' }}>
-                                <Button style={{ height: '200px', width: '400px', fontSize: '4em' }} variant="contained" color="primary">{office.name}</Button>
+                                <Button style={{ height: '100px', width: '200px', fontSize: '2em' }} variant="contained" color="primary">{office.name}</Button>
                             </Link>
                         )
                     })}
