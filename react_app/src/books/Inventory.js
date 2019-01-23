@@ -142,7 +142,7 @@ class Inventory extends Component {
                         </TableRow>}
                         {!this.props.fetching && this.props.books.map((book, index) => {
                             return (
-                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (!e.target.className.includes('Button')) { this.navigateToBookDetail(book) } }}>
+                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (!e.target.className.match(/button/i)) { this.navigateToBookDetail(book) } }}>
                                     <TableCell>
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
