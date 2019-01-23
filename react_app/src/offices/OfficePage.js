@@ -14,6 +14,7 @@ class Office extends Component {
         this.state = {
             books: [],
             searchCriteria: '',
+            fetching: false,
         }
 
         this.fetchBooks = this.fetchBooks.bind(this)
@@ -28,19 +29,32 @@ class Office extends Component {
     }
 
     async fetchBooks() {
+        this.setState({
+            fetching: true,
+        })
+
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books`
 
         await this._getBooks(url)
+
+        this.setState({
+            fetching: false,
+        })
     }
 
     async search(searchCriteria) {
         this.setState({
-            searchCriteria: searchCriteria
+            searchCriteria: searchCriteria,
+            fetching: true,
         })
 
         const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books?search=${searchCriteria}`
 
-        await this._getBooks(url);
+        await this._getBooks(url)
+
+        this.setState({
+            fetching: false,
+        })
     }
 
     async _getBooks(url) {
@@ -148,7 +162,7 @@ class Office extends Component {
                 />
                 {this.state.books.length > 0 && <div style={{ marginLeft: '10px' }}>Results: {this.state.books.length}</div>}
                 {this.state.books.length === 0 && this.state.searchCriteria.length > 0 && <div style={{ marginLeft: '10px' }}>No books matching [{this.state.searchCriteria}]</div>}
-                <Inventory checkoutBook={this.checkoutBook} books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
+                <Inventory checkoutBook={this.checkoutBook} fetching={this.state.fetching} books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
             </div>
         )
     }

@@ -130,7 +130,7 @@ class Inventory extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.books.length === 0 && <TableRow>
+                        {this.props.fetching && <TableRow>
                             <TableCell>Loading...</TableCell>
                             <TableCell></TableCell>
                             <TableCell></TableCell>
@@ -140,7 +140,7 @@ class Inventory extends Component {
                             <TableCell></TableCell>
                             <TableCell></TableCell>
                         </TableRow>}
-                        {this.props.books.map((book, index) => {
+                        {!this.props.fetching && this.props.books.map((book, index) => {
                             return (
                                 <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (!e.target.className.includes('Button')) { this.navigateToBookDetail(book) } }}>
                                     <TableCell>
@@ -236,6 +236,7 @@ Inventory.propTypes = {
     books: PropTypes.array.isRequired,
     handleDelete: PropTypes.func.isRequired,
     canDelete: PropTypes.bool.isRequired,
+    fetching: PropTypes.bool.isRequired,
 }
 
 export default withRouter(withStyles(styles)(Inventory))
