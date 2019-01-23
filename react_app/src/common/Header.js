@@ -24,7 +24,7 @@ class Header extends Component {
                 {!!!window.localStorage.access_token && <Link to='/login' style={{ position: "absolute", right: '10px', top: '10px', textDecoration: 'none' }}>
                     <Button variant="contained" color="primary">Admin Login</Button>
                 </Link>}
-                {!!window.localStorage.access_token && <Button variant="contained" color="primary" onClick={this.logout} style={{ position: "absolute", right: '10px', top: '10px' }}>
+                {!!window.localStorage.access_token && <Button className="logout" variant="contained" color="primary" onClick={this.logout} style={{ position: "absolute", right: '10px', top: '10px' }}>
                     Logout
                 </Button>}
             </div>

@@ -130,7 +130,7 @@ class Inventory extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.books.length == 0 && <TableRow>
+                        {this.props.books.length === 0 && <TableRow>
                             <TableCell>Loading...</TableCell>
                             <TableCell></TableCell>
                             <TableCell></TableCell>

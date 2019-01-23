@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^3.8.2",
     "@material-ui/icons": "^3.0.2",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "material-ui-search-bar": "^1.0.0-beta.13",
     "moment": "^2.23.0",
     "quagga": "^0.12.1",
@@ -14,6 +16,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.2",
+    "react-test-renderer": "^16.7.0",
     "react-toastify": "^4.5.2"
   },
   "scripts": {
