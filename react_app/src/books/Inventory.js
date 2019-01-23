@@ -116,6 +116,7 @@ class Inventory extends Component {
 
         return (
             <Paper className={classes.root}>
+                <div>{this.state.debugging}</div>
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow>
@@ -142,12 +143,12 @@ class Inventory extends Component {
                         </TableRow>}
                         {!this.props.fetching && this.props.books.map((book, index) => {
                             return (
-                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (!e.target.className.match(/button/i)) { this.navigateToBookDetail(book) } }}>
+                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { this.setState({debugging: e.target.className}); if (!e.target.className.match(/button/i)) { this.navigateToBookDetail(book) } }}>
                                     <TableCell>
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
                                     <TableCell>
-                                        {book.available_quantity > 0 && <Button variant="contained" color="primary" onClick={() => { this.handleCheckout(book) }}>Check Out</Button>}
+                                        {book.available_quantity > 0 && <Button className="checkout-button" variant="contained" color="primary" onClick={() => { this.handleCheckout(book) }}>Check Out</Button>}
                                         {book.available_quantity === 0 && <div>None available</div>}
                                     </TableCell>
                                     <TableCell>{book.name}</TableCell>
