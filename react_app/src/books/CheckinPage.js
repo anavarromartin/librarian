@@ -75,10 +75,6 @@ class CheckinPage extends Component {
             },
         })
 
-        this.setState({
-            fetching: false,
-        })
-
         if (!response.ok) {
             throw Error(`Request rejected with status ${response.status}`)
         }
@@ -87,6 +83,8 @@ class CheckinPage extends Component {
 
         this.setState({
             books: res.data.books,
+            fetching: false,
+            scanning: false,
         })
     }
 
@@ -152,15 +150,15 @@ class CheckinPage extends Component {
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
                     {!this.state.scanning && <Button onClick={this._scan} variant="contained" color="primary">Scan Again</Button>}
-                    <form style={{margin: '10px'}}>
+                    <form style={{ margin: '10px' }}>
                         <Input value={this.state.candidateISBN} onChange={this.handleChange('candidateISBN')} placeholder="ISBN" />
-                        <Button disabled={!!!this.state.candidateISBN} onClick={(e) => { e.preventDefault(); this.setState({scanning: false}); this.getBook(this.state.candidateISBN);}} style={{marginLeft: '10px'}} type="submit" variant="contained" color="primary">CheckIn Manually</Button>
+                        <Button disabled={!!!this.state.candidateISBN} onClick={(e) => { e.preventDefault(); this.getBook(this.state.candidateISBN); }} style={{ marginLeft: '10px' }} type="submit" variant="contained" color="primary">CheckIn Manually</Button>
                     </form>
                 </div>
                 {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
                 {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
                 <div style={{ margin: '10px' }}>
-                    {!this.state.scanning && !!!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing' />}
+                    {!this.state.scanning && !!!this.fetching && this.state.books.length > 0 && <img src={this.state.books[0].imageLink} alt='Missing Image' />}
                     {!this.state.scanning && !!!this.fetching && this.state.books.length === 0 && <div>Bad Scan or Book not in Library, please scan again.</div>}
                     {!this.state.scanning && <div>{this.state.error}</div>}
                 </div>
@@ -214,6 +212,7 @@ class CheckinPage extends Component {
             error: null,
             candidateISBN: '',
             books: [],
+            fetching: false,
         })
     }
 
@@ -232,6 +231,7 @@ class CheckinPage extends Component {
             candidateISBN: '',
             error: null,
             books: [],
+            fetching: false,
         })
     }
 
