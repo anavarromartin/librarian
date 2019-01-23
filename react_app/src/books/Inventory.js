@@ -116,7 +116,6 @@ class Inventory extends Component {
 
         return (
             <Paper className={classes.root}>
-                <div>{this.state.debugging}</div>
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow>
@@ -143,7 +142,7 @@ class Inventory extends Component {
                         </TableRow>}
                         {!this.props.fetching && this.props.books.map((book, index) => {
                             return (
-                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { this.setState({debugging: e.target.className}); if (!e.target.className.match(/button/i)) { this.navigateToBookDetail(book) } }}>
+                                <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (e.target.nodeName !== 'SPAN' && e.target.nodeName !== 'BUTTON') { this.navigateToBookDetail(book) } }}>
                                     <TableCell>
                                         <img style={{ height: '120px' }} src={book.imageLink} alt='missing' />
                                     </TableCell>
