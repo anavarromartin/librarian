@@ -130,6 +130,16 @@ class Inventory extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        {this.props.books.length == 0 && <TableRow>
+                            <TableCell>Loading...</TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>}
                         {this.props.books.map((book, index) => {
                             return (
                                 <TableRow key={index} className={classes.tableRowHover} onClick={(e) => { if (e.target.nodeName !== 'SPAN') { this.navigateToBookDetail(book) } }}>
