@@ -23,15 +23,31 @@ class Scanner extends Component {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     }
 
+    _isAppleDevice() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    }
+
     componentDidMount() {
         let width = window.innerWidth
         let height = window.innerHeight - 300
 
-        if(width > 640) {
+        if (width > 640) {
             width = 640
         }
 
-        if(height > 480) {
+        if (height > 480) {
+            height = 480
+        }
+
+        // Only these formats are supported in Safari
+        // 320x240
+        // 640x480
+        if (this._isAppleDevice() && width < 320) {
+            width = 320
+            height = 240
+        }
+        if (this._isAppleDevice() && width > 320) {
+            width = 640
             height = 480
         }
 
