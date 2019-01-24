@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import PropTypes from 'prop-types'
 
 class Header extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class Header extends Component {
     render() {
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <span style={{ fontWeight: 'bold', fontSize: '4em' }}>{this.props.match.params.officeName.charAt(0).toUpperCase() + this.props.match.params.officeName.slice(1)}</span>
+                <span style={{ fontWeight: 'bold', fontSize: '4em' }}>{this.props.officeName.charAt(0).toUpperCase() + this.props.officeName.slice(1)}</span>
                 {!!!window.localStorage.access_token && <Link to='/login' style={{ position: "absolute", right: '10px', top: '10px', textDecoration: 'none' }}>
                     <Button variant="contained" color="primary">Admin Login</Button>
                 </Link>}
@@ -31,4 +32,9 @@ class Header extends Component {
         )
     }
 }
+
+Header.propTypes = {
+    officeName: PropTypes.string.isRequired,
+}
+
 export default withRouter(Header)

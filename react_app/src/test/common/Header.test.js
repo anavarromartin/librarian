@@ -11,7 +11,7 @@ describe('Header', () => {
         window.localStorage.removeItem('access_token')
         
         const wrapper = mount(<MemoryRouter initialEntries={['/offices/dallas']} initialIndex={0}>
-            <Route component={props => <Header {...props} />} path='/offices/:officeName' />
+            <Route component={props => <Header officeName={props.match.params.officeName} />} path='/offices/:officeName' />
         </MemoryRouter>)
 
         expect(wrapper.find('Header').text()).not.toContain('Logout')
@@ -20,7 +20,7 @@ describe('Header', () => {
     it('should display Logout button when logged in', () => {
         window.localStorage.access_token = 'asdfasfdasf'
         const wrapper = mount(<MemoryRouter initialEntries={['/offices/dallas']} initialIndex={0}>
-            <Route component={props => <Header {...props} />} path='/offices/:officeName' />
+            <Route component={props => <Header officeName={props.match.params.officeName} />} path='/offices/:officeName' />
         </MemoryRouter>)
 
         expect(wrapper.find('Header').text()).toContain('Logout')
@@ -29,7 +29,7 @@ describe('Header', () => {
     it('should remove access_token when clicking Logout button when logged in', () => {
         window.localStorage.access_token = 'asdfasfdasf'
         const wrapper = mount(<MemoryRouter initialEntries={['/offices/dallas']} initialIndex={0}>
-            <Route component={props => <Header {...props} />} path='/offices/:officeName' />
+            <Route component={props => <Header officeName={props.match.params.officeName} />} path='/offices/:officeName' />
         </MemoryRouter>)
 
         wrapper.find('Button').find('.logout').first().simulate('click')
@@ -40,7 +40,7 @@ describe('Header', () => {
     it('should not display Admin Login button when logged in', () => {
         window.localStorage.access_token = 'asdfasfdasf'
         const wrapper = mount(<MemoryRouter initialEntries={['/offices/dallas']} initialIndex={0}>
-            <Route component={props => <Header {...props} />} path='/offices/:officeName' />
+            <Route component={props => <Header officeName={props.match.params.officeName} />} path='/offices/:officeName' />
         </MemoryRouter>)
 
         expect(wrapper.find('Header').text()).not.toContain('Admin Login')
@@ -50,7 +50,7 @@ describe('Header', () => {
         window.localStorage.removeItem('access_token')
 
         const wrapper = mount(<MemoryRouter initialEntries={['/offices/dallas']} initialIndex={0}>
-            <Route component={props => <Header {...props} />} path='/offices/:officeName' />
+            <Route component={props => <Header officeName={props.match.params.officeName} />} path='/offices/:officeName' />
         </MemoryRouter>)
 
         expect(wrapper.find('Header').text()).toContain('Admin Login')
@@ -58,7 +58,7 @@ describe('Header', () => {
 
     it('should display office name with first letter capitalized', () => {
         const wrapper = mount(<MemoryRouter initialEntries={['/offices/dallas']} initialIndex={0}>
-            <Route component={props => <Header {...props} />} path='/offices/:officeName' />
+            <Route component={props => <Header officeName={props.match.params.officeName} />} path='/offices/:officeName' />
         </MemoryRouter>)
 
         expect(wrapper.find('Header').text()).toContain('Dallas')

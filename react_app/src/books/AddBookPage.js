@@ -49,7 +49,7 @@ class AddBookPage extends Component {
     render() {
         return (
             <div style={{ marginTop: '10px' }}>
-                <Header {...this.props} />
+                <Header officeName={this.props.match.params.officeName} />
                 <AddBook officeName={this.props.match.params.officeName}
                     saveBook={this.saveBook}
                     officeId={this.props.location.state.officeId}

@@ -15,6 +15,7 @@ class Office extends Component {
             books: [],
             searchCriteria: '',
             fetching: false,
+            officeId: null,
         }
 
         this.fetchBooks = this.fetchBooks.bind(this)
@@ -22,10 +23,45 @@ class Office extends Component {
         this._getBooks = this._getBooks.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.checkoutBook = this.checkoutBook.bind(this)
+        this.fetchOffices = this.fetchOffices.bind(this)
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        if (!!!this.props.location.state || !!!this.props.location.state.officeId) {
+            await this.fetchOffices()
+        } else {
+            await this.setState({
+                officeId: this.props.location.state.officeId
+            })
+        }
         this.fetchBooks()
+    }
+
+    async fetchOffices() {
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices`
+
+        const response = await fetch(url, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        })
+
+        if (!response.ok) {
+            throw Error(`Request rejected with status ${response.status}`)
+        }
+
+        const content = await response.json()
+        const office = content.data.offices.find(function (office) {
+            return office.name === this.props.match.params.officeName
+        }, this)
+
+        this.setState({
+            officeId: office.id
+        })
     }
 
     async fetchBooks() {
@@ -33,7 +69,7 @@ class Office extends Component {
             fetching: true,
         })
 
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books`
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.state.officeId}/books`
 
         await this._getBooks(url)
 
@@ -48,7 +84,7 @@ class Office extends Component {
             fetching: true,
         })
 
-        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.props.location.state.officeId}/books?search=${searchCriteria}`
+        const url = `${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${this.state.officeId}/books?search=${searchCriteria}`
 
         await this._getBooks(url)
 
@@ -91,7 +127,7 @@ class Office extends Component {
         })
 
         if (!response.ok) {
-            if(response.status === 401) {
+            if (response.status === 401) {
                 this.props.history.push('/login')
                 return
             }
@@ -134,20 +170,20 @@ class Office extends Component {
     }
 
     render() {
-        return (
+        return (this.props.location.state || this.state.officeId) ? (
             <div style={{ marginTop: '10px' }}>
-                <Header {...this.props} />
+                <Header officeName={this.props.match.params.officeName} />
                 <div>
                     <Link to={{ pathname: `/` }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
-                    <Link to={{ pathname: `/${this.props.match.params.officeName}/checkin`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    <Link to={{ pathname: `/${this.props.match.params.officeName}/checkin`, state: { officeId: this.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Scan To Check In</Button>
                     </Link>
-                    <Link to={{ pathname: `/${this.props.match.params.officeName}/report`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    <Link to={{ pathname: `/${this.props.match.params.officeName}/report`, state: { officeId: this.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Report</Button>
                     </Link>
-                    {!!window.localStorage.access_token && <Link to={{ pathname: `/${this.props.match.params.officeName}/add-book`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    {!!window.localStorage.access_token && <Link to={{ pathname: `/${this.props.match.params.officeName}/add-book`, state: { officeId: this.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Add Book</Button>
                     </Link>}
                 </div>
@@ -164,7 +200,7 @@ class Office extends Component {
                 {this.state.books.length === 0 && this.state.searchCriteria.length > 0 && <div style={{ marginLeft: '10px' }}>No books matching [{this.state.searchCriteria}]</div>}
                 <Inventory checkoutBook={this.checkoutBook} fetching={this.state.fetching} books={this.state.books} canDelete={!!window.localStorage.access_token} handleDelete={this.handleDelete} />
             </div>
-        )
+        ) : ''
     }
 }
 
