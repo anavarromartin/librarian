@@ -1,0 +1,35 @@
+$breakpoint-tablet: 768px;
+
+.white-button {
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  font-family: "Helvetica Neue";
+  line-height: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #1baea1;
+  width: 184px;
+  height: 48px;
+  border-radius: 20px;
+  border: solid 2px #1baea1;
+  outline: none;
+}
+
+.teal-button {
+  width: 184px;
+  height: 48px;
+  font-family: "Helvetica Neue";
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #243641;
+  border-radius: 20px;
+  background-color: #1eccc1;
+  outline: none;
+}

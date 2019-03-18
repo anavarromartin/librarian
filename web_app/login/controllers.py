@@ -4,6 +4,7 @@ from flask import Blueprint
 
 loginController = Blueprint('loginController', __name__)
 
+
 @loginController.route('/login', methods=['POST'])
 def login():
     username = request.get_json(force=True).get('username', None)
@@ -18,4 +19,3 @@ def login():
 
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token), 200
-

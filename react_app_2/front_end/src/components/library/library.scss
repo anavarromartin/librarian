@@ -1,0 +1,37 @@
+@import "../../global-styles";
+
+.library-container {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 90px auto 90px;
+  grid-template-rows: 20% auto 10% 62px 62px auto;
+}
+
+.image-container {
+  background-color: #2b81af;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  justify-self: center;
+  align-self: center;
+
+}
+
+#return-button {
+  grid-row-start: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: center;
+}
+
+#borrow-button {
+  grid-row-start: 5;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: center;
+}
+
+input {
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+  font-size: 18px;
+}

@@ -1,0 +1,38 @@
+@import "../../global-styles";
+
+.app-header {
+
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  background-color: #243641;
+  color: white;
+  font-weight: 500;
+  font-stretch: condensed;
+  letter-spacing: 0.7px;
+  font-size: 20px;
+  font-family: "Avenir Next";
+}
+
+.back-button {
+  grid-column-start: 1;
+  align-self: center;
+  justify-self: center;
+}
+
+.title {
+  width: 100%;
+  grid-column-start: 2;
+  text-align: center;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .app-header {
+    height: 104px;
+    font-size: 36px;
+  }
+}
+

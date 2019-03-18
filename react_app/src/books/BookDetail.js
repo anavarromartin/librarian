@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Header from '../common/Header'
-import { withStyles } from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -9,8 +9,8 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import moment from 'moment'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import {withRouter} from 'react-router'
+import {Link} from 'react-router-dom'
 
 const styles = theme => ({
     root: {
@@ -69,19 +69,22 @@ class BookDetailPage extends Component {
     }
 
     render() {
-        const { classes } = this.props
-        const { book } = this.props.location.state
+        const {classes} = this.props
+        const {book} = this.props.location.state
 
         return (
-            <div style={{ marginTop: '10px' }}>
-                <Header officeName={this.props.match.params.officeName} />
+            <div style={{marginTop: '10px'}}>
+                <Header officeName={this.props.match.params.officeName}/>
                 <div>
-                    <Link to={{ pathname: `/${this.props.match.params.officeName}`, state: { officeId: this.props.location.state.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
+                    <Link to={{
+                        pathname: `/${this.props.match.params.officeName}`,
+                        state: {officeId: this.props.location.state.officeId}
+                    }} style={{textDecoration: 'none', marginRight: '10px', marginLeft: '10px'}}>
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
                 </div>
                 <Paper className={classes.root}>
-                    <img style={{ height: '120px' }} src={book.imageLink} alt='Missing Link' />
+                    <img style={{height: '120px'}} src={book.imageLink} alt='Missing Link'/>
                     <div>Book Title: {book.name}</div>
                     <div>ISBN: {book.isbn}</div>
                     <div>Authors: {book.authors}</div>
