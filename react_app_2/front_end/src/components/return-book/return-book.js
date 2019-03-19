@@ -15,7 +15,7 @@ const ReturnBook = ({setBackLocation}) => {
             <form>
                 <label>Find the Book You Borrowed</label>
                 <input className={"text-input"} type="text"/>
-                <input  className={classNames("teal-button", "button-input")} type="submit" value="RETURN" />
+                <input className={classNames("teal-button", "button-input")} type="submit" value="RETURN" />
             </form>
         </div>
     )

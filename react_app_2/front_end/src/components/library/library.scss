@@ -8,13 +8,13 @@
 }
 
 .image-container {
-  background-color: #2b81af;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
   justify-self: center;
   align-self: center;
 
+  width: 75%;
 }
 
 #return-button {
