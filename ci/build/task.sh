@@ -29,6 +29,16 @@ rm .gitignore
 
 cd ..
 
+cd react_app_2/front_end
+yarn
+CI="true" yarn test
+
+yarn build
+
+rm -rf node_modules
+
+cd ../..
+
 cp -rf ../resource-gist-dev/.git ../updated-gist/.git
 zip -r ../librarian.zip .
 
