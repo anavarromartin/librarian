@@ -1,3 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Library /> renders the component 1`] = `"to the library"`;
+exports[`<Library /> renders the component 1`] = `
+<div
+  className="library-container"
+>
+  <div
+    className="image-container"
+  >
+    image goes here
+  </div>
+  <button
+    className="teal-button"
+    id="return-button"
+    onClick={[Function]}
+  >
+    RETURN
+  </button>
+  <button
+    className="white-button"
+    id="borrow-button"
+  >
+    BORROW
+  </button>
+</div>
+`;

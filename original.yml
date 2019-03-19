@@ -1,0 +1,301 @@
+---
+jobs:
+- name: build
+  plan:
+  - get: librarian
+    trigger: true
+  - get: resource-gist-dev
+  - task: build-task
+    file: librarian/ci/build/task.yml
+  - put: resource-gist-dev
+    params:
+      repository: updated-gist
+      force: true
+- name: push-to-dev
+  plan:
+  - get: librarian
+  - get: resource-gist-dev
+    trigger: true
+    passed:
+      - build
+  - put: cf
+    params:
+      command: zero-downtime-push
+      space: playground
+      manifest: librarian/manifest.yml
+      path: resource-gist-dev/librarian.zip
+      current_app_name: librarian
+  - put: resource-gist-staging
+    params:
+      repository: resource-gist-dev
+      force: true
+- name: push-to-staging
+  plan:
+  - get: librarian
+  - get: resource-gist-staging
+    trigger: false
+    passed:
+      - push-to-dev
+  - put: cf
+    params:
+      command: zero-downtime-push
+      space: Staging
+      manifest: librarian/manifest-staging.yml
+      path: resource-gist-staging/librarian.zip
+      current_app_name: librarian
+  - put: resource-gist-prod
+    params:
+      repository: resource-gist-staging
+      force: true
+- name: push-to-prod
+  plan:
+  - get: librarian
+  - get: resource-gist-prod
+    trigger: false
+    passed:
+      - push-to-staging
+  - put: cf
+    params:
+      command: zero-downtime-push
+      space: Production
+      manifest: librarian/manifest-prod.yml
+      path: resource-gist-prod/librarian.zip
+      current_app_name: librarian
+
+resource_types:
+- name: cf-cli-resource
+  type: docker-image
+  source:
+    repository: nulldriver/cf-cli-resource
+    tag: latest
+
+resources:
+- name: cf
+  type: cf-cli-resource
+  source:
+    api: https://api.run.pcfone.io
+    username: ((cf_username))
+    password: ((cf_password))
+    org: pivot-acourter
+
+- name: resource-gist-dev
+  type: git
+  source:
+    uri: git@gist.github.com:6aa8d059ddfedc3b62393e00b5545509.git
+    branch: master
+    private_key: |
+      -----BEGIN OPENSSH PRIVATE KEY-----
+      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
+      -----END OPENSSH PRIVATE KEY-----
+- name: resource-gist-prod
+  type: git
+  source:
+    uri: git@gist.github.com:48cb53380c263b4da5691d2c37fa9744.git
+    branch: master
+    private_key: |
+      -----BEGIN OPENSSH PRIVATE KEY-----
+      b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
+      NhAAAAAwEAAQAAAgEAwGhWB6F0yptwrp1aOpxLPQupBaFOvSbwpuk1EgKjYKr6mbKeF08l
+      lFMCbwLuOJzwfNCL61k6ptNOTFo6n/br/tfpMwzfJt8Qxl6KgOzaY5BjFttz+yewAF9ukJ
+      5SdopBhGz/bBr5NA1vIdgQgPC/1Xngp6LhcOSW/ezahzjwjABtPIIL4wLVV5vJAEt/KPSC
+      cwWa99d/jyDK4Dr6SM7JhfCB40wyWmrRmMl+nK6k9ElIvT1Hjm4bsmD1JTFWUZGGqWToia
+      h1fQN9En2W8k0VB72N6vHZvHO2BpwYM2u+/ed6O4Vk/dMDbZ+Q/EMMaHSMUsfAmD6bwq6s
+      ECsHwlDUh1oMm5W8JMmssXhqLnCRyRj252ZNpP55o4aPN/3arf/SOYh95wo+XymDLH8zQr
+      3kd4gpXaYmw3NCsMaMfnhitbd/cxHzWpHhhNC8Dld1+0mYHiKFHSMd14ZYCNv5p7xutdn+
+      aC+ySrBhQc+NkGPY0TJ2mx0dsfKj+s5Z3LXS5OU3aberGmSqNjC3J60Pf/5y0lkXOHFgPw
+      v2EsDtDGNo19YAUt8g866IfiNJiLmnG2/TARQv3QivwaT3RAIi0Vt/CE/liqV0EpaJeO0v
+      l56m4+xxQqmarLX7NQPTeIz0KXZoucpc3y0LaohKlNLeDiA+J1iHenlVt8J/3IbVh2w3F1
+      cAAAdQDpSg9Q6UoPUAAAAHc3NoLXJzYQAAAgEAwGhWB6F0yptwrp1aOpxLPQupBaFOvSbw
+      puk1EgKjYKr6mbKeF08llFMCbwLuOJzwfNCL61k6ptNOTFo6n/br/tfpMwzfJt8Qxl6KgO
+      zaY5BjFttz+yewAF9ukJ5SdopBhGz/bBr5NA1vIdgQgPC/1Xngp6LhcOSW/ezahzjwjABt
+      PIIL4wLVV5vJAEt/KPSCcwWa99d/jyDK4Dr6SM7JhfCB40wyWmrRmMl+nK6k9ElIvT1Hjm
+      4bsmD1JTFWUZGGqWToiah1fQN9En2W8k0VB72N6vHZvHO2BpwYM2u+/ed6O4Vk/dMDbZ+Q
+      /EMMaHSMUsfAmD6bwq6sECsHwlDUh1oMm5W8JMmssXhqLnCRyRj252ZNpP55o4aPN/3arf
+      /SOYh95wo+XymDLH8zQr3kd4gpXaYmw3NCsMaMfnhitbd/cxHzWpHhhNC8Dld1+0mYHiKF
+      HSMd14ZYCNv5p7xutdn+aC+ySrBhQc+NkGPY0TJ2mx0dsfKj+s5Z3LXS5OU3aberGmSqNj
+      C3J60Pf/5y0lkXOHFgPwv2EsDtDGNo19YAUt8g866IfiNJiLmnG2/TARQv3QivwaT3RAIi
+      0Vt/CE/liqV0EpaJeO0vl56m4+xxQqmarLX7NQPTeIz0KXZoucpc3y0LaohKlNLeDiA+J1
+      iHenlVt8J/3IbVh2w3F1cAAAADAQABAAACACIe3pK/2RxM8HCmyud17AnJVZIABxyYGTkg
+      Rh8JhLuR1psHB+4ORRXGmrnhBSnY+vTHbuivjC0lb88ueRMBENzCoUJCWBhmmmzzOxCd8C
+      ST6F6XUDwLz7RhOBRBX1JSNkgrpCghqGvIrhqMXHDhQMO0t1hDFEOW5gflxuMP/+hz8us2
+      DLGXQQomQEDjIou6wJ9xMQgemSpioFefXd8nfKlZ+065pnxOURkNMnzKo8oGbPXSNixV7m
+      d1tkOAOlSAwCauFGbFDwC6a6Wpy+jwLniO7unpNbmrs238pHYJ93bDY/PGNiClGQiJsYZq
+      xXqIoJHVhpv5Dlo56516ZAfbmbSP7pZn9urpbANZpRbB+4ASJIAcWew/eVDimN5Yae+57n
+      u4znKVmFDQ20FSr1v46XO+tY9F1x6DeO/Lu5iIXxb1bhxQG8aEvJw+aBwGzN1r7DN/lG2k
+      qP/Gw2l4hBXffwe6jPHW99GWxcldzCyrgtwZff89h19fEu1i8qXswhX9YThMow9dtvvJe8
+      nfluzoM35NgqSparZT9SZyDQGs9xi97+V8VqCTsuf+1Bw7SkMEIlS80mttWLqndMXgJPav
+      U+EoVz+YPvhRY7zoVRpM++cxjGNYh0/68Mc/a021mJZv3kH50AcK/VtTBVdcWk/Lzx3GyB
+      bmSSFST0db1mBhNW4BAAABAQCOZEQMcZ+X5M+E1XVL4xOyQp8GjptoW7rBXGvUEt0r0bZh
+      LqKLe3QX5tbthYCpumTnnRmv9Rt8uAAjq2HxM7O7R6k2L4Sye9HB+kchWfdVmpCvV3bjoH
+      j5H3Uw+0NN1k5peArh48IH2yd4/vzHHz71DIM2jzpCZURFDSycPFSVR2ayLIl169uCmehx
+      VseW3QaZwloEDPIPdlv2X2jWtemhlpqbRXF93SimRFSdvFeQxzHxXngsqsLUx25uKe2b1l
+      9WbXBDEN1QiiP/5YRcyPGSA84+5HPoEqesNxWEVuG41rPz4/TMAvBQfI46PffiVNal+7Jz
+      yZw4NCN2425Atv1DAAABAQD1n8IOWX5oc1E3bLLbHGtrE0zNNMcxlMNR7049CQswgfBuL+
+      OdH0LsEj3AVBS3UeRplPshceoewczXVwMata6xXvV4BgoCAeGBRYdDW0abFyzAh4xTkdOY
+      NP51FiSQPtEm0bIKHwFvvcosJZS0na3TPLSrsMSwks2Empg0tTkdc/l9VWmFeOJT6al9/A
+      TO3ZPsvDWHV8QgkPue20wmVVgV42rMGGazKZfPCTtOTF+6nUP41yiVz/xN8fUC7f+pEhTv
+      cWzqo6uQAIpIjlK9EJmfRLaovp/QyrEwr4gVG1m9z9Temkf1TLsUkmuE8KqLcodeaMLhsT
+      483mrrhrJ8xUOBAAABAQDIiRTFE42R1vxNUNMj7LVEaQn+KDpqfHWB/VToxR8XEtZbU0Tv
+      JnVWEOPdkAssNSo48IDAvnHr4u1vdvDcE4M+7vqqtbRKMuENX6dk9/EmpfYZ9pQAso2mQg
+      y9BlnQlACB6DLHTnX/rA4MkvhMmoZELLY2xo7AaJIWVbz2TOF+j/1s4RQyiS7YtwoR+4x5
+      dA9OmRSI3Op+l5Fbhz//NPFYCtthqwDLL8StajgFqoJL2KHxpUQSNyF0G/ed6m/jzFFXBF
+      oB3IFGJe96g4S2zkeJwgw5uCKFOOzYl0r65vO/XcbUixt9mzb0ecWdt40fMbVB7nwRDkIG
+      m8/nCxJEpmbXAAAAE2Fjb3VydGVyQHBpdm90YWwuaW8BAgMEBQYH
+      -----END OPENSSH PRIVATE KEY-----
+- name: resource-gist-staging
+  type: git
+  source:
+    uri: git@gist.github.com:498c3bdbb3f0a4e59562af550e51e47e.git
+    branch: master
+    private_key: |
+      -----BEGIN OPENSSH PRIVATE KEY-----
+      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
+      -----END OPENSSH PRIVATE KEY-----
+
+- name: librarian
+  type: git
+  source:
+    uri: git@github.com:exosyphon-pivotal/librarian.git
+    branch: master
+    private_key: |
+      -----BEGIN OPENSSH PRIVATE KEY-----
+      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
+      -----END OPENSSH PRIVATE KEY-----
