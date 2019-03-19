@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReturnBook /> renders the component 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="header"
+  >
+    Return A Book
+  </div>
+  <form>
+    <label>
+      Find the Book You Borrowed
+    </label>
+    <input
+      className="text-input"
+      type="text"
+    />
+    <input
+      className="teal-button button-input"
+      type="submit"
+      value="RETURN"
+    />
+  </form>
+</div>
+`;
