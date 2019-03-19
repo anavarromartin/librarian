@@ -4,11 +4,12 @@ exports[`<Library /> renders the component 1`] = `
 <div
   className="library-container"
 >
-  <div
+  <svg
+    alt="logo"
     className="image-container"
   >
-    image goes here
-  </div>
+    home_page_img.svg
+  </svg>
   <button
     className="teal-button"
     id="return-button"
