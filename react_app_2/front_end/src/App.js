@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import './App.css';
+import './App.scss';
+import classNames from 'classnames'
 import Library from "./components/library/library";
 import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -25,6 +26,7 @@ const RouteWithBackNav = props => {
 
 const App = () => {
     const [backLocation, setBackLocation] = useState(null)
+    const [headerVisible, setHeaderVisibility] = useState(true)
 
     const navigateBack = (history) => {
         console.log('back location:' + backLocation)
@@ -36,8 +38,9 @@ const App = () => {
         setBackLocation(loc)
     }
 
-    const locationProps = {
+    const componentProps = {
         setBackLocation: customSetBackLocation,
+        setHeaderVisibility: setHeaderVisibility,
     }
 
     const backButtonEnabled = () => backLocation !== null
@@ -45,15 +48,20 @@ const App = () => {
     return (
         <Router>
             <div className={"main-content"}>
-                <Route
-                    path={"*"}
-                    render={props => <AppHeader {...props}
-                                                onNavigateBack={navigateBack}
-                                                backButtonEnabled={backButtonEnabled}
-                    />}
-                />
-                <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...locationProps}/>
-                <RouteWithBackNav path={`${routePrefix}`} component={Library} {...locationProps}/>
+
+                <div className={classNames({"header--hidden": !headerVisible})}>
+                    <Route
+                        path={"*"}
+                        render={props => <AppHeader {...props}
+                                                   onNavigateBack={navigateBack}
+
+                                                   backButtonEnabled={backButtonEnabled}
+                        />}
+                    />
+                </div>
+
+                <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...componentProps}/>
+                <RouteWithBackNav path={`${routePrefix}`} component={Library} {...componentProps}/>
             </div>
         </Router>
     )

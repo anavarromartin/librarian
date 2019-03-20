@@ -1,3 +1,5 @@
+@import "global-styles";
+
 .main-content {
   height: 100%;
 }
@@ -28,6 +30,18 @@
 .App-link {
   color: #61dafb;
 }
+
+.header--hidden {
+  display: none;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .header--hidden {
+    display: grid;
+  }
+
+}
+
 
 @keyframes App-logo-spin {
   from {

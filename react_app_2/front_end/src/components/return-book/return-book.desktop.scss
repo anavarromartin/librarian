@@ -1,0 +1,45 @@
+.header--searching {
+  display: grid;
+}
+
+.label--searching {
+  display: grid;
+}
+
+.form--searching {
+  grid-row-start: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.text-input--searching {
+  grid-column-start: 1;
+
+  border-left: solid 1px rgba(151, 151, 151, 0.48);
+  border-radius: 3px;
+}
+
+.back__container--searching {
+  display: none;
+}
+
+.button-input--searching {
+  display: grid;
+}
+
+.header {
+  font-size: 24px;
+}
+
+label {
+  font-size: 18px;
+}
+
+.text-input {
+  margin-top: 3px;
+}
+
+.container {
+  grid-template-rows: 72px auto 32px auto 32px auto;
+}
+
