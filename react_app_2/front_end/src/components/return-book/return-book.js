@@ -22,29 +22,29 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
         return () => setHeaderVisibility(true)
     })
 
-    const setClassName = (className) => classNames(className, {[`${className}--searching`]: searching})
+    const setClassWithModifier = (className) => classNames(className, {[`${className}--searching`]: searching})
 
     return (
         <div className={"container"}>
-            <div className={setClassName("header")}
+            <div className={setClassWithModifier("header")}
             >Return A Book
             </div>
-            <form className={setClassName("form")}>
-                <label className={setClassName("label")}
+            <form className={setClassWithModifier("form")}>
+                <label className={setClassWithModifier("label")}
                 >Find the Book You Borrowed
                 </label>
-                <div className={setClassName("text-input__container")}>
-                    <div className={setClassName("back__container")}>
+                <div className={setClassWithModifier("text-input__container")}>
+                    <div className={setClassWithModifier("back__container")}>
                         <FontAwesomeIcon
-                            className={setClassName("text-input__back")}
+                            className={setClassWithModifier("text-input__back")}
                             icon={faChevronLeft} onClick={() => setSearching(false)}/>
                     </div>
-                    <input className={setClassName("text-input")} type="text" onClick={() => {
+                    <input className={setClassWithModifier("text-input")} type="text" onClick={() => {
                         setSearching(true)
                     }}/>
                 </div>
                 <input className={
-                    classNames("teal-button", setClassName("button-input"))
+                    classNames("teal-button", setClassWithModifier("button-input"))
                 } type="submit" value="RETURN"
                 />
             </form>

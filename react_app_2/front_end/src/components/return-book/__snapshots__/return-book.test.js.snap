@@ -10,10 +10,10 @@ exports[`<ReturnBook /> display renders the component 1`] = `
     Return A Book
   </div>
   <form
-    className=""
+    className="form"
   >
     <label
-      className=""
+      className="label"
     >
       Find the Book You Borrowed
     </label>
