@@ -12,7 +12,6 @@
   font-weight: 500;
   font-stretch: condensed;
   letter-spacing: 0.7px;
-  font-size: $small-title;
 }
 
 .back-button {
@@ -26,6 +25,9 @@
   width: 100%;
   grid-column-start: 2;
   text-align: center;
+  font-family: "Avenir Next Condensed", sans-serif;
+  letter-spacing: 1.5px;
+  font-size: 46px;
 }
 
 @media (min-width: $breakpoint-tablet) {
