@@ -1,4 +1,12 @@
 $breakpoint-tablet: 768px;
+$txt-primary: #243641;
+$normal: 400;
+$semi-bold: 600;
+$large-title: 2rem;
+$medium-title: 1.5rem;
+$small-title: 1.25rem;
+$base: 1rem;
+$small-base: 0.875rem;
 
 .white-button {
   font-size: 16px;
@@ -14,6 +22,7 @@ $breakpoint-tablet: 768px;
   border-radius: 20px;
   border: solid 2px #1baea1;
   outline: none;
+  cursor: pointer;
 }
 
 .teal-button {
@@ -26,8 +35,9 @@ $breakpoint-tablet: 768px;
   line-height: normal;
   letter-spacing: 1px;
   text-align: center;
-  color: #243641;
   border-radius: 20px;
   background-color: #1eccc1;
+  border-color: #1eccc1;
   outline: none;
+  cursor: pointer;
 }

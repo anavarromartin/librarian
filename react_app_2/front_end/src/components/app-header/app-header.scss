@@ -12,13 +12,14 @@
   font-weight: 500;
   font-stretch: condensed;
   letter-spacing: 0.7px;
-  font-size: 20px;
+  font-size: $small-title;
 }
 
 .back-button {
   grid-column-start: 1;
   align-self: center;
   justify-self: center;
+  cursor: pointer;
 }
 
 .title {

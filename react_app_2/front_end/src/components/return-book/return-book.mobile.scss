@@ -60,10 +60,11 @@ form {
   grid-column-end: 3;
 
   outline: none;
-  width: 100%;
+  width: auto;
   height: 40px;
   border-radius: 3px;
   border: solid 1px rgba(151, 151, 151, 0.48);
+  padding-left: 8px;
 }
 
 .text-input--searching {

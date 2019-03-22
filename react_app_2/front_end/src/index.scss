@@ -1,3 +1,5 @@
+@import "global-styles.scss";
+
 body {
     margin: 0;
     padding: 0;
@@ -12,7 +14,6 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
 
 @font-face {
     font-family: 'SegoeUI';
@@ -56,8 +57,16 @@ code {
     src: url(assets/segoeui-font/seguisb.ttf);
 }
 
-
 html, body, #root {
     height: 100%;
-    font-family: SegoeUI;
+    font-family: SegoeUI, sans-serif;
+    font-size: $base;
+    color: $txt-primary;
+}
+
+
+input {
+    font-family: SegoeUI, sans-serif;
+    font-size: $base;
+    color: $txt-primary;
 }
