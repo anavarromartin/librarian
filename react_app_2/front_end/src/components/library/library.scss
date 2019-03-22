@@ -14,7 +14,7 @@
   justify-self: center;
   align-self: center;
 
-  width: 75%;
+  width: 248px;
 }
 
 #return-button {
@@ -29,4 +29,10 @@
   grid-column-start: 2;
   grid-column-end: 3;
   justify-self: center;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .image-container {
+    width: 348px;
+  }
 }

@@ -47,8 +47,7 @@ const App = () => {
 
     return (
         <Router>
-            <div className={"main-content"}>
-
+            <div className={"top-container"}>
                 <div className={classNames({"header--hidden": !headerVisible})}>
                     <Route
                         path={"*"}
@@ -59,9 +58,10 @@ const App = () => {
                         />}
                     />
                 </div>
-
-                <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...componentProps}/>
-                <RouteWithBackNav path={`${routePrefix}`} component={Library} {...componentProps}/>
+                <div className={"content"}>
+                    <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...componentProps}/>
+                    <RouteWithBackNav path={`${routePrefix}`} component={Library} {...componentProps}/>
+                </div>
             </div>
         </Router>
     )

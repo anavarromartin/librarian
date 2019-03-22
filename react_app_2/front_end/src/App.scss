@@ -1,11 +1,23 @@
 @import "global-styles";
 
-.main-content {
+.top-container {
+  //height: 100%;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
   height: 100%;
+
 }
 
 .header--hidden {
   display: none;
+  grid-row-start: 1;
+}
+
+.content {
+  grid-row-start: 2;
 }
 
 @media (min-width: $breakpoint-tablet) {
