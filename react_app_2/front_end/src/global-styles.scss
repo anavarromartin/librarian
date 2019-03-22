@@ -10,7 +10,7 @@ $small-base: 0.875rem;
 
 .white-button {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
@@ -18,25 +18,25 @@ $small-base: 0.875rem;
   text-align: center;
   color: #1baea1;
   background-color: white;
-  width: 184px;
+  width: 136px;
   height: 48px;
-  border-radius: 20px;
+  border-radius: 24px;
   border: solid 2px #1baea1;
   outline: none;
   cursor: pointer;
 }
 
 .teal-button {
-  width: 184px;
+  width: 136px;
   height: 48px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 1px;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 24px;
   background-color: #1eccc1;
   border-color: #1eccc1;
   outline: none;

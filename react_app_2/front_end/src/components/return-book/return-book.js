@@ -8,7 +8,7 @@ import {faChevronLeft} from "@fortawesome/free-solid-svg-icons/faChevronLeft"
 
 library.add(faChevronLeft)
 
-const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
+const ReturnBook = ({setBackLocation, setHeaderVisibility, axios = require('axios')}) => {
 
     const [searching, setSearching] = useState(false)
 
@@ -39,9 +39,12 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
                             className={setClassWithModifier("text-input__back")}
                             icon={faChevronLeft} onClick={() => setSearching(false)}/>
                     </div>
-                    <input className={setClassWithModifier("text-input")} type="text" onClick={() => {
-                        setSearching(true)
-                    }}/>
+                    <input className={setClassWithModifier("text-input")} type="text"
+                           onClick={() => {
+                               setSearching(true)
+                           }}
+                           onChange={event => {search(event, axios)}}
+                    />
                 </div>
                 <input className={
                     classNames("teal-button", setClassWithModifier("button-input"))
@@ -50,6 +53,11 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
             </form>
         </div>
     )
+}
+
+const search = async (event, axios) => {
+    const response = await axios.get(`http://localhost:3000/api/offices/1/books?search=${event.target.value}`)
+    console.log(response.data.data.books)
 }
 
 export default ReturnBook

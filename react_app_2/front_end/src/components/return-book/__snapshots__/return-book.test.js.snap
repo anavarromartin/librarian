@@ -44,6 +44,7 @@ exports[`<ReturnBook /> display renders the component 1`] = `
       </div>
       <input
         className="text-input"
+        onChange={[Function]}
         onClick={[Function]}
         type="text"
       />
