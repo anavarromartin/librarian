@@ -23,17 +23,9 @@ const RouteWithBackNav = props => {
     )
 }
 
-const getOffice = async () => {
-    const axios = require('axios')
-    const response = await axios.get('http://localhost:3000/api/offices/')
-    console.log(response.data)
-}
-
 const App = () => {
     const [backLocation, setBackLocation] = useState(null)
     const [headerVisible, setHeaderVisibility] = useState(true)
-
-    getOffice()
 
     const navigateBack = (history) => {
         console.log('back location:' + backLocation)

@@ -3,6 +3,9 @@ import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
 import { shallow } from 'enzyme'
 import 'jasmine-enzyme'
+import searchService from "../../services/search-service"
+
+jest.mock('../../services/search-service')
 
 describe('<ReturnBook />', () => {
 
@@ -16,16 +19,16 @@ describe('<ReturnBook />', () => {
     })
 
     describe('behavior', () => {
-        it('should set device width when find book input is clicked', () => {
-            const axiosSpy = {get: () => {}}
-            spyOn(axiosSpy, 'get')
+        it('when typing it performs search', () => {
+            let searchInput = ''
+            searchService.searchBooks.mockImplementationOnce(search => {
+                searchInput = search
+            })
 
-            const wrapper = shallow(<ReturnBook
-                axios={axiosSpy}
-            />)
-
+            const wrapper = shallow(<ReturnBook/>)
             wrapper.find(".text-input").simulate('change', { target: { value: 'Test' } })
-            // expect(axiosSpy.get).toHaveBeenCalledWith('')
+
+            expect(searchInput).toEqual('Test')
         })
     })
 })
