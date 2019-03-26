@@ -10,5 +10,5 @@ it('search books', () => {
 
     searchService.searchBooks('book')
 
-    expect(searchUrl).toEqual(`${process.env.REACT_APP_API_URL}/api/offices/1/books?search=book`)
+    expect(searchUrl).toContain(`/api/offices/1/books?search=book`)
 })
