@@ -12,6 +12,10 @@
   grid-column-end: 3;
 }
 
+.text-input__container {
+  box-shadow: none;
+}
+
 .text-input--searching {
   grid-column-start: 1;
 
@@ -43,3 +47,9 @@ label {
   grid-template-rows: 72px auto 32px auto 32px auto;
 }
 
+.search-results {
+  overflow-y: auto;
+  border-radius: 3px;
+  z-index: 1;
+  box-shadow: 0 5px 6px -3px #00000033, 0 3px 16px 2px #0000001e, 0 9px 12px 1px #00000023;
+}

@@ -25,6 +25,7 @@ $top-row: 40px;
 }
 
 label {
+  grid-row-start: 1;
   font-size: 14px;
   color: #243641;
 }
@@ -38,21 +39,27 @@ form {
   grid-column-start: 2;
 
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 24px auto auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 62px 162px;
 
 }
 
 .form--searching {
   grid-row-start: 1;
   grid-column-start: 1;
-  grid-column-end:4;
+  grid-column-end: 4;
 }
 
-
 .text-input__container {
+  grid-row-start: 2;
+  grid-column-start: 1;
   display: grid;
   grid-template-columns: 40px auto;
+  z-index: 1;
+}
+
+.text-input__container--searching {
+  box-shadow: 0 2px 4px 0 #00000014;
 }
 
 .text-input {
@@ -64,7 +71,6 @@ form {
   height: 40px;
   border-radius: 3px;
   border: solid 1px rgba(151, 151, 151, 0.48);
-  padding-left: 8px;
 }
 
 .text-input--searching {
@@ -101,7 +107,7 @@ form {
   grid-row-start: 3;
   grid-column-start: 1;
   justify-self: end;
-  margin-top: 36px;
+  align-self: end;
   display: grid;
 }
 
@@ -109,3 +115,10 @@ form {
   display: none;
 }
 
+.search-results {
+  grid-row-start: 3;
+  grid-row-end: 5;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: white;
+}

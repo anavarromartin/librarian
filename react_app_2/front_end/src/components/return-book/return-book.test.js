@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import 'jasmine-enzyme'
 import searchService from "../../services/search-service"
 
@@ -25,10 +25,28 @@ describe('<ReturnBook />', () => {
                 searchInput = search
             })
 
-            const wrapper = shallow(<ReturnBook/>)
-            wrapper.find(".text-input").simulate('change', { target: { value: 'Test' } })
+            const wrapper = mount(<ReturnBook
+                setBackLocation={() => {}}
+                setHeaderVisibility={() => {}}
+            />)
+            wrapper.find(".labels-input__input").simulate('change', { target: { value: 'Test' } })
 
             expect(searchInput).toEqual('Test')
+        })
+
+        it('when input is empty it does not search', () => {
+            let wasCalled = false
+            searchService.searchBooks.mockImplementationOnce(() => {
+                wasCalled = true
+            })
+
+            const wrapper = mount(<ReturnBook
+                setBackLocation={() => {}}
+                setHeaderVisibility={() => {}}
+            />)
+            wrapper.find(".text-input").simulate('change', { target: { value: '   ' } })
+
+            expect(wasCalled).toBeFalsy()
         })
     })
 })

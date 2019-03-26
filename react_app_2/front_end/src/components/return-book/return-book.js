@@ -6,6 +6,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons/faChevronLeft"
 import searchService from "../../services/search-service"
+import SearchResults from "../search-results/search-results"
+import LabelInput from "../label-input/label-input"
 
 library.add(faChevronLeft)
 
@@ -13,6 +15,7 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
 
     const [searching, setSearching] = useState(false)
     const [searchResults, setSearchResults] = useState([])
+    const [selectedResult, selectResult] = useState(null)
 
     useEffect(() => {
         setBackLocation(`${routePrefix}`)
@@ -27,10 +30,25 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
 
     const setClassWithModifier = (className) => classNames(className, {[`${className}--searching`]: searching})
 
-    const search = async (event) => {
-        const response = await searchService.searchBooks(event.target.value)
-        setSearchResults(response.data.data.books)
+    const resetSearch = () => {
+        console.log('clearing!')
+        setSearching(false)
+        setSearchResults([])
+    }
 
+    const search = async (event) => {
+        const searchInput = event.target.value
+        if (searchInput.trim() !== '') {
+            const response = await searchService.searchBooks(event.target.value)
+            setSearchResults(response.data.data.books)
+        } else {
+            setSearchResults([])
+        }
+    }
+
+    const onSelectSearchResult = (searchResult) => {
+        selectResult(searchResult)
+        resetSearch()
     }
 
     return (
@@ -46,13 +64,25 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
                     <div className={setClassWithModifier("back__container")}>
                         <FontAwesomeIcon
                             className={setClassWithModifier("text-input__back")}
-                            icon={faChevronLeft} onClick={() => setSearching(false)}/>
+                            icon={faChevronLeft} onClick={() => resetSearch()}/>
                     </div>
-                    <input className={setClassWithModifier("text-input")} type="text"
-                           onClick={() => {
-                               setSearching(true)
-                           }}
-                           onChange={event => {search(event)}}
+
+                    <div className={setClassWithModifier("text-input")}>
+                        <LabelInput
+                            labels={selectedResult ? [selectedResult] : []}
+                            onClick={() => setSearching(true)}
+                            onChange={event => search(event)}
+                            clearLabel={() => selectResult(null)}
+                        />
+                    </div>
+                </div>
+                <div
+                    className={"search-results"}
+                    style={{display: searchResults.length > 0 ? 'block' : 'none'}}
+                >
+                    <SearchResults
+                        results={searchResults}
+                        onSelectResult={onSelectSearchResult}
                     />
                 </div>
                 <input className={
