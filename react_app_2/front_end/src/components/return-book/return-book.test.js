@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
 import {mount} from 'enzyme'
 import 'jasmine-enzyme'
-import searchService, {getBooks} from "../../services/book-methods"
+import searchService, {getBooks} from "../../methods/book-methods"
 
 const mountComponent = ({
                             setBackLocation = () => {},
