@@ -9,30 +9,37 @@
   height: 64px;
   background-color: #243641;
   color: white;
-  font-weight: 500;
-  font-stretch: condensed;
-  letter-spacing: 0.7px;
 }
 
-.back-button {
+.app-header__back-button {
   grid-column-start: 1;
   align-self: center;
   justify-self: center;
   cursor: pointer;
+  font-size: 24px;
 }
 
-.title {
+.app-header__title {
   width: 100%;
   grid-column-start: 2;
   text-align: center;
   font-family: "Avenir Next Condensed", sans-serif;
   letter-spacing: 1.5px;
-  font-size: 46px;
+  font-size: 24px;
+  font-weight: 500;
+  font-stretch: condensed;
 }
 
 @media (min-width: $breakpoint-tablet) {
   .app-header {
     height: 104px;
+  }
+
+  .app-header__title {
+    font-size: 46px;
+  }
+
+  .app-header__back-button {
     font-size: 36px;
   }
 }

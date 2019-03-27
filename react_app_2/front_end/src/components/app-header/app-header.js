@@ -16,8 +16,8 @@ const AppHeader = ({history, backButtonEnabled, onNavigateBack}) => {
 
     return (
         <div className="app-header">
-            <div className={"back-button"}> {backButtonElement} </div>
-            <div className={"title"}> DALLAS LIBRARY</div>
+            <div className={"app-header__back-button"}> {backButtonElement} </div>
+            <div className={"app-header__title"}> DALLAS LIBRARY</div>
         </div>
     )
 }

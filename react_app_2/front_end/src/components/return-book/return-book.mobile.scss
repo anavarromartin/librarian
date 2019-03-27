@@ -5,7 +5,7 @@ $top-row: 40px;
 
 .container {
   display: grid;
-  grid-template-columns: auto 400px auto;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: $top-row auto 32px auto 32px auto;
 }
 

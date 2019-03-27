@@ -3,7 +3,7 @@
 .library-container {
   display: grid;
   height: 100%;
-  grid-template-columns: 90px auto 90px;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: auto 368px 62px 62px auto;
 }
 
