@@ -5,13 +5,13 @@ import {routePrefix} from "../../globals"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons/faChevronLeft"
-import searchService from "../../services/search-service"
+import searchService from "../../services/book-methods"
 import SearchResults from "../search-results/search-results"
 import LabelInput from "../label-input/label-input"
 
 library.add(faChevronLeft)
 
-const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
+const ReturnBook = ({setBackLocation, setHeaderVisibility, getBooks}) => {
 
     const [searching, setSearching] = useState(false)
     const [searchResults, setSearchResults] = useState([])
@@ -19,11 +19,9 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
 
     useEffect(() => {
         setBackLocation(`${routePrefix}`)
-
     })
 
     useEffect(() => {
-        console.log(`search results: ${searchResults.map(book => book.name)}`)
         searching ? setHeaderVisibility(false) : setHeaderVisibility(true)
         return () => setHeaderVisibility(true)
     })
@@ -39,8 +37,7 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility}) => {
     const search = async (event) => {
         const searchInput = event.target.value
         if (searchInput.trim() !== '') {
-            const response = await searchService.searchBooks(event.target.value)
-            setSearchResults(response.data.data.books)
+            setSearchResults(await getBooks(searchInput).data.data.books)
         } else {
             setSearchResults([])
         }

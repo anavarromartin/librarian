@@ -6,6 +6,7 @@ import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
 import {routePrefix} from "./globals"
+import {getBooks} from "./services/book-methods";
 
 const renderComponent = (component, routeProps, renderProps) => {
     const allProps = {...routeProps, ...renderProps}
@@ -40,6 +41,7 @@ const App = () => {
     const componentProps = {
         setBackLocation: customSetBackLocation,
         setHeaderVisibility: setHeaderVisibility,
+        getBooks: getBooks
     }
 
     const backButtonEnabled = () => backLocation !== null
