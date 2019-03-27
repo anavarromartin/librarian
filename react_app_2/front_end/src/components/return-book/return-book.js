@@ -5,7 +5,6 @@ import {routePrefix} from "../../globals"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons/faChevronLeft"
-import searchService from "../../services/book-methods"
 import SearchResults from "../search-results/search-results"
 import LabelInput from "../label-input/label-input"
 
@@ -37,7 +36,7 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getBooks}) => {
     const search = async (event) => {
         const searchInput = event.target.value
         if (searchInput.trim() !== '') {
-            setSearchResults(await getBooks(searchInput).data.data.books)
+            setSearchResults((await getBooks(searchInput)).data.data.books)
         } else {
             setSearchResults([])
         }
