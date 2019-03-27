@@ -17,7 +17,7 @@
 
 .content {
   grid-row-start: 2;
-  padding: 0 24px;
+  padding: 0 $content-padding;
 }
 
 @media (min-width: $breakpoint-tablet) {
