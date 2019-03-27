@@ -1,7 +1,42 @@
-import {getBooks, returnBook} from "./book-methods"
+import {getCheckedOutBooks, returnBook} from "./book-methods"
 
-it('search books', async () => {
-    await expect(getBooks('book', url => (url))).resolves.toContain(`/api/offices/1/books?search=book`)
+it('search checked out books', async () => {
+    await expect(getCheckedOutBooks('book', url => ({
+        data: {
+            data: {
+                books: [
+                    {
+                        name: 'I am checked out',
+                        checkout_histories: [
+                            {
+                                checkin_time: null
+                            }
+                        ]
+                    },
+                    {
+                        name: 'I am not checked out',
+                        checkout_histories: []
+                    },
+                    {
+                        name: 'I am also not checked out',
+                        checkout_histories: [
+                            {
+                                checkin_time: 'some time'
+                            }
+                        ]
+                    },
+                ]
+            }
+        }}))).resolves.toEqual([
+        {
+            name: 'I am checked out',
+            checkout_histories: [
+                {
+                    checkin_time: null
+                }
+            ]
+        },
+    ])
 })
 
 it('returns book', async () => {

@@ -10,7 +10,7 @@ import LabelInput from "../label-input/label-input"
 
 library.add(faChevronLeft)
 
-const ReturnBook = ({setBackLocation, setHeaderVisibility, getBooks}) => {
+const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks}) => {
 
     const [searching, setSearching] = useState(false)
     const [searchResults, setSearchResults] = useState([])
@@ -36,7 +36,7 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getBooks}) => {
     const search = async (event) => {
         const searchInput = event.target.value
         if (searchInput.trim() !== '') {
-            setSearchResults((await getBooks(searchInput)).data.data.books)
+            setSearchResults((await getCheckedOutBooks(searchInput)))
         } else {
             setSearchResults([])
         }

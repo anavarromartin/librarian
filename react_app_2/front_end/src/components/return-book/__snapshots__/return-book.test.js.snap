@@ -95,7 +95,7 @@ exports[`<ReturnBook /> display renders the component 1`] = `
 exports[`<ReturnBook /> display when clicking on search input renders search mode 1`] = `
 ReactWrapper {
   Symbol(enzyme.__unrendered__): <ReturnBook
-    getBooks={[Function]}
+    getCheckedOutBooks={[Function]}
     setBackLocation={[Function]}
     setHeaderVisibility={[Function]}
   />,
@@ -113,7 +113,7 @@ ReactWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "getBooks": [Function],
+      "getCheckedOutBooks": [Function],
       "setBackLocation": [Function],
       "setHeaderVisibility": [Function],
     },
@@ -942,7 +942,7 @@ ReactWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "getBooks": [Function],
+        "getCheckedOutBooks": [Function],
         "setBackLocation": [Function],
         "setHeaderVisibility": [Function],
       },

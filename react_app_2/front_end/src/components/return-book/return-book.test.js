@@ -3,17 +3,17 @@ import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
 import {mount} from 'enzyme'
 import 'jasmine-enzyme'
-import searchService, {getBooks} from "../../methods/book-methods"
+import {getBooks} from "../../methods/book-methods"
 
 const mountComponent = ({
                             setBackLocation = () => {},
                             setHeaderVisibility = () => {},
-                            getBooks = () => {}
+                            getCheckedOutBooks = () => {}
                         } = {}) => (
     mount(<ReturnBook
         setBackLocation={setBackLocation}
         setHeaderVisibility={setHeaderVisibility}
-        getBooks={getBooks}
+        getCheckedOutBooks={getCheckedOutBooks}
     />)
 )
 
@@ -53,7 +53,7 @@ describe('<ReturnBook />', () => {
             let searchInput = ''
 
             typeOnSearchInput('Test', mountComponent({
-                getBooks: search => {
+                getCheckedOutBooks: search => {
                     searchInput = search
                 }
             }))
@@ -65,7 +65,7 @@ describe('<ReturnBook />', () => {
             let wasCalled = false
 
             typeOnSearchInput('   ', mountComponent({
-                getBooks: () => {
+                getCheckedOutBooks: () => {
                     wasCalled = true
                 }
             }))
