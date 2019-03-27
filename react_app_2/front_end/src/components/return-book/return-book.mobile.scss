@@ -56,11 +56,11 @@ form {
   display: grid;
   grid-template-columns: 40px auto;
   z-index: 1;
-  margin: 0 (-$content-padding);
 }
 
 .text-input__container--searching {
   box-shadow: 0 2px 4px 0 #00000014;
+  margin: 0 (-$content-padding);
 }
 
 .text-input {
