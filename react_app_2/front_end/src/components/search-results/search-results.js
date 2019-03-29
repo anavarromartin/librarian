@@ -12,7 +12,7 @@ const SearchResults = ({results, onSelectResult}) => (
                         onSelectResult(result)
                     }}
                 >
-                    {result.name} - {result.checkout_histories[result.checkout_histories.length - 1].name}
+                    {result.book_name} - {result.borrower_name}
                 </div>
             ))
         }

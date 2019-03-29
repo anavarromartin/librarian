@@ -54,12 +54,8 @@ describe('<ReturnBook />', () => {
                         [
                             {
                                 id: 1,
-                                name: 'a book',
-                                checkout_histories: [
-                                    {
-                                        name: 'adria',
-                                    }
-                                ]
+                                book_name: 'a book',
+                                borrower_name: 'adria',
                             }
                         ])
 
