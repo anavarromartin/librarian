@@ -1,5 +1,8 @@
 import {performGet, performPatch} from "./http-methods";
 
+Array.prototype.flatMap = function(lambda) {
+    return Array.prototype.concat.apply([], this.map(lambda));
+};
 
 export const getCheckedOutBooks = async (book, doGet = performGet) => (
     (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books?search=${book}`))
