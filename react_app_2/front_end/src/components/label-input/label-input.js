@@ -32,7 +32,7 @@ const LabelInput = ({labels, clearLabel, addLabel, onClick, onChange}) => {
                     labels.map(label => (
                         <div key={label.id} className={"labels-input__label"}>
                             <div className={"labels-input__label-text"}>
-                                {label.name}
+                                {label.book_name} - {label.borrower_name}
                             </div>
                             <FontAwesomeIcon
                                 className={"labels-input__label-remove"}

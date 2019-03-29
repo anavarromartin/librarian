@@ -27,6 +27,10 @@ const typeOnSearchInput = (text, component) => {
     component.find(".labels-input__input").simulate('change', {target: {value: text}})
 }
 
+const clickOnFirstSearchResult = component => {
+    component.find(".search-results__row").simulate('click')
+}
+
 describe('<ReturnBook />', () => {
 
     describe('display', () => {
@@ -49,7 +53,7 @@ describe('<ReturnBook />', () => {
             })
 
             describe('when searching', () => {
-                it('renders search results', async () => {
+                beforeEach(async (done) => {
                     const booksPromise = Promise.resolve(
                         [
                             {
@@ -67,8 +71,21 @@ describe('<ReturnBook />', () => {
 
                     typeOnSearchInput('a book', component)
                     await booksPromise
+                    done()
+                })
 
+                it('renders search results', () => {
                     expect(component).toMatchSnapshot()
+                })
+
+                describe('when selecting book', () => {
+                    beforeEach(() => {
+                        clickOnFirstSearchResult(component.update())
+                    })
+
+                    it('renders selected result', () => {
+                        expect(component).toMatchSnapshot()
+                    })
                 })
             })
         })
