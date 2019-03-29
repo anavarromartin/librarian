@@ -36,7 +36,8 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks}) 
     const search = async (event) => {
         const searchInput = event.target.value
         if (searchInput.trim() !== '') {
-            setSearchResults((await getCheckedOutBooks(searchInput)))
+            const checkedOutBooks = await getCheckedOutBooks(searchInput);
+            setSearchResults(( checkedOutBooks ? checkedOutBooks : []))
         } else {
             setSearchResults([])
         }

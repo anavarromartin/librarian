@@ -8,7 +8,6 @@ export const getCheckedOutBooks = async (book, doGet = performGet) => (
             book.checkout_histories.length !== 0
             && !book.checkout_histories[book.checkout_histories.length - 1].checkin_time
         ))
-
 )
 
 export const returnBook = async (bookId, doPatch = performPatch) => (

@@ -1,14 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
-import {mount} from 'enzyme'
+import {mount, shallow} from 'enzyme'
 import 'jasmine-enzyme'
-import {getBooks} from "../../methods/book-methods"
 
 const mountComponent = ({
-                            setBackLocation = () => {},
-                            setHeaderVisibility = () => {},
-                            getCheckedOutBooks = () => {}
+                            setBackLocation = () => {
+                            },
+                            setHeaderVisibility = () => {
+                            },
+                            getCheckedOutBooks = () => {
+                            }
                         } = {}) => (
     mount(<ReturnBook
         setBackLocation={setBackLocation}
@@ -29,9 +31,9 @@ describe('<ReturnBook />', () => {
 
     describe('display', () => {
         it('renders the component', () => {
-            const component = renderer.create(<ReturnBook setBackLocation={() => {
-            }}/>)
-
+            let component
+                component = renderer.create(<ReturnBook setBackLocation={() => {
+                }}/>)
             expect(component.toJSON()).toMatchSnapshot()
         })
 
@@ -44,6 +46,34 @@ describe('<ReturnBook />', () => {
 
             it('renders search mode', () => {
                 expect(component).toMatchSnapshot()
+            })
+
+            describe('when searching', () => {
+                it('renders search results', async () => {
+                    const booksPromise = Promise.resolve(
+                        [
+                            {
+                                id: 1,
+                                name: 'a book',
+                                checkout_histories: [
+                                    {
+                                        name: 'adria',
+                                    }
+                                ]
+                            }
+                        ])
+
+                    component = mountComponent({
+                        getCheckedOutBooks: () => {
+                            return booksPromise
+                        }
+                    })
+
+                    typeOnSearchInput('a book', component)
+                    await booksPromise
+
+                    expect(component).toMatchSnapshot()
+                })
             })
         })
     })
