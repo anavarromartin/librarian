@@ -95,5 +95,6 @@ def _convert_checkout_history_to_data(checkout_history):
         'name': checkout_history.name,
         'email': checkout_history.email,
         'checkin_time': checkout_history.checkin_time,
-        'checkout_time': checkout_history.checkout_time
+        'checkout_time': checkout_history.checkout_time,
+        'book_id': checkout_history.book_id
     }

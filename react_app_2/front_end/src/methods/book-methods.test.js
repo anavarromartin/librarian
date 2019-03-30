@@ -12,7 +12,8 @@ it('search checked out books', async () => {
                             {
                                 checkin_time: null,
                                 name: 'adria',
-                                email: 'adr@ia.com'
+                                email: 'adr@ia.com',
+                                book_id: 1,
                             }
                         ]
                     },
@@ -23,12 +24,14 @@ it('search checked out books', async () => {
                             {
                                 checkin_time: null,
                                 name: 'vinod',
-                                email: 'vin@od.com'
+                                email: 'vin@od.com',
+                                book_id: 2,
                             },
                             {
                                 checkin_time: null,
                                 name: 'sneha',
-                                email: 'sne@ha.com'
+                                email: 'sne@ha.com',
+                                book_id: 3,
                             }
                         ]
                     },
@@ -62,7 +65,7 @@ it('search checked out books', async () => {
                 borrower_email: 'vin@od.com'
             },
             {
-                id: 2,
+                id: 3,
                 book_name: "I am checked out by two people because there's 2 of me",
                 borrower_name: 'sneha',
                 borrower_email: 'sne@ha.com'
@@ -72,11 +75,11 @@ it('search checked out books', async () => {
 })
 
 it('returns book', async () => {
-    await expect(returnBook(1, (url, body) => ([url, body]))).resolves.toEqual([
+    await expect(returnBook({id: 1, borrower_name: 'Amber', borrower_email: 'amb@er.com'}, (url, body) => ([url, body]))).resolves.toEqual([
         'http://localhost/api/books/1?checkout=false',
         {
-            name: 'N/A',
-            email: 'N/A'
+            name: 'Amber',
+            email: 'amb@er.com'
         }
     ])
 })

@@ -10,12 +10,16 @@ const mountComponent = ({
                             setHeaderVisibility = () => {
                             },
                             getCheckedOutBooks = () => {
+                            },
+                            returnBook = () => {
                             }
                         } = {}) => (
     mount(<ReturnBook
+        history={{push: () => {}}}
         setBackLocation={setBackLocation}
         setHeaderVisibility={setHeaderVisibility}
         getCheckedOutBooks={getCheckedOutBooks}
+        returnBook={returnBook}
     />)
 )
 
@@ -29,6 +33,10 @@ const typeOnSearchInput = (text, component) => {
 
 const clickOnFirstSearchResult = component => {
     component.find(".search-results__row").simulate('click')
+}
+
+const clickOnReturnButton = component => {
+    component.find(".button-input").simulate('click')
 }
 
 describe('<ReturnBook />', () => {
@@ -53,6 +61,7 @@ describe('<ReturnBook />', () => {
             })
 
             describe('when searching', () => {
+                let returnedBook
                 beforeEach(async (done) => {
                     const booksPromise = Promise.resolve(
                         [
@@ -66,6 +75,9 @@ describe('<ReturnBook />', () => {
                     component = mountComponent({
                         getCheckedOutBooks: () => {
                             return booksPromise
+                        },
+                        returnBook: book => {
+                            returnedBook = book
                         }
                     })
 
@@ -85,6 +97,16 @@ describe('<ReturnBook />', () => {
 
                     it('renders selected result', () => {
                         expect(component).toMatchSnapshot()
+                    })
+
+                    describe('when clicking return', () => {
+                        beforeEach(() => {
+                            clickOnReturnButton(component)
+                        })
+
+                        it('returns selected book', () => {
+                            expect(returnedBook.book_name).toEqual('a book')
+                        })
                     })
                 })
             })

@@ -10,7 +10,7 @@ import LabelInput from "../label-input/label-input"
 
 library.add(faChevronLeft)
 
-const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks}) => {
+const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks, returnBook, history}) => {
 
     const [searching, setSearching] = useState(false)
     const [searchResults, setSearchResults] = useState([])
@@ -37,7 +37,7 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks}) 
         const searchInput = event.target.value
         if (searchInput.trim() !== '') {
             const checkedOutBooks = await getCheckedOutBooks(searchInput);
-            setSearchResults(( checkedOutBooks ? checkedOutBooks : []))
+            setSearchResults((checkedOutBooks ? checkedOutBooks : []))
         } else {
             setSearchResults([])
         }
@@ -48,12 +48,19 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks}) 
         resetSearch()
     }
 
+    const handleReturnBook = async () => {
+        if (selectedResult) {
+            await returnBook(selectedResult)
+            history.push(`${routePrefix}`)
+        }
+    }
+
     return (
         <div className={"container"}>
             <div className={setClassWithModifier("header")}
             >Return A Book
             </div>
-            <form className={setClassWithModifier("form")}>
+            <div className={setClassWithModifier("form")}>
                 <label className={setClassWithModifier("label")}
                 >Find the Book You Borrowed
                 </label>
@@ -82,11 +89,13 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks}) 
                         onSelectResult={onSelectSearchResult}
                     />
                 </div>
-                <input className={
+                <button className={
                     classNames("teal-button", setClassWithModifier("button-input"))
-                } type="submit" value="RETURN"
-                />
-            </form>
+                }
+                        onClick={handleReturnBook}
+                >RETURN
+                </button>
+            </div>
         </div>
     )
 }

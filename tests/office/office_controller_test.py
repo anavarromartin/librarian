@@ -419,6 +419,7 @@ class OfficeControllerTest(unittest.TestCase):
                                 "email": "bob@example.com",
                                 "checkout_time": "Tue, 01 Jan 2013 21:59:59 GMT",
                                 "checkin_time": None,
+                                "book_id": 53,
                                 "id": 1
                             }
                         ]

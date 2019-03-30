@@ -68,7 +68,8 @@ class BookControllerTest(unittest.TestCase):
                         "name": "bob",
                         "checkout_time": datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT"),
                         "checkin_time": None,
-                        "id": 1
+                        "id": 1,
+                        "book_id": 53
                     }
                 ]
             }
@@ -124,7 +125,8 @@ class BookControllerTest(unittest.TestCase):
                         "name": "bob",
                         "checkout_time": 'Tue, 01 Jan 2019 23:59:59 GMT',
                         "checkin_time": datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT"),
-                        "id": 1
+                        "id": 1,
+                        "book_id": 53
                     }
                 ]
             }

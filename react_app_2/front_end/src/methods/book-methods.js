@@ -13,7 +13,7 @@ export const getCheckedOutBooks = async (book, doGet = performGet) => (
                 .filter(history => !history.checkin_time)
                 .map(history => (
                     {
-                        id: book.id,
+                        id: history.book_id,
                         book_name: book.name,
                         borrower_name: history.name,
                         borrower_email: history.email
@@ -22,9 +22,9 @@ export const getCheckedOutBooks = async (book, doGet = performGet) => (
         )
 )
 
-export const returnBook = async (bookId, doPatch = performPatch) => (
+export const returnBook = async (book, doPatch = performPatch) => (
     await doPatch(
-        `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${bookId}?checkout=false`,
-        {name: 'N/A', email: 'N/A'}
+        `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${book.id}?checkout=false`,
+        {name: book.borrower_name, email: book.borrower_email}
     )
 )

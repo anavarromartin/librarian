@@ -9,7 +9,7 @@ exports[`<ReturnBook /> display renders the component 1`] = `
   >
     Return A Book
   </div>
-  <form
+  <div
     className="form"
   >
     <label
@@ -83,12 +83,13 @@ exports[`<ReturnBook /> display renders the component 1`] = `
         className="search-results__top-container"
       />
     </div>
-    <input
+    <button
       className="teal-button button-input"
-      type="submit"
-      value="RETURN"
-    />
-  </form>
+      onClick={[Function]}
+    >
+      RETURN
+    </button>
+  </div>
 </div>
 `;
 
@@ -96,6 +97,12 @@ exports[`<ReturnBook /> display when clicking on search input renders search mod
 ReactWrapper {
   Symbol(enzyme.__unrendered__): <ReturnBook
     getCheckedOutBooks={[Function]}
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    returnBook={[Function]}
     setBackLocation={[Function]}
     setHeaderVisibility={[Function]}
   />,
@@ -114,6 +121,10 @@ ReactWrapper {
     "nodeType": "function",
     "props": Object {
       "getCheckedOutBooks": [Function],
+      "history": Object {
+        "push": [Function],
+      },
+      "returnBook": [Function],
       "setBackLocation": [Function],
       "setHeaderVisibility": [Function],
     },
@@ -127,7 +138,7 @@ ReactWrapper {
         >
           Return A Book
         </div>
-        <form
+        <div
           class="form form--searching"
         >
           <label
@@ -184,12 +195,12 @@ ReactWrapper {
               class="search-results__top-container"
             />
           </div>
-          <input
+          <button
             class="teal-button button-input button-input--searching"
-            type="submit"
-            value="RETURN"
-          />
-        </form>
+          >
+            RETURN
+          </button>
+        </div>
       </div>,
       "key": undefined,
       "nodeType": "host",
@@ -200,7 +211,7 @@ ReactWrapper {
           >
             Return A Book
           </div>,
-          <form
+          <div
             className="form form--searching"
           >
             <label
@@ -270,12 +281,13 @@ ReactWrapper {
                 results={Array []}
               />
             </div>
-            <input
+            <button
               className="teal-button button-input button-input--searching"
-              type="submit"
-              value="RETURN"
-            />
-          </form>,
+              onClick={[Function]}
+            >
+              RETURN
+            </button>
+          </div>,
         ],
         "className": "container",
       },
@@ -300,7 +312,7 @@ ReactWrapper {
           "type": "div",
         },
         Object {
-          "instance": <form
+          "instance": <div
             class="form form--searching"
           >
             <label
@@ -357,12 +369,12 @@ ReactWrapper {
                 class="search-results__top-container"
               />
             </div>
-            <input
+            <button
               class="teal-button button-input button-input--searching"
-              type="submit"
-              value="RETURN"
-            />
-          </form>,
+            >
+              RETURN
+            </button>
+          </div>,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
@@ -434,11 +446,12 @@ ReactWrapper {
                   results={Array []}
                 />
               </div>,
-              <input
+              <button
                 className="teal-button button-input button-input--searching"
-                type="submit"
-                value="RETURN"
-              />,
+                onClick={[Function]}
+              >
+                RETURN
+              </button>,
             ],
             "className": "form form--searching",
           },
@@ -910,26 +923,26 @@ ReactWrapper {
               "type": "div",
             },
             Object {
-              "instance": <input
+              "instance": <button
                 class="teal-button button-input button-input--searching"
-                type="submit"
-                value="RETURN"
-              />,
+              >
+                RETURN
+              </button>,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
+                "children": "RETURN",
                 "className": "teal-button button-input button-input--searching",
-                "type": "submit",
-                "value": "RETURN",
+                "onClick": [Function],
               },
               "ref": null,
               "rendered": Array [
-                undefined,
+                "RETURN",
               ],
-              "type": "input",
+              "type": "button",
             },
           ],
-          "type": "form",
+          "type": "div",
         },
       ],
       "type": "div",
@@ -943,6 +956,10 @@ ReactWrapper {
       "nodeType": "function",
       "props": Object {
         "getCheckedOutBooks": [Function],
+        "history": Object {
+          "push": [Function],
+        },
+        "returnBook": [Function],
         "setBackLocation": [Function],
         "setHeaderVisibility": [Function],
       },
@@ -956,7 +973,7 @@ ReactWrapper {
           >
             Return A Book
           </div>
-          <form
+          <div
             class="form form--searching"
           >
             <label
@@ -1013,12 +1030,12 @@ ReactWrapper {
                 class="search-results__top-container"
               />
             </div>
-            <input
+            <button
               class="teal-button button-input button-input--searching"
-              type="submit"
-              value="RETURN"
-            />
-          </form>
+            >
+              RETURN
+            </button>
+          </div>
         </div>,
         "key": undefined,
         "nodeType": "host",
@@ -1029,7 +1046,7 @@ ReactWrapper {
             >
               Return A Book
             </div>,
-            <form
+            <div
               className="form form--searching"
             >
               <label
@@ -1099,12 +1116,13 @@ ReactWrapper {
                   results={Array []}
                 />
               </div>
-              <input
+              <button
                 className="teal-button button-input button-input--searching"
-                type="submit"
-                value="RETURN"
-              />
-            </form>,
+                onClick={[Function]}
+              >
+                RETURN
+              </button>
+            </div>,
           ],
           "className": "container",
         },
@@ -1129,7 +1147,7 @@ ReactWrapper {
             "type": "div",
           },
           Object {
-            "instance": <form
+            "instance": <div
               class="form form--searching"
             >
               <label
@@ -1186,12 +1204,12 @@ ReactWrapper {
                   class="search-results__top-container"
                 />
               </div>
-              <input
+              <button
                 class="teal-button button-input button-input--searching"
-                type="submit"
-                value="RETURN"
-              />
-            </form>,
+              >
+                RETURN
+              </button>
+            </div>,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
@@ -1263,11 +1281,12 @@ ReactWrapper {
                     results={Array []}
                   />
                 </div>,
-                <input
+                <button
                   className="teal-button button-input button-input--searching"
-                  type="submit"
-                  value="RETURN"
-                />,
+                  onClick={[Function]}
+                >
+                  RETURN
+                </button>,
               ],
               "className": "form form--searching",
             },
@@ -1739,26 +1758,26 @@ ReactWrapper {
                 "type": "div",
               },
               Object {
-                "instance": <input
+                "instance": <button
                   class="teal-button button-input button-input--searching"
-                  type="submit"
-                  value="RETURN"
-                />,
+                >
+                  RETURN
+                </button>,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
+                  "children": "RETURN",
                   "className": "teal-button button-input button-input--searching",
-                  "type": "submit",
-                  "value": "RETURN",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": Array [
-                  undefined,
+                  "RETURN",
                 ],
-                "type": "input",
+                "type": "button",
               },
             ],
-            "type": "form",
+            "type": "div",
           },
         ],
         "type": "div",
@@ -1796,6 +1815,12 @@ exports[`<ReturnBook /> display when clicking on search input when searching ren
 ReactWrapper {
   Symbol(enzyme.__unrendered__): <ReturnBook
     getCheckedOutBooks={[Function]}
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    returnBook={[Function]}
     setBackLocation={[Function]}
     setHeaderVisibility={[Function]}
   />,
@@ -1814,6 +1839,10 @@ ReactWrapper {
     "nodeType": "function",
     "props": Object {
       "getCheckedOutBooks": [Function],
+      "history": Object {
+        "push": [Function],
+      },
+      "returnBook": [Function],
       "setBackLocation": [Function],
       "setHeaderVisibility": [Function],
     },
@@ -1827,7 +1856,7 @@ ReactWrapper {
         >
           Return A Book
         </div>
-        <form
+        <div
           class="form"
         >
           <label
@@ -1892,12 +1921,12 @@ ReactWrapper {
               </div>
             </div>
           </div>
-          <input
+          <button
             class="teal-button button-input"
-            type="submit"
-            value="RETURN"
-          />
-        </form>
+          >
+            RETURN
+          </button>
+        </div>
       </div>,
       "key": undefined,
       "nodeType": "host",
@@ -1908,7 +1937,7 @@ ReactWrapper {
           >
             Return A Book
           </div>,
-          <form
+          <div
             className="form"
           >
             <label
@@ -1978,12 +2007,13 @@ ReactWrapper {
                 results={Array []}
               />
             </div>
-            <input
+            <button
               className="teal-button button-input"
-              type="submit"
-              value="RETURN"
-            />
-          </form>,
+              onClick={[Function]}
+            >
+              RETURN
+            </button>
+          </div>,
         ],
         "className": "container",
       },
@@ -2008,7 +2038,7 @@ ReactWrapper {
           "type": "div",
         },
         Object {
-          "instance": <form
+          "instance": <div
             class="form"
           >
             <label
@@ -2073,12 +2103,12 @@ ReactWrapper {
                 </div>
               </div>
             </div>
-            <input
+            <button
               class="teal-button button-input"
-              type="submit"
-              value="RETURN"
-            />
-          </form>,
+            >
+              RETURN
+            </button>
+          </div>,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
@@ -2150,11 +2180,12 @@ ReactWrapper {
                   results={Array []}
                 />
               </div>,
-              <input
+              <button
                 className="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />,
+                onClick={[Function]}
+              >
+                RETURN
+              </button>,
             ],
             "className": "form",
           },
@@ -2642,26 +2673,26 @@ ReactWrapper {
               "type": "div",
             },
             Object {
-              "instance": <input
+              "instance": <button
                 class="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />,
+              >
+                RETURN
+              </button>,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
+                "children": "RETURN",
                 "className": "teal-button button-input",
-                "type": "submit",
-                "value": "RETURN",
+                "onClick": [Function],
               },
               "ref": null,
               "rendered": Array [
-                undefined,
+                "RETURN",
               ],
-              "type": "input",
+              "type": "button",
             },
           ],
-          "type": "form",
+          "type": "div",
         },
       ],
       "type": "div",
@@ -2675,6 +2706,10 @@ ReactWrapper {
       "nodeType": "function",
       "props": Object {
         "getCheckedOutBooks": [Function],
+        "history": Object {
+          "push": [Function],
+        },
+        "returnBook": [Function],
         "setBackLocation": [Function],
         "setHeaderVisibility": [Function],
       },
@@ -2688,7 +2723,7 @@ ReactWrapper {
           >
             Return A Book
           </div>
-          <form
+          <div
             class="form"
           >
             <label
@@ -2753,12 +2788,12 @@ ReactWrapper {
                 </div>
               </div>
             </div>
-            <input
+            <button
               class="teal-button button-input"
-              type="submit"
-              value="RETURN"
-            />
-          </form>
+            >
+              RETURN
+            </button>
+          </div>
         </div>,
         "key": undefined,
         "nodeType": "host",
@@ -2769,7 +2804,7 @@ ReactWrapper {
             >
               Return A Book
             </div>,
-            <form
+            <div
               className="form"
             >
               <label
@@ -2839,12 +2874,13 @@ ReactWrapper {
                   results={Array []}
                 />
               </div>
-              <input
+              <button
                 className="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />
-            </form>,
+                onClick={[Function]}
+              >
+                RETURN
+              </button>
+            </div>,
           ],
           "className": "container",
         },
@@ -2869,7 +2905,7 @@ ReactWrapper {
             "type": "div",
           },
           Object {
-            "instance": <form
+            "instance": <div
               class="form"
             >
               <label
@@ -2934,12 +2970,12 @@ ReactWrapper {
                   </div>
                 </div>
               </div>
-              <input
+              <button
                 class="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />
-            </form>,
+              >
+                RETURN
+              </button>
+            </div>,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
@@ -3011,11 +3047,12 @@ ReactWrapper {
                     results={Array []}
                   />
                 </div>,
-                <input
+                <button
                   className="teal-button button-input"
-                  type="submit"
-                  value="RETURN"
-                />,
+                  onClick={[Function]}
+                >
+                  RETURN
+                </button>,
               ],
               "className": "form",
             },
@@ -3503,26 +3540,26 @@ ReactWrapper {
                 "type": "div",
               },
               Object {
-                "instance": <input
+                "instance": <button
                   class="teal-button button-input"
-                  type="submit"
-                  value="RETURN"
-                />,
+                >
+                  RETURN
+                </button>,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
+                  "children": "RETURN",
                   "className": "teal-button button-input",
-                  "type": "submit",
-                  "value": "RETURN",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": Array [
-                  undefined,
+                  "RETURN",
                 ],
-                "type": "input",
+                "type": "button",
               },
             ],
-            "type": "form",
+            "type": "div",
           },
         ],
         "type": "div",
@@ -3560,6 +3597,12 @@ exports[`<ReturnBook /> display when clicking on search input when searching whe
 ReactWrapper {
   Symbol(enzyme.__unrendered__): <ReturnBook
     getCheckedOutBooks={[Function]}
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    returnBook={[Function]}
     setBackLocation={[Function]}
     setHeaderVisibility={[Function]}
   />,
@@ -3578,6 +3621,10 @@ ReactWrapper {
     "nodeType": "function",
     "props": Object {
       "getCheckedOutBooks": [Function],
+      "history": Object {
+        "push": [Function],
+      },
+      "returnBook": [Function],
       "setBackLocation": [Function],
       "setHeaderVisibility": [Function],
     },
@@ -3591,7 +3638,7 @@ ReactWrapper {
         >
           Return A Book
         </div>
-        <form
+        <div
           class="form"
         >
           <label
@@ -3675,12 +3722,12 @@ ReactWrapper {
               class="search-results__top-container"
             />
           </div>
-          <input
+          <button
             class="teal-button button-input"
-            type="submit"
-            value="RETURN"
-          />
-        </form>
+          >
+            RETURN
+          </button>
+        </div>
       </div>,
       "key": undefined,
       "nodeType": "host",
@@ -3691,7 +3738,7 @@ ReactWrapper {
           >
             Return A Book
           </div>,
-          <form
+          <div
             className="form"
           >
             <label
@@ -3769,12 +3816,13 @@ ReactWrapper {
                 results={Array []}
               />
             </div>
-            <input
+            <button
               className="teal-button button-input"
-              type="submit"
-              value="RETURN"
-            />
-          </form>,
+              onClick={[Function]}
+            >
+              RETURN
+            </button>
+          </div>,
         ],
         "className": "container",
       },
@@ -3799,7 +3847,7 @@ ReactWrapper {
           "type": "div",
         },
         Object {
-          "instance": <form
+          "instance": <div
             class="form"
           >
             <label
@@ -3883,12 +3931,12 @@ ReactWrapper {
                 class="search-results__top-container"
               />
             </div>
-            <input
+            <button
               class="teal-button button-input"
-              type="submit"
-              value="RETURN"
-            />
-          </form>,
+            >
+              RETURN
+            </button>
+          </div>,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
@@ -3968,11 +4016,12 @@ ReactWrapper {
                   results={Array []}
                 />
               </div>,
-              <input
+              <button
                 className="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />,
+                onClick={[Function]}
+              >
+                RETURN
+              </button>,
             ],
             "className": "form",
           },
@@ -4856,26 +4905,26 @@ ReactWrapper {
               "type": "div",
             },
             Object {
-              "instance": <input
+              "instance": <button
                 class="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />,
+              >
+                RETURN
+              </button>,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
+                "children": "RETURN",
                 "className": "teal-button button-input",
-                "type": "submit",
-                "value": "RETURN",
+                "onClick": [Function],
               },
               "ref": null,
               "rendered": Array [
-                undefined,
+                "RETURN",
               ],
-              "type": "input",
+              "type": "button",
             },
           ],
-          "type": "form",
+          "type": "div",
         },
       ],
       "type": "div",
@@ -4889,6 +4938,10 @@ ReactWrapper {
       "nodeType": "function",
       "props": Object {
         "getCheckedOutBooks": [Function],
+        "history": Object {
+          "push": [Function],
+        },
+        "returnBook": [Function],
         "setBackLocation": [Function],
         "setHeaderVisibility": [Function],
       },
@@ -4902,7 +4955,7 @@ ReactWrapper {
           >
             Return A Book
           </div>
-          <form
+          <div
             class="form"
           >
             <label
@@ -4986,12 +5039,12 @@ ReactWrapper {
                 class="search-results__top-container"
               />
             </div>
-            <input
+            <button
               class="teal-button button-input"
-              type="submit"
-              value="RETURN"
-            />
-          </form>
+            >
+              RETURN
+            </button>
+          </div>
         </div>,
         "key": undefined,
         "nodeType": "host",
@@ -5002,7 +5055,7 @@ ReactWrapper {
             >
               Return A Book
             </div>,
-            <form
+            <div
               className="form"
             >
               <label
@@ -5080,12 +5133,13 @@ ReactWrapper {
                   results={Array []}
                 />
               </div>
-              <input
+              <button
                 className="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />
-            </form>,
+                onClick={[Function]}
+              >
+                RETURN
+              </button>
+            </div>,
           ],
           "className": "container",
         },
@@ -5110,7 +5164,7 @@ ReactWrapper {
             "type": "div",
           },
           Object {
-            "instance": <form
+            "instance": <div
               class="form"
             >
               <label
@@ -5194,12 +5248,12 @@ ReactWrapper {
                   class="search-results__top-container"
                 />
               </div>
-              <input
+              <button
                 class="teal-button button-input"
-                type="submit"
-                value="RETURN"
-              />
-            </form>,
+              >
+                RETURN
+              </button>
+            </div>,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
@@ -5279,11 +5333,12 @@ ReactWrapper {
                     results={Array []}
                   />
                 </div>,
-                <input
+                <button
                   className="teal-button button-input"
-                  type="submit"
-                  value="RETURN"
-                />,
+                  onClick={[Function]}
+                >
+                  RETURN
+                </button>,
               ],
               "className": "form",
             },
@@ -6167,26 +6222,26 @@ ReactWrapper {
                 "type": "div",
               },
               Object {
-                "instance": <input
+                "instance": <button
                   class="teal-button button-input"
-                  type="submit"
-                  value="RETURN"
-                />,
+                >
+                  RETURN
+                </button>,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
+                  "children": "RETURN",
                   "className": "teal-button button-input",
-                  "type": "submit",
-                  "value": "RETURN",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": Array [
-                  undefined,
+                  "RETURN",
                 ],
-                "type": "input",
+                "type": "button",
               },
             ],
-            "type": "form",
+            "type": "div",
           },
         ],
         "type": "div",
