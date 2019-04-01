@@ -16,6 +16,14 @@
   grid-column-end: 3;
 }
 
+.text-input:hover {
+  box-shadow: 0 2px 4px 0 #0000002a;
+}
+
+.text-input:focus-within {
+  border-color: #1baea1;
+}
+
 .text-input__container {
   box-shadow: none;
   margin: 0;
@@ -49,7 +57,7 @@ label {
 }
 
 .container {
-  grid-template-rows: 72px auto 32px auto 32px auto;
+  grid-template-rows: 72px auto 28px auto 32px auto;
 }
 
 .search-results {

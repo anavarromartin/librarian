@@ -6,7 +6,7 @@ $top-row: 40px;
 .container {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: $top-row auto 32px auto 32px auto;
+  grid-template-rows: $top-row auto 24px auto 32px auto;
 }
 
 
@@ -40,7 +40,7 @@ label {
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 62px 162px;
+  grid-template-rows: auto auto 32px fit-content(162px);
 
 }
 
@@ -105,7 +105,7 @@ label {
 }
 
 .button-input {
-  grid-row-start: 3;
+  grid-row-start: 4;
   grid-column-start: 1;
   justify-self: end;
   align-self: end;

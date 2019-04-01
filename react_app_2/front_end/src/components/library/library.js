@@ -12,13 +12,13 @@ const Library = ({history, setBackLocation}) => {
             <button
                 onClick={() => history.push(`${routePrefix}/return`)}
                 id={"return-button"}
-                className={"teal-button"}
+                className={"white-button"}
             >
                 RETURN
             </button>
             <button
                 id={"borrow-button"}
-                className={"white-button"}
+                className={"teal-button"}
             >
                 BORROW
             </button>

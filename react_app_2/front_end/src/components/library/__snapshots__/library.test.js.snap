@@ -11,14 +11,14 @@ exports[`<Library /> renders the component 1`] = `
     home_page_img.svg
   </svg>
   <button
-    className="teal-button"
+    className="white-button"
     id="return-button"
     onClick={[Function]}
   >
     RETURN
   </button>
   <button
-    className="white-button"
+    className="teal-button"
     id="borrow-button"
   >
     BORROW

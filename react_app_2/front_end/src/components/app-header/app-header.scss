@@ -14,9 +14,9 @@
 .app-header__back-button {
   grid-column-start: 1;
   align-self: center;
-  justify-self: center;
   cursor: pointer;
-  font-size: 24px;
+  padding-left: 24px;
+  font-size: 18px;
 }
 
 .app-header__title {
@@ -27,6 +27,7 @@
   font-size: 24px;
   font-weight: 500;
   font-stretch: condensed;
+  font-family: "Avenir Next Condensed", sans-serif;
 }
 
 @media (min-width: $breakpoint-tablet) {
@@ -39,7 +40,7 @@
   }
 
   .app-header__back-button {
-    font-size: 36px;
+    font-size: 24px;
   }
 }
 
