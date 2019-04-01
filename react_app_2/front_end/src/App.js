@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
 import {routePrefix} from "./globals"
 import {getCheckedOutBooks, returnBook} from "./methods/book-methods";
+import BorrowBook from "./components/borrow-book/borrow-book"
 
 const renderComponent = (component, routeProps, renderProps) => {
     const allProps = {...routeProps, ...renderProps}
@@ -62,6 +63,7 @@ const App = () => {
                 </div>
                 <div className={"content"}>
                     <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...componentProps}/>
+                    <RouteWithBackNav path={`${routePrefix}/borrow`} component={BorrowBook} {...componentProps}/>
                     <RouteWithBackNav path={`${routePrefix}`} component={Library} {...componentProps}/>
                 </div>
             </div>

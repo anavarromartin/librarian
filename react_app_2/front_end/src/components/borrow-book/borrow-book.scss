@@ -1,0 +1,32 @@
+.borrow__top-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 40px auto 32px auto 24px auto 24px auto 32px auto;
+}
+
+.borrow__title {
+  grid-row: 2;
+}
+
+.borrow__find {
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.borrow__name {
+  grid-row: 6;
+  display: flex;
+  flex-direction: column;
+}
+
+.borrow__email {
+  grid-row: 8;
+  display: flex;
+  flex-direction: column;
+}
+
+.borrow__button {
+  grid-row: 10;
+  justify-self: right;
+}

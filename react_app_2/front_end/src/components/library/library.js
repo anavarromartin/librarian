@@ -17,6 +17,7 @@ const Library = ({history, setBackLocation}) => {
                 RETURN
             </button>
             <button
+                onClick={() => history.push(`${routePrefix}/borrow`)}
                 id={"borrow-button"}
                 className={"teal-button"}
             >
