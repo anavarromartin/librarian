@@ -86,3 +86,8 @@ label {
     font-size: $small-base;
 }
 
+@media (min-width: $breakpoint-tablet) {
+    label {
+        font-size: 18px;
+    }
+}
