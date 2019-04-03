@@ -1,0 +1,21 @@
+@import "../../global-styles";
+
+.search__field:hover {
+  box-shadow: 0 2px 4px 0 #0000002a;
+}
+
+.search__field:focus-within {
+  border-color: #1baea1;
+}
+
+.search__results {
+  grid-row: 3;
+  overflow-y: auto;
+  position: absolute;
+  border-radius: 3px;
+  z-index: 1;
+  box-shadow: 0 5px 6px -3px #00000033, 0 3px 16px 2px #0000001e, 0 9px 12px 1px #00000023;
+  max-height: 243px;
+  background-color: white;
+  width: 100%;
+}

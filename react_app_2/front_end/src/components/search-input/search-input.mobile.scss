@@ -1,0 +1,30 @@
+@import "../../global-styles";
+
+.search__field {
+  display: grid;
+  border-radius: 3px;
+  border: solid 1px rgba(151, 151, 151, 0.48);
+  grid-template-columns: 40px auto;
+}
+
+.search__back {
+  grid-column-start: 1;
+  display: none;
+  cursor: pointer;
+}
+
+.search__input {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.search__back-icon {
+  align-self: center;
+  justify-self: center;
+}
+
+.search__results {
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}

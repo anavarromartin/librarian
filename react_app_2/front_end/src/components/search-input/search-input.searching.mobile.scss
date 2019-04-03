@@ -1,0 +1,18 @@
+@import "../../global-styles";
+
+.search__field--searching {
+  box-shadow: 0 2px 4px 0 #00000014;
+  margin: 0 (-$content-padding);
+}
+
+.search__back--searching {
+  display: grid;
+}
+
+.search__input--searching {
+  grid-column-start: 2;
+}
+
+.search__back-icon--searching {
+  display: grid;
+}
