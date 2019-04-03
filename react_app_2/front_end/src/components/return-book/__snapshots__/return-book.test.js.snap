@@ -3706,7 +3706,7 @@ ReactWrapper {
                   </div>
                 </div>
                 <input
-                  class="labels-input__input labels-input__input--hidden"
+                  class="labels-input__input"
                   style="display: none;"
                   type="text"
                   value="a book"
@@ -3915,7 +3915,7 @@ ReactWrapper {
                     </div>
                   </div>
                   <input
-                    class="labels-input__input labels-input__input--hidden"
+                    class="labels-input__input"
                     style="display: none;"
                     type="text"
                     value="a book"
@@ -4106,7 +4106,7 @@ ReactWrapper {
                       </div>
                     </div>
                     <input
-                      class="labels-input__input labels-input__input--hidden"
+                      class="labels-input__input"
                       style="display: none;"
                       type="text"
                       value="a book"
@@ -4370,7 +4370,7 @@ ReactWrapper {
                         </div>
                       </div>
                       <input
-                        class="labels-input__input labels-input__input--hidden"
+                        class="labels-input__input"
                         style="display: none;"
                         type="text"
                         value="a book"
@@ -4451,7 +4451,7 @@ ReactWrapper {
                             </div>
                           </div>
                           <input
-                            class="labels-input__input labels-input__input--hidden"
+                            class="labels-input__input"
                             style="display: none;"
                             type="text"
                             value="a book"
@@ -4513,7 +4513,7 @@ ReactWrapper {
                               </div>
                             </div>,
                             <input
-                              className="labels-input__input labels-input__input--hidden"
+                              className="labels-input__input"
                               onChange={[Function]}
                               onClick={[Function]}
                               style={
@@ -4817,7 +4817,7 @@ ReactWrapper {
                           },
                           Object {
                             "instance": <input
-                              class="labels-input__input labels-input__input--hidden"
+                              class="labels-input__input"
                               style="display: none;"
                               type="text"
                               value="a book"
@@ -4825,7 +4825,7 @@ ReactWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "className": "labels-input__input labels-input__input--hidden",
+                              "className": "labels-input__input",
                               "onChange": [Function],
                               "onClick": [Function],
                               "style": Object {
@@ -5023,7 +5023,7 @@ ReactWrapper {
                     </div>
                   </div>
                   <input
-                    class="labels-input__input labels-input__input--hidden"
+                    class="labels-input__input"
                     style="display: none;"
                     type="text"
                     value="a book"
@@ -5232,7 +5232,7 @@ ReactWrapper {
                       </div>
                     </div>
                     <input
-                      class="labels-input__input labels-input__input--hidden"
+                      class="labels-input__input"
                       style="display: none;"
                       type="text"
                       value="a book"
@@ -5423,7 +5423,7 @@ ReactWrapper {
                         </div>
                       </div>
                       <input
-                        class="labels-input__input labels-input__input--hidden"
+                        class="labels-input__input"
                         style="display: none;"
                         type="text"
                         value="a book"
@@ -5687,7 +5687,7 @@ ReactWrapper {
                           </div>
                         </div>
                         <input
-                          class="labels-input__input labels-input__input--hidden"
+                          class="labels-input__input"
                           style="display: none;"
                           type="text"
                           value="a book"
@@ -5768,7 +5768,7 @@ ReactWrapper {
                               </div>
                             </div>
                             <input
-                              class="labels-input__input labels-input__input--hidden"
+                              class="labels-input__input"
                               style="display: none;"
                               type="text"
                               value="a book"
@@ -5830,7 +5830,7 @@ ReactWrapper {
                                 </div>
                               </div>,
                               <input
-                                className="labels-input__input labels-input__input--hidden"
+                                className="labels-input__input"
                                 onChange={[Function]}
                                 onClick={[Function]}
                                 style={
@@ -6134,7 +6134,7 @@ ReactWrapper {
                             },
                             Object {
                               "instance": <input
-                                class="labels-input__input labels-input__input--hidden"
+                                class="labels-input__input"
                                 style="display: none;"
                                 type="text"
                                 value="a book"
@@ -6142,7 +6142,7 @@ ReactWrapper {
                               "key": undefined,
                               "nodeType": "host",
                               "props": Object {
-                                "className": "labels-input__input labels-input__input--hidden",
+                                "className": "labels-input__input",
                                 "onChange": [Function],
                                 "onClick": [Function],
                                 "style": Object {

@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 library.add(faTimes)
 
-const LabelInput = ({labels, clearLabel, addLabel, onClick, onChange}) => {
+const LabelInput = ({labels = [], clearLabel, addLabel, onClick, onChange = () => {}}) => {
 
     const [inputValue, setInputValue] = useState('')
 
@@ -45,10 +45,7 @@ const LabelInput = ({labels, clearLabel, addLabel, onClick, onChange}) => {
             </div>
             <input
                 style={{display: labels.length > 0 ? 'none' : 'block'}}
-                className={classNames(
-                    "labels-input__input",
-                    {"labels-input__input--hidden": labels.length > 0}
-                )}
+                className={"labels-input__input"}
                 onClick={onClick}
                 onChange={handleChange}
                 value={inputValue}

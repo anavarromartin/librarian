@@ -1,4 +1,4 @@
-import {getCheckedOutBooks, returnBook} from "./book-methods"
+import {getAvailableBooks, getCheckedOutBooks, returnBook} from "./book-methods"
 
 it('search checked out books', async () => {
     await expect(getCheckedOutBooks('book', () => ({
@@ -69,6 +69,74 @@ it('search checked out books', async () => {
                 book_name: "I am checked out by two people because there's 2 of me",
                 borrower_name: 'sneha',
                 borrower_email: 'sne@ha.com'
+            },
+        ]
+    )
+})
+
+it('search available books', async () => {
+    await expect(getAvailableBooks('book', () => ({
+        data: {
+            data: {
+                books: [
+                    {
+                        id: 1,
+                        name: 'I am checked out',
+                        checkout_histories: [
+                            {
+                                checkin_time: null,
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "one of me is available",
+                        checkout_histories: [
+                            {
+                                checkin_time: null,
+                                name: 'vinod',
+                                email: 'vin@od.com',
+                                book_id: 2,
+                            },
+                            {
+                                checkin_time: 'some time',
+                                name: 'sneha',
+                                email: 'sne@ha.com',
+                                book_id: 3,
+                            }
+                        ]
+                    },
+                    {
+                        id: 4,
+                        name: 'I am available',
+                        checkout_histories: []
+                    },
+                    {
+                        id: 5,
+                        name: 'I am also available',
+                        checkout_histories: [
+                            {
+                                book_id: 5,
+                                checkin_time: 'some time'
+                            }
+                        ]
+                    },
+                ]
+            }
+        }
+    }))).resolves.toEqual(
+        [
+            {
+                id: 2,
+                book_name: 'one of me is available',
+            },
+            {
+                id: 4,
+                book_name: "I am available",
+            },
+            {
+                id: 5,
+                book_name: "I am also available",
             },
         ]
     )

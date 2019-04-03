@@ -1,3 +1,5 @@
+@import "../../global-styles";
+
 .borrow__top-container {
   display: grid;
   grid-template-columns: auto;
@@ -8,10 +10,25 @@
   grid-row: 2;
 }
 
+.borrow__title--searching {
+  display: none;
+}
+
 .borrow__find {
   grid-row: 4;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
   flex-direction: column;
+  position: relative;
+}
+
+.borrow__find--searching {
+  grid-row: 1;
+}
+
+.borrow__find-label--searching {
+  display: none;
 }
 
 .borrow__name {
@@ -20,13 +37,122 @@
   flex-direction: column;
 }
 
+.borrow__name--searching {
+  display: none;
+}
+
 .borrow__email {
   grid-row: 8;
   display: flex;
   flex-direction: column;
 }
 
+.borrow__email--searching {
+  display: none;
+}
+
 .borrow__button {
   grid-row: 10;
   justify-self: right;
+}
+
+.borrow__button--searching {
+  display: none;
+}
+
+.borrow__search {
+  display: grid;
+  grid-template-columns: 40px auto;
+
+  border-radius: 3px;
+  border: solid 1px rgba(151, 151, 151, 0.48);
+}
+
+.borrow__search--searching {
+  box-shadow: 0 2px 4px 0 #00000014;
+  margin: 0 (-$content-padding);
+}
+
+.borrow__search-back {
+  grid-column-start: 1;
+  display: none;
+  cursor: pointer;
+}
+
+.borrow__search-back--searching {
+  display: grid;
+}
+
+.borrow__search-input {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.borrow__search-input--searching {
+  grid-column-start: 2;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .borrow__top-container {
+    grid-template-columns: 432px;
+    justify-content: center;
+  }
+
+  .borrow__search:hover {
+    box-shadow: 0 2px 4px 0 #0000002a;
+  }
+
+  .borrow__search:focus-within {
+    border-color: #1baea1;
+  }
+
+  .borrow__search-results {
+    grid-row: 3;
+    overflow-y: auto;
+    position: absolute;
+    border-radius: 3px;
+    z-index: 1;
+    box-shadow: 0 5px 6px -3px #00000033, 0 3px 16px 2px #0000001e, 0 9px 12px 1px #00000023;
+    max-height: 243px;
+    background-color: white;
+    width: 100%;
+  }
+
+  .borrow__search--searching {
+    box-shadow: 0 2px 4px 0 #00000014;
+    margin: unset;
+  }
+
+  .borrow__search-back--searching {
+    display: none;
+  }
+
+  .borrow__title--searching {
+    display: block;
+  }
+
+  .borrow__find--searching {
+    grid-row: 4;
+  }
+
+  .borrow__find-label--searching {
+    display: block;
+  }
+
+  .borrow__name--searching {
+    display: flex;
+  }
+
+  .borrow__email--searching {
+    display: flex;
+  }
+
+  .borrow__button--searching {
+    display: block;
+  }
+
+  .borrow__search-input--searching {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
 }

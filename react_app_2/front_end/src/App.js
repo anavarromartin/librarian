@@ -6,7 +6,7 @@ import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
 import {routePrefix} from "./globals"
-import {getCheckedOutBooks, returnBook} from "./methods/book-methods";
+import {getAvailableBooks, getCheckedOutBooks, returnBook} from "./methods/book-methods";
 import BorrowBook from "./components/borrow-book/borrow-book"
 
 const renderComponent = (component, routeProps, renderProps) => {
@@ -43,6 +43,7 @@ const App = () => {
         setBackLocation: customSetBackLocation,
         setHeaderVisibility: setHeaderVisibility,
         getCheckedOutBooks: getCheckedOutBooks,
+        getAvailableBooks: getAvailableBooks,
         returnBook: returnBook
     }
 

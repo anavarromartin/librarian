@@ -20,6 +20,7 @@ exports[`<Library /> renders the component 1`] = `
   <button
     className="teal-button"
     id="borrow-button"
+    onClick={[Function]}
   >
     BORROW
   </button>

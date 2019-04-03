@@ -73,6 +73,16 @@ input {
     height: 40px;
     border-radius: 3px;
     border: solid 1px #9797977a;
+    padding-left: 8px;
+    outline: none;
+}
+
+input:hover {
+    box-shadow: 0 2px 4px 0 #0000002a;
+}
+
+input:focus {
+    border-color: #1baea1;
 }
 
 h1 {
@@ -89,5 +99,9 @@ label {
 @media (min-width: $breakpoint-tablet) {
     label {
         font-size: 18px;
+    }
+    h1{
+        font-size: $medium-title;
+
     }
 }

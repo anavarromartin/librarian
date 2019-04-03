@@ -1,26 +1,32 @@
+@import "../../global-styles";
+
 .label-input__container {
   display: grid;
   height: 100%;
-  grid-template-rows: 1fr;
+  grid-template-rows: 42px;
   grid-template-columns: 1fr;
   position: relative;
 }
 
+.label-input__container input {
+  box-shadow: unset;
+}
+
 .labels__container {
   grid-column-start: 1;
+  height: 100%;
 }
 
 .labels-input__input {
   grid-column-start: 1;
   border: none;
-  padding-left: 8px;
   outline: none;
   background-color: transparent;
 }
 
 .labels-input__label {
   background-color: #daedec;
-  padding-left: 4px;
+  padding-left: 8px;
   position: absolute;
   margin: 4px;
   top: 0;
