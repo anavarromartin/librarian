@@ -12,33 +12,28 @@ const BorrowBook = ({getAvailableBooks, setHeaderVisibility}) => {
         return () => setHeaderVisibility(true)
     })
 
-    const setClassWithModifier = (className, isSearching = searching) => classNames(className, {[`${className}--searching`]: isSearching})
-
     return (
-        <div className={"borrow__top-container"}>
-            <h1 className={setClassWithModifier("borrow__title")}>Borrow A Book</h1>
-            <div className={setClassWithModifier("borrow__find")}>
-                <label className={setClassWithModifier("borrow__find-label")}>Find an Available Book</label>
+        <div className={classNames("borrow__top-container", {searching: searching})}>
+            <h1 className={"borrow__title"}>Borrow A Book</h1>
+            <div className={"borrow__find"}>
+                <label className={"borrow__find-label"}>Find an Available Book</label>
                 <SearchInput
                     isSearching={setSearching}
                     search={getAvailableBooks}
                 />
             </div>
 
-            <div className={setClassWithModifier("borrow__name")}>
+            <div className={"borrow__name"}>
                 <label>Full Name</label>
                 <input type="text"/>
             </div>
 
-            <div className={setClassWithModifier("borrow__email")}>
+            <div className={"borrow__email"}>
                 <label>Email</label>
                 <input type="text"/>
             </div>
 
-            <button className={classNames(
-                "teal-button",
-                setClassWithModifier("borrow__button")
-            )}>
+            <button className={classNames("teal-button", "borrow__button")}>
                 BORROW
             </button>
         </div>

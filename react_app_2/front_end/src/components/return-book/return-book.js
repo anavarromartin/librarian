@@ -24,8 +24,6 @@ const ReturnBook = ({
         return () => setHeaderVisibility(true)
     })
 
-    const setClassWithModifier = (className) => classNames(className, {[`${className}--searching`]: searching})
-
     const handleReturnBook = async () => {
         if (selectedResult) {
             await returnBook(selectedResult)
@@ -34,12 +32,12 @@ const ReturnBook = ({
     }
 
     return (
-        <div className={"container"}>
-            <div className={setClassWithModifier("header")}
+        <div className={classNames("container", {searching: searching})}>
+            <div className={"header"}
             >Return A Book
             </div>
-            <div className={setClassWithModifier("form")}>
-                <label className={setClassWithModifier("label")}
+            <div className={"form"}>
+                <label className={"label"}
                 >Find the Book You Borrowed
                 </label>
                 <SearchInput
@@ -48,7 +46,7 @@ const ReturnBook = ({
                     onSelectResult={selectResult}
                 />
                 <button className={
-                    classNames("teal-button", setClassWithModifier("button-input"))
+                    classNames("teal-button", "button-input")
                 }
                         onClick={handleReturnBook}
                 >RETURN

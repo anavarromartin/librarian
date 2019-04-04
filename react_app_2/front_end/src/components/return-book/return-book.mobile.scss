@@ -19,17 +19,9 @@ $top-row: 40px;
   color: #243641;
 }
 
-.header--searching {
-  display: none;
-}
-
 label {
   grid-row-start: 1;
   color: #243641;
-}
-
-.label--searching {
-  display: none;
 }
 
 .form {
@@ -42,20 +34,10 @@ label {
 
 }
 
-.form--searching {
-  grid-row-start: 1;
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
-
 .button-input {
   grid-row-start: 4;
   grid-column-start: 1;
   justify-self: end;
   align-self: end;
   display: grid;
-}
-
-.button-input--searching {
-  display: none;
 }

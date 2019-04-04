@@ -23,9 +23,6 @@ const SearchInput = ({
         isSearching(searching)
     })
 
-    const withSearchingModifier = (className, isSearching = searching) =>
-        classNames(className, {[`${className}--searching`]: isSearching})
-
     const handleInputChange = async event => {
         const term = event.target.value
         setInputValue(term)
@@ -51,18 +48,18 @@ const SearchInput = ({
     }
 
     return (
-        <div className={withSearchingModifier('search__container')}>
-            <div className={withSearchingModifier("search__field")}>
+        <div className={classNames({searching: searching})}>
+            <div className={"search__field"}>
                 <div
-                    className={withSearchingModifier("search__back")}
+                    className={"search__back"}
                     onClick={() => resetSearch()}
                 >
                     <FontAwesomeIcon
-                        className={withSearchingModifier("search__back-icon")}
+                        className={"search__back-icon"}
                         icon={faChevronLeft}
                     />
                 </div>
-                <div className={withSearchingModifier('search__input')}>
+                <div className={'search__input'}>
                     <LabelInput
                         labels={selectedResult ? [selectedResult] : []}
                         onClick={() => {

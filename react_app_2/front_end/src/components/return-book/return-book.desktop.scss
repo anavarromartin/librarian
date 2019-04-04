@@ -2,24 +2,6 @@
   grid-template-columns: auto 400px auto;
 }
 
-.header--searching {
-  display: grid;
-}
-
-.label--searching {
-  display: grid;
-}
-
-.form--searching {
-  grid-row-start: 4;
-  grid-column-start: 2;
-  grid-column-end: 3;
-}
-
-.button-input--searching {
-  display: grid;
-}
-
 .header {
   font-size: 24px;
 }

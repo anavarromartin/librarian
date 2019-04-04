@@ -1,0 +1,22 @@
+@import "../../global-styles";
+@import "../app-header/app-header";
+
+.searching {
+  .header {
+    display: none;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .form {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  .button-input {
+    display: none;
+  }
+}
