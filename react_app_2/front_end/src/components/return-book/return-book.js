@@ -2,18 +2,17 @@ import React, {useEffect, useState} from 'react';
 import './return-book.scss'
 import classNames from 'classnames'
 import {routePrefix} from "../../globals"
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {faChevronLeft} from "@fortawesome/free-solid-svg-icons/faChevronLeft"
-import SearchResults from "../search-results/search-results"
-import LabelInput from "../label-input/label-input"
+import SearchInput from "../search-input/search-input";
 
-library.add(faChevronLeft)
-
-const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks, returnBook, history}) => {
+const ReturnBook = ({
+                        setBackLocation,
+                        setHeaderVisibility,
+                        getCheckedOutBooks,
+                        returnBook,
+                        history
+                    }) => {
 
     const [searching, setSearching] = useState(false)
-    const [searchResults, setSearchResults] = useState([])
     const [selectedResult, selectResult] = useState(null)
 
     useEffect(() => {
@@ -26,27 +25,6 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks, r
     })
 
     const setClassWithModifier = (className) => classNames(className, {[`${className}--searching`]: searching})
-
-    const resetSearch = () => {
-        console.log('clearing!')
-        setSearching(false)
-        setSearchResults([])
-    }
-
-    const search = async (event) => {
-        const searchInput = event.target.value
-        if (searchInput.trim() !== '') {
-            const checkedOutBooks = await getCheckedOutBooks(searchInput);
-            setSearchResults((checkedOutBooks ? checkedOutBooks : []))
-        } else {
-            setSearchResults([])
-        }
-    }
-
-    const onSelectSearchResult = (searchResult) => {
-        selectResult(searchResult)
-        resetSearch()
-    }
 
     const handleReturnBook = async () => {
         if (selectedResult) {
@@ -64,31 +42,11 @@ const ReturnBook = ({setBackLocation, setHeaderVisibility, getCheckedOutBooks, r
                 <label className={setClassWithModifier("label")}
                 >Find the Book You Borrowed
                 </label>
-                <div className={setClassWithModifier("text-input__container")}>
-                    <div className={setClassWithModifier("back__container")}>
-                        <FontAwesomeIcon
-                            className={setClassWithModifier("text-input__back")}
-                            icon={faChevronLeft} onClick={() => resetSearch()}/>
-                    </div>
-
-                    <div className={setClassWithModifier("text-input")}>
-                        <LabelInput
-                            labels={selectedResult ? [selectedResult] : []}
-                            onClick={() => setSearching(true)}
-                            onChange={event => search(event)}
-                            clearLabel={() => selectResult(null)}
-                        />
-                    </div>
-                </div>
-                <div
-                    className={"search-results"}
-                    style={{display: searchResults.length > 0 ? 'block' : 'none'}}
-                >
-                    <SearchResults
-                        results={searchResults}
-                        onSelectResult={onSelectSearchResult}
-                    />
-                </div>
+                <SearchInput
+                    isSearching={setSearching}
+                    search={getCheckedOutBooks}
+                    onSelectResult={selectResult}
+                />
                 <button className={
                     classNames("teal-button", setClassWithModifier("button-input"))
                 }

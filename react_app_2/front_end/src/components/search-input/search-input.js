@@ -11,6 +11,7 @@ library.add(faChevronLeft);
 
 const SearchInput = ({
                          isSearching,
+                         onSelectResult = () => {},
                          search
                      }) => {
     const [searching, setSearching] = useState(false)
@@ -45,6 +46,7 @@ const SearchInput = ({
 
     const handleSelectResult = result => {
         setSelectedResult(result)
+        onSelectResult(result)
         resetSearch()
     }
 
