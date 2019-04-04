@@ -1,0 +1,5 @@
+@import "../../global-styles";
+
+@import url('search-input.mobile.scss');
+@import url('search-input.desktop.scss') (min-width: $breakpoint-tablet);
+@import url('search-input.searching.mobile.scss') (max-width: $breakpoint-tablet);

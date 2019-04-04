@@ -70,4 +70,38 @@ input {
     font-family: SegoeUI, sans-serif;
     font-size: $base;
     color: $txt-primary;
+    height: 40px;
+    border-radius: 3px;
+    border: solid 1px #9797977a;
+    padding-left: 8px;
+    outline: none;
+}
+
+input:hover {
+    box-shadow: 0 2px 4px 0 #0000002a;
+}
+
+input:focus {
+    border-color: #1baea1;
+}
+
+h1 {
+    font-size: $small-title;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0;
+}
+
+label {
+    font-size: $small-base;
+}
+
+@media (min-width: $breakpoint-tablet) {
+    label {
+        font-size: 18px;
+    }
+    h1{
+        font-size: $medium-title;
+
+    }
 }

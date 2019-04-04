@@ -1,0 +1,27 @@
+@import "../../global-styles";
+
+.searching {
+  .borrow__title {
+    display: none;
+  }
+
+  .borrow__find {
+    grid-row: 1;
+  }
+
+  .borrow__find-label {
+    display: none;
+  }
+
+  .borrow__name {
+    display: none;
+  }
+
+  .borrow__email {
+    display: none;
+  }
+
+  .borrow__button {
+    display: none;
+  }
+}

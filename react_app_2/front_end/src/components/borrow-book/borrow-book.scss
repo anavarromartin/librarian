@@ -1,0 +1,5 @@
+@import "../../global-styles";
+
+@import url('borrow-book.mobile.scss');
+@import url('borrow-book.desktop.scss') (min-width: $breakpoint-tablet);
+@import url('borrow-book.searching.mobile.scss') (max-width: $breakpoint-tablet);
