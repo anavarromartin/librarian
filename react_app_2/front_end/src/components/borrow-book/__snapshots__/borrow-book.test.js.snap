@@ -1,0 +1,2097 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BorrowBook /> renders according to snapshot 1`] = `
+ReactWrapper {
+  Symbol(enzyme.__unrendered__): <BorrowBook
+    borrowBook={[Function]}
+    getAvailableBooks={[Function]}
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    setBackLocation={[Function]}
+    setHeaderVisibility={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "borrowBook": [Function],
+      "getAvailableBooks": [Function],
+      "history": Object {
+        "push": [Function],
+      },
+      "setBackLocation": [Function],
+      "setHeaderVisibility": [Function],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <div
+        class="borrow__top-container"
+      >
+        <h1
+          class="borrow__title"
+        >
+          Borrow A Book
+        </h1>
+        <div
+          class="borrow__find"
+        >
+          <label
+            class="borrow__find-label"
+          >
+            Find an Available Book
+          </label>
+          <div
+            class=""
+          >
+            <div
+              class="search__field"
+            >
+              <div
+                class="search__back"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                  data-icon="chevron-left"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  viewBox="0 0 320 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div
+                class="search__input"
+              >
+                <div
+                  class="label-input__container"
+                >
+                  <div
+                    class="labels__container"
+                    style="display: none;"
+                  />
+                  <input
+                    class="labels-input__input"
+                    style="display: block;"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="search__results"
+              style="display: none;"
+            >
+              <div
+                class="search-results__top-container"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="borrow__name"
+        >
+          <label>
+            Full Name
+          </label>
+          <input
+            type="text"
+          />
+        </div>
+        <div
+          class="borrow__email"
+        >
+          <label>
+            Email
+          </label>
+          <input
+            type="text"
+          />
+        </div>
+        <button
+          class="teal-button borrow__button"
+        >
+          BORROW
+        </button>
+      </div>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h1
+            className="borrow__title"
+          >
+            Borrow A Book
+          </h1>,
+          <div
+            className="borrow__find"
+          >
+            <label
+              className="borrow__find-label"
+            >
+              Find an Available Book
+            </label>
+            <SearchInput
+              isSearching={[Function]}
+              onSelectResult={[Function]}
+              search={[Function]}
+            />
+          </div>,
+          <div
+            className="borrow__name"
+          >
+            <label>
+              Full Name
+            </label>
+            <input
+              onChange={[Function]}
+              type="text"
+            />
+          </div>,
+          <div
+            className="borrow__email"
+          >
+            <label>
+              Email
+            </label>
+            <input
+              onChange={[Function]}
+              type="text"
+            />
+          </div>,
+          <button
+            className="teal-button borrow__button"
+            onClick={[Function]}
+          >
+            BORROW
+          </button>,
+        ],
+        "className": "borrow__top-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <h1
+            class="borrow__title"
+          >
+            Borrow A Book
+          </h1>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Borrow A Book",
+            "className": "borrow__title",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Borrow A Book",
+          ],
+          "type": "h1",
+        },
+        Object {
+          "instance": <div
+            class="borrow__find"
+          >
+            <label
+              class="borrow__find-label"
+            >
+              Find an Available Book
+            </label>
+            <div
+              class=""
+            >
+              <div
+                class="search__field"
+              >
+                <div
+                  class="search__back"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                    data-icon="chevron-left"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 320 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="search__input"
+                >
+                  <div
+                    class="label-input__container"
+                  >
+                    <div
+                      class="labels__container"
+                      style="display: none;"
+                    />
+                    <input
+                      class="labels-input__input"
+                      style="display: block;"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="search__results"
+                style="display: none;"
+              >
+                <div
+                  class="search-results__top-container"
+                />
+              </div>
+            </div>
+          </div>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label
+                className="borrow__find-label"
+              >
+                Find an Available Book
+              </label>,
+              <SearchInput
+                isSearching={[Function]}
+                onSelectResult={[Function]}
+                search={[Function]}
+              />,
+            ],
+            "className": "borrow__find",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": <label
+                class="borrow__find-label"
+              >
+                Find an Available Book
+              </label>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Find an Available Book",
+                "className": "borrow__find-label",
+              },
+              "ref": null,
+              "rendered": Array [
+                "Find an Available Book",
+              ],
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "isSearching": [Function],
+                "onSelectResult": [Function],
+                "search": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": <div
+                  class=""
+                >
+                  <div
+                    class="search__field"
+                  >
+                    <div
+                      class="search__back"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                        data-icon="chevron-left"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        viewBox="0 0 320 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="search__input"
+                    >
+                      <div
+                        class="label-input__container"
+                      >
+                        <div
+                          class="labels__container"
+                          style="display: none;"
+                        />
+                        <input
+                          class="labels-input__input"
+                          style="display: block;"
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="search__results"
+                    style="display: none;"
+                  >
+                    <div
+                      class="search-results__top-container"
+                    />
+                  </div>
+                </div>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="search__field"
+                    >
+                      <div
+                        className="search__back"
+                        onClick={[Function]}
+                      >
+                        <FontAwesomeIcon
+                          border={false}
+                          className="search__back-icon"
+                          fixedWidth={false}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [
+                                320,
+                                512,
+                                Array [],
+                                "f053",
+                                "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                              ],
+                              "iconName": "chevron-left",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        />
+                      </div>
+                      <div
+                        className="search__input"
+                      >
+                        <LabelInput
+                          clearLabel={[Function]}
+                          labels={Array []}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          value=""
+                        />
+                      </div>
+                    </div>,
+                    <div
+                      className="search__results"
+                      style={
+                        Object {
+                          "display": "none",
+                        }
+                      }
+                    >
+                      <SearchResults
+                        onSelectResult={[Function]}
+                        results={Array []}
+                      />
+                    </div>,
+                  ],
+                  "className": "",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": <div
+                      class="search__field"
+                    >
+                      <div
+                        class="search__back"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                          data-icon="chevron-left"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          viewBox="0 0 320 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        class="search__input"
+                      >
+                        <div
+                          class="label-input__container"
+                        >
+                          <div
+                            class="labels__container"
+                            style="display: none;"
+                          />
+                          <input
+                            class="labels-input__input"
+                            style="display: block;"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <div
+                          className="search__back"
+                          onClick={[Function]}
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className="search__back-icon"
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  320,
+                                  512,
+                                  Array [],
+                                  "f053",
+                                  "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                ],
+                                "iconName": "chevron-left",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          />
+                        </div>,
+                        <div
+                          className="search__input"
+                        >
+                          <LabelInput
+                            clearLabel={[Function]}
+                            labels={Array []}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            value=""
+                          />
+                        </div>,
+                      ],
+                      "className": "search__field",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": <div
+                          class="search__back"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                            data-icon="chevron-left"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            viewBox="0 0 320 512"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </div>,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <FontAwesomeIcon
+                            border={false}
+                            className="search__back-icon"
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  320,
+                                  512,
+                                  Array [],
+                                  "f053",
+                                  "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                ],
+                                "iconName": "chevron-left",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          />,
+                          "className": "search__back",
+                          "onClick": [Function],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {
+                              "border": false,
+                              "className": "search__back-icon",
+                              "fixedWidth": false,
+                              "flip": null,
+                              "icon": Object {
+                                "icon": Array [
+                                  320,
+                                  512,
+                                  Array [],
+                                  "f053",
+                                  "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                ],
+                                "iconName": "chevron-left",
+                                "prefix": "fas",
+                              },
+                              "inverse": false,
+                              "listItem": false,
+                              "mask": null,
+                              "pull": null,
+                              "pulse": false,
+                              "rotation": null,
+                              "size": null,
+                              "spin": false,
+                              "symbol": false,
+                              "title": "",
+                              "transform": null,
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": <svg
+                                aria-hidden="true"
+                                class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                                data-icon="chevron-left"
+                                data-prefix="fas"
+                                focusable="false"
+                                role="img"
+                                viewBox="0 0 320 512"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                  fill="currentColor"
+                                />
+                              </svg>,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "aria-hidden": "true",
+                                "children": <path
+                                  d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                  fill="currentColor"
+                                  style={Object {}}
+                                />,
+                                "className": "svg-inline--fa fa-chevron-left fa-w-10 search__back-icon",
+                                "data-icon": "chevron-left",
+                                "data-prefix": "fas",
+                                "focusable": "false",
+                                "role": "img",
+                                "style": Object {},
+                                "viewBox": "0 0 320 512",
+                                "xmlns": "http://www.w3.org/2000/svg",
+                              },
+                              "ref": null,
+                              "rendered": Array [
+                                Object {
+                                  "instance": <path
+                                    d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                    fill="currentColor"
+                                  />,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "d": "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                    "fill": "currentColor",
+                                    "style": Object {},
+                                  },
+                                  "ref": null,
+                                  "rendered": Array [
+                                    undefined,
+                                  ],
+                                  "type": "path",
+                                },
+                              ],
+                              "type": "svg",
+                            },
+                            "type": [Function],
+                          },
+                        ],
+                        "type": "div",
+                      },
+                      Object {
+                        "instance": <div
+                          class="search__input"
+                        >
+                          <div
+                            class="label-input__container"
+                          >
+                            <div
+                              class="labels__container"
+                              style="display: none;"
+                            />
+                            <input
+                              class="labels-input__input"
+                              style="display: block;"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <LabelInput
+                            clearLabel={[Function]}
+                            labels={Array []}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            value=""
+                          />,
+                          "className": "search__input",
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {
+                              "clearLabel": [Function],
+                              "labels": Array [],
+                              "onChange": [Function],
+                              "onClick": [Function],
+                              "value": "",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": <div
+                                class="label-input__container"
+                              >
+                                <div
+                                  class="labels__container"
+                                  style="display: none;"
+                                />
+                                <input
+                                  class="labels-input__input"
+                                  style="display: block;"
+                                  type="text"
+                                  value=""
+                                />
+                              </div>,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": Array [
+                                  <div
+                                    className="labels__container"
+                                    style={
+                                      Object {
+                                        "display": "none",
+                                      }
+                                    }
+                                  />,
+                                  <input
+                                    className="labels-input__input"
+                                    onChange={[Function]}
+                                    onClick={[Function]}
+                                    style={
+                                      Object {
+                                        "display": "block",
+                                      }
+                                    }
+                                    type="text"
+                                    value=""
+                                  />,
+                                ],
+                                "className": "label-input__container",
+                              },
+                              "ref": null,
+                              "rendered": Array [
+                                Object {
+                                  "instance": <div
+                                    class="labels__container"
+                                    style="display: none;"
+                                  />,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": Array [],
+                                    "className": "labels__container",
+                                    "style": Object {
+                                      "display": "none",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": Array [
+                                    Array [],
+                                  ],
+                                  "type": "div",
+                                },
+                                Object {
+                                  "instance": <input
+                                    class="labels-input__input"
+                                    style="display: block;"
+                                    type="text"
+                                    value=""
+                                  />,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "className": "labels-input__input",
+                                    "onChange": [Function],
+                                    "onClick": [Function],
+                                    "style": Object {
+                                      "display": "block",
+                                    },
+                                    "type": "text",
+                                    "value": "",
+                                  },
+                                  "ref": null,
+                                  "rendered": Array [
+                                    undefined,
+                                  ],
+                                  "type": "input",
+                                },
+                              ],
+                              "type": "div",
+                            },
+                            "type": [Function],
+                          },
+                        ],
+                        "type": "div",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": <div
+                      class="search__results"
+                      style="display: none;"
+                    >
+                      <div
+                        class="search-results__top-container"
+                      />
+                    </div>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <SearchResults
+                        onSelectResult={[Function]}
+                        results={Array []}
+                      />,
+                      "className": "search__results",
+                      "style": Object {
+                        "display": "none",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "onSelectResult": [Function],
+                          "results": Array [],
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": <div
+                            class="search-results__top-container"
+                          />,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [],
+                            "className": "search-results__top-container",
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Array [],
+                          ],
+                          "type": "div",
+                        },
+                        "type": [Function],
+                      },
+                    ],
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": <div
+            class="borrow__name"
+          >
+            <label>
+              Full Name
+            </label>
+            <input
+              type="text"
+            />
+          </div>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Full Name
+              </label>,
+              <input
+                onChange={[Function]}
+                type="text"
+              />,
+            ],
+            "className": "borrow__name",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": <label>
+                Full Name
+              </label>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Full Name",
+              },
+              "ref": null,
+              "rendered": Array [
+                "Full Name",
+              ],
+              "type": "label",
+            },
+            Object {
+              "instance": <input
+                type="text"
+              />,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "onChange": [Function],
+                "type": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                undefined,
+              ],
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": <div
+            class="borrow__email"
+          >
+            <label>
+              Email
+            </label>
+            <input
+              type="text"
+            />
+          </div>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label>
+                Email
+              </label>,
+              <input
+                onChange={[Function]}
+                type="text"
+              />,
+            ],
+            "className": "borrow__email",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": <label>
+                Email
+              </label>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Email",
+              },
+              "ref": null,
+              "rendered": Array [
+                "Email",
+              ],
+              "type": "label",
+            },
+            Object {
+              "instance": <input
+                type="text"
+              />,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "onChange": [Function],
+                "type": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                undefined,
+              ],
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": <button
+            class="teal-button borrow__button"
+          >
+            BORROW
+          </button>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "BORROW",
+            "className": "teal-button borrow__button",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            "BORROW",
+          ],
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "borrowBook": [Function],
+        "getAvailableBooks": [Function],
+        "history": Object {
+          "push": [Function],
+        },
+        "setBackLocation": [Function],
+        "setHeaderVisibility": [Function],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <div
+          class="borrow__top-container"
+        >
+          <h1
+            class="borrow__title"
+          >
+            Borrow A Book
+          </h1>
+          <div
+            class="borrow__find"
+          >
+            <label
+              class="borrow__find-label"
+            >
+              Find an Available Book
+            </label>
+            <div
+              class=""
+            >
+              <div
+                class="search__field"
+              >
+                <div
+                  class="search__back"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                    data-icon="chevron-left"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 320 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="search__input"
+                >
+                  <div
+                    class="label-input__container"
+                  >
+                    <div
+                      class="labels__container"
+                      style="display: none;"
+                    />
+                    <input
+                      class="labels-input__input"
+                      style="display: block;"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="search__results"
+                style="display: none;"
+              >
+                <div
+                  class="search-results__top-container"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="borrow__name"
+          >
+            <label>
+              Full Name
+            </label>
+            <input
+              type="text"
+            />
+          </div>
+          <div
+            class="borrow__email"
+          >
+            <label>
+              Email
+            </label>
+            <input
+              type="text"
+            />
+          </div>
+          <button
+            class="teal-button borrow__button"
+          >
+            BORROW
+          </button>
+        </div>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h1
+              className="borrow__title"
+            >
+              Borrow A Book
+            </h1>,
+            <div
+              className="borrow__find"
+            >
+              <label
+                className="borrow__find-label"
+              >
+                Find an Available Book
+              </label>
+              <SearchInput
+                isSearching={[Function]}
+                onSelectResult={[Function]}
+                search={[Function]}
+              />
+            </div>,
+            <div
+              className="borrow__name"
+            >
+              <label>
+                Full Name
+              </label>
+              <input
+                onChange={[Function]}
+                type="text"
+              />
+            </div>,
+            <div
+              className="borrow__email"
+            >
+              <label>
+                Email
+              </label>
+              <input
+                onChange={[Function]}
+                type="text"
+              />
+            </div>,
+            <button
+              className="teal-button borrow__button"
+              onClick={[Function]}
+            >
+              BORROW
+            </button>,
+          ],
+          "className": "borrow__top-container",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <h1
+              class="borrow__title"
+            >
+              Borrow A Book
+            </h1>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Borrow A Book",
+              "className": "borrow__title",
+            },
+            "ref": null,
+            "rendered": Array [
+              "Borrow A Book",
+            ],
+            "type": "h1",
+          },
+          Object {
+            "instance": <div
+              class="borrow__find"
+            >
+              <label
+                class="borrow__find-label"
+              >
+                Find an Available Book
+              </label>
+              <div
+                class=""
+              >
+                <div
+                  class="search__field"
+                >
+                  <div
+                    class="search__back"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                      data-icon="chevron-left"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      viewBox="0 0 320 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="search__input"
+                  >
+                    <div
+                      class="label-input__container"
+                    >
+                      <div
+                        class="labels__container"
+                        style="display: none;"
+                      />
+                      <input
+                        class="labels-input__input"
+                        style="display: block;"
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="search__results"
+                  style="display: none;"
+                >
+                  <div
+                    class="search-results__top-container"
+                  />
+                </div>
+              </div>
+            </div>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label
+                  className="borrow__find-label"
+                >
+                  Find an Available Book
+                </label>,
+                <SearchInput
+                  isSearching={[Function]}
+                  onSelectResult={[Function]}
+                  search={[Function]}
+                />,
+              ],
+              "className": "borrow__find",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <label
+                  class="borrow__find-label"
+                >
+                  Find an Available Book
+                </label>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Find an Available Book",
+                  "className": "borrow__find-label",
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Find an Available Book",
+                ],
+                "type": "label",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "isSearching": [Function],
+                  "onSelectResult": [Function],
+                  "search": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": <div
+                    class=""
+                  >
+                    <div
+                      class="search__field"
+                    >
+                      <div
+                        class="search__back"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                          data-icon="chevron-left"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          viewBox="0 0 320 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        class="search__input"
+                      >
+                        <div
+                          class="label-input__container"
+                        >
+                          <div
+                            class="labels__container"
+                            style="display: none;"
+                          />
+                          <input
+                            class="labels-input__input"
+                            style="display: block;"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="search__results"
+                      style="display: none;"
+                    >
+                      <div
+                        class="search-results__top-container"
+                      />
+                    </div>
+                  </div>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <div
+                        className="search__field"
+                      >
+                        <div
+                          className="search__back"
+                          onClick={[Function]}
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className="search__back-icon"
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  320,
+                                  512,
+                                  Array [],
+                                  "f053",
+                                  "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                ],
+                                "iconName": "chevron-left",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          />
+                        </div>
+                        <div
+                          className="search__input"
+                        >
+                          <LabelInput
+                            clearLabel={[Function]}
+                            labels={Array []}
+                            onChange={[Function]}
+                            onClick={[Function]}
+                            value=""
+                          />
+                        </div>
+                      </div>,
+                      <div
+                        className="search__results"
+                        style={
+                          Object {
+                            "display": "none",
+                          }
+                        }
+                      >
+                        <SearchResults
+                          onSelectResult={[Function]}
+                          results={Array []}
+                        />
+                      </div>,
+                    ],
+                    "className": "",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": <div
+                        class="search__field"
+                      >
+                        <div
+                          class="search__back"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                            data-icon="chevron-left"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            viewBox="0 0 320 512"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="search__input"
+                        >
+                          <div
+                            class="label-input__container"
+                          >
+                            <div
+                              class="labels__container"
+                              style="display: none;"
+                            />
+                            <input
+                              class="labels-input__input"
+                              style="display: block;"
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <div
+                            className="search__back"
+                            onClick={[Function]}
+                          >
+                            <FontAwesomeIcon
+                              border={false}
+                              className="search__back-icon"
+                              fixedWidth={false}
+                              flip={null}
+                              icon={
+                                Object {
+                                  "icon": Array [
+                                    320,
+                                    512,
+                                    Array [],
+                                    "f053",
+                                    "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                  ],
+                                  "iconName": "chevron-left",
+                                  "prefix": "fas",
+                                }
+                              }
+                              inverse={false}
+                              listItem={false}
+                              mask={null}
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              symbol={false}
+                              title=""
+                              transform={null}
+                            />
+                          </div>,
+                          <div
+                            className="search__input"
+                          >
+                            <LabelInput
+                              clearLabel={[Function]}
+                              labels={Array []}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              value=""
+                            />
+                          </div>,
+                        ],
+                        "className": "search__field",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": <div
+                            class="search__back"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                              data-icon="chevron-left"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              viewBox="0 0 320 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </div>,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <FontAwesomeIcon
+                              border={false}
+                              className="search__back-icon"
+                              fixedWidth={false}
+                              flip={null}
+                              icon={
+                                Object {
+                                  "icon": Array [
+                                    320,
+                                    512,
+                                    Array [],
+                                    "f053",
+                                    "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                  ],
+                                  "iconName": "chevron-left",
+                                  "prefix": "fas",
+                                }
+                              }
+                              inverse={false}
+                              listItem={false}
+                              mask={null}
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              symbol={false}
+                              title=""
+                              transform={null}
+                            />,
+                            "className": "search__back",
+                            "onClick": [Function],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "function",
+                              "props": Object {
+                                "border": false,
+                                "className": "search__back-icon",
+                                "fixedWidth": false,
+                                "flip": null,
+                                "icon": Object {
+                                  "icon": Array [
+                                    320,
+                                    512,
+                                    Array [],
+                                    "f053",
+                                    "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                  ],
+                                  "iconName": "chevron-left",
+                                  "prefix": "fas",
+                                },
+                                "inverse": false,
+                                "listItem": false,
+                                "mask": null,
+                                "pull": null,
+                                "pulse": false,
+                                "rotation": null,
+                                "size": null,
+                                "spin": false,
+                                "symbol": false,
+                                "title": "",
+                                "transform": null,
+                              },
+                              "ref": null,
+                              "rendered": Object {
+                                "instance": <svg
+                                  aria-hidden="true"
+                                  class="svg-inline--fa fa-chevron-left fa-w-10 search__back-icon"
+                                  data-icon="chevron-left"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
+                                  viewBox="0 0 320 512"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                    fill="currentColor"
+                                  />
+                                </svg>,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "aria-hidden": "true",
+                                  "children": <path
+                                    d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />,
+                                  "className": "svg-inline--fa fa-chevron-left fa-w-10 search__back-icon",
+                                  "data-icon": "chevron-left",
+                                  "data-prefix": "fas",
+                                  "focusable": "false",
+                                  "role": "img",
+                                  "style": Object {},
+                                  "viewBox": "0 0 320 512",
+                                  "xmlns": "http://www.w3.org/2000/svg",
+                                },
+                                "ref": null,
+                                "rendered": Array [
+                                  Object {
+                                    "instance": <path
+                                      d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                                      fill="currentColor"
+                                    />,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "d": "M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z",
+                                      "fill": "currentColor",
+                                      "style": Object {},
+                                    },
+                                    "ref": null,
+                                    "rendered": Array [
+                                      undefined,
+                                    ],
+                                    "type": "path",
+                                  },
+                                ],
+                                "type": "svg",
+                              },
+                              "type": [Function],
+                            },
+                          ],
+                          "type": "div",
+                        },
+                        Object {
+                          "instance": <div
+                            class="search__input"
+                          >
+                            <div
+                              class="label-input__container"
+                            >
+                              <div
+                                class="labels__container"
+                                style="display: none;"
+                              />
+                              <input
+                                class="labels-input__input"
+                                style="display: block;"
+                                type="text"
+                                value=""
+                              />
+                            </div>
+                          </div>,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <LabelInput
+                              clearLabel={[Function]}
+                              labels={Array []}
+                              onChange={[Function]}
+                              onClick={[Function]}
+                              value=""
+                            />,
+                            "className": "search__input",
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "function",
+                              "props": Object {
+                                "clearLabel": [Function],
+                                "labels": Array [],
+                                "onChange": [Function],
+                                "onClick": [Function],
+                                "value": "",
+                              },
+                              "ref": null,
+                              "rendered": Object {
+                                "instance": <div
+                                  class="label-input__container"
+                                >
+                                  <div
+                                    class="labels__container"
+                                    style="display: none;"
+                                  />
+                                  <input
+                                    class="labels-input__input"
+                                    style="display: block;"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": Array [
+                                    <div
+                                      className="labels__container"
+                                      style={
+                                        Object {
+                                          "display": "none",
+                                        }
+                                      }
+                                    />,
+                                    <input
+                                      className="labels-input__input"
+                                      onChange={[Function]}
+                                      onClick={[Function]}
+                                      style={
+                                        Object {
+                                          "display": "block",
+                                        }
+                                      }
+                                      type="text"
+                                      value=""
+                                    />,
+                                  ],
+                                  "className": "label-input__container",
+                                },
+                                "ref": null,
+                                "rendered": Array [
+                                  Object {
+                                    "instance": <div
+                                      class="labels__container"
+                                      style="display: none;"
+                                    />,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": Array [],
+                                      "className": "labels__container",
+                                      "style": Object {
+                                        "display": "none",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": Array [
+                                      Array [],
+                                    ],
+                                    "type": "div",
+                                  },
+                                  Object {
+                                    "instance": <input
+                                      class="labels-input__input"
+                                      style="display: block;"
+                                      type="text"
+                                      value=""
+                                    />,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "className": "labels-input__input",
+                                      "onChange": [Function],
+                                      "onClick": [Function],
+                                      "style": Object {
+                                        "display": "block",
+                                      },
+                                      "type": "text",
+                                      "value": "",
+                                    },
+                                    "ref": null,
+                                    "rendered": Array [
+                                      undefined,
+                                    ],
+                                    "type": "input",
+                                  },
+                                ],
+                                "type": "div",
+                              },
+                              "type": [Function],
+                            },
+                          ],
+                          "type": "div",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": <div
+                        class="search__results"
+                        style="display: none;"
+                      >
+                        <div
+                          class="search-results__top-container"
+                        />
+                      </div>,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <SearchResults
+                          onSelectResult={[Function]}
+                          results={Array []}
+                        />,
+                        "className": "search__results",
+                        "style": Object {
+                          "display": "none",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "function",
+                          "props": Object {
+                            "onSelectResult": [Function],
+                            "results": Array [],
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": <div
+                              class="search-results__top-container"
+                            />,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [],
+                              "className": "search-results__top-container",
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              Array [],
+                            ],
+                            "type": "div",
+                          },
+                          "type": [Function],
+                        },
+                      ],
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": [Function],
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": <div
+              class="borrow__name"
+            >
+              <label>
+                Full Name
+              </label>
+              <input
+                type="text"
+              />
+            </div>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Full Name
+                </label>,
+                <input
+                  onChange={[Function]}
+                  type="text"
+                />,
+              ],
+              "className": "borrow__name",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <label>
+                  Full Name
+                </label>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Full Name",
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Full Name",
+                ],
+                "type": "label",
+              },
+              Object {
+                "instance": <input
+                  type="text"
+                />,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "onChange": [Function],
+                  "type": "text",
+                },
+                "ref": null,
+                "rendered": Array [
+                  undefined,
+                ],
+                "type": "input",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": <div
+              class="borrow__email"
+            >
+              <label>
+                Email
+              </label>
+              <input
+                type="text"
+              />
+            </div>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <label>
+                  Email
+                </label>,
+                <input
+                  onChange={[Function]}
+                  type="text"
+                />,
+              ],
+              "className": "borrow__email",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <label>
+                  Email
+                </label>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Email",
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Email",
+                ],
+                "type": "label",
+              },
+              Object {
+                "instance": <input
+                  type="text"
+                />,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "onChange": [Function],
+                  "type": "text",
+                },
+                "ref": null,
+                "rendered": Array [
+                  undefined,
+                ],
+                "type": "input",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": <button
+              class="teal-button borrow__button"
+            >
+              BORROW
+            </button>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "BORROW",
+              "className": "teal-button borrow__button",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              "BORROW",
+            ],
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

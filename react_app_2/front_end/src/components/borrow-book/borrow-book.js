@@ -4,7 +4,13 @@ import classNames from 'classnames'
 import SearchInput from "../search-input/search-input";
 import {routePrefix} from "../../globals";
 
-const BorrowBook = ({getAvailableBooks, setHeaderVisibility, borrowBook, setBackLocation, history}) => {
+const BorrowBook = ({
+                        getAvailableBooks,
+                        setHeaderVisibility,
+                        borrowBook,
+                        setBackLocation,
+                        history
+}) => {
 
     const [searching, setSearching] = useState(false)
     const [selectedBook, setSelectedBook] = useState(null)
