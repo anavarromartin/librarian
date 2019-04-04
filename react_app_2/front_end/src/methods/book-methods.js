@@ -15,26 +15,12 @@ const bookAndHistoryToBorrowedBookModel = (book, history) => (
     }
 )
 
-const bookAndHistoryToAvailableBookModel = (book, history) => (
-    {
-        id: history.book_id,
-        book_name: book.name
-    }
-)
-
 const bookResponseToBorrowedBookModels = book =>
     book.checkout_histories
         .filter(booksNotReturned)
         .map(history => bookAndHistoryToBorrowedBookModel(book, history))
 
-const historiesWithCheckinTime = history => history.checkin_time
-
-const booksAvailable = book =>
-    book.checkout_histories.length === 0
-    || book.checkout_histories
-        .filter(historiesWithCheckinTime)
-        .length > 0
-
+const booksAvailable = book => book.available_quantity > 0
 
 export const getCheckedOutBooks = async (book, doGet = performGet) => (
     (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books?search=${book}`))
@@ -42,20 +28,6 @@ export const getCheckedOutBooks = async (book, doGet = performGet) => (
         .filter(booksWithCheckoutHistories)
         .flatMap(bookResponseToBorrowedBookModels)
 )
-
-const booksWithoutCheckoutHistoryToAvailableBookModel = book => (
-    {
-        id: book.id,
-        book_name: book.name
-    }
-)
-
-
-const booksWithCheckoutHistoryToAvailableBookModel = book =>
-    book.checkout_histories
-        .filter(historiesWithCheckinTime)
-        .flatMap(history => bookAndHistoryToAvailableBookModel(book, history))
-
 
 const booksToAvailableBookModel = book => (
     {
@@ -76,5 +48,12 @@ export const returnBook = async (book, doPatch = performPatch) => (
     await doPatch(
         `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${book.id}?checkout=false`,
         {name: book.borrower_name, email: book.borrower_email}
+    )
+)
+
+export const borrowBook = async (bookId, borrowerName, borrowerEmail, doPatch = performPatch) => (
+    await doPatch(
+        `${process.env.REACT_APP_API_URL || window.location.origin}/api/books/${bookId}?checkout=true`,
+        {name: borrowerName, email: borrowerEmail}
     )
 )

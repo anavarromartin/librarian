@@ -22,7 +22,7 @@ const LabelInput = ({
                 labels.map(label => (
                     <div key={label.id} className={"labels-input__label"}>
                         <div className={"labels-input__label-text"}>
-                            {label.book_name} - {label.borrower_name}
+                            {label.book_name}{label.borrower_name ? ` - ${label.borrower_name}` : ''}
                         </div>
                         <FontAwesomeIcon
                             className={"labels-input__label-remove"}

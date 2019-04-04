@@ -6,7 +6,7 @@ import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
 import {routePrefix} from "./globals"
-import {getAvailableBooks, getCheckedOutBooks, returnBook} from "./methods/book-methods";
+import {borrowBook, getAvailableBooks, getCheckedOutBooks, returnBook} from "./methods/book-methods";
 import BorrowBook from "./components/borrow-book/borrow-book"
 
 const renderComponent = (component, routeProps, renderProps) => {
@@ -44,7 +44,8 @@ const App = () => {
         setHeaderVisibility: setHeaderVisibility,
         getCheckedOutBooks: getCheckedOutBooks,
         getAvailableBooks: getAvailableBooks,
-        returnBook: returnBook
+        returnBook: returnBook,
+        borrowBook: borrowBook
     }
 
     const backButtonEnabled = () => backLocation !== null

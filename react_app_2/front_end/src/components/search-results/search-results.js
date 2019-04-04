@@ -12,7 +12,7 @@ const SearchResults = ({results, onSelectResult}) => (
                         onSelectResult(result)
                     }}
                 >
-                    {result.book_name} - {result.borrower_name}
+                    {result.book_name}{result.borrower_name ? ` - ${result.borrower_name}` : ''}
                 </div>
             ))
         }

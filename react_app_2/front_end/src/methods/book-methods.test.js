@@ -1,4 +1,4 @@
-import {getAvailableBooks, getCheckedOutBooks, returnBook} from "./book-methods"
+import {getAvailableBooks, getCheckedOutBooks, returnBook, borrowBook} from "./book-methods"
 
 it('search checked out books', async () => {
     await expect(getCheckedOutBooks('book', () => ({
@@ -82,44 +82,12 @@ it('search available books', async () => {
                     {
                         id: 1,
                         name: 'I am checked out',
-                        checkout_histories: [
-                            {
-                                checkin_time: null,
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: "one of me is available",
-                        checkout_histories: [
-                            {
-                                checkin_time: null,
-                                name: 'vinod',
-                                email: 'vin@od.com',
-                                book_id: 2,
-                            },
-                            {
-                                checkin_time: 'some time',
-                                name: 'sneha',
-                                email: 'sne@ha.com',
-                                book_id: 3,
-                            }
-                        ]
+                        available_quantity: 0
                     },
                     {
                         id: 4,
                         name: 'I am available',
-                        checkout_histories: []
-                    },
-                    {
-                        id: 5,
-                        name: 'I am also available',
-                        checkout_histories: [
-                            {
-                                book_id: 5,
-                                checkin_time: 'some time'
-                            }
-                        ]
+                        available_quantity: 2
                     },
                 ]
             }
@@ -127,16 +95,8 @@ it('search available books', async () => {
     }))).resolves.toEqual(
         [
             {
-                id: 2,
-                book_name: 'one of me is available',
-            },
-            {
                 id: 4,
                 book_name: "I am available",
-            },
-            {
-                id: 5,
-                book_name: "I am also available",
             },
         ]
     )
@@ -145,6 +105,16 @@ it('search available books', async () => {
 it('returns book', async () => {
     await expect(returnBook({id: 1, borrower_name: 'Amber', borrower_email: 'amb@er.com'}, (url, body) => ([url, body]))).resolves.toEqual([
         'http://localhost/api/books/1?checkout=false',
+        {
+            name: 'Amber',
+            email: 'amb@er.com'
+        }
+    ])
+})
+
+it('borrows book', async () => {
+    await expect(borrowBook(1, 'Amber', 'amb@er.com', (url, body) => ([url, body]))).resolves.toEqual([
+        'http://localhost/api/books/1?checkout=true',
         {
             name: 'Amber',
             email: 'amb@er.com'
