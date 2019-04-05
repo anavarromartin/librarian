@@ -43,3 +43,9 @@
   color: #24364157;
   cursor: pointer;
 }
+
+.labels-input__label-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
