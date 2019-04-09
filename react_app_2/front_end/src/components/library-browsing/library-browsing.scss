@@ -1,0 +1,17 @@
+.library-browsing__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.library-browsing__book {
+  padding: 8px;
+  border-radius: 5px;
+}
+
+
+
+.library-browsing__book:hover {
+  background-color: #daedec;
+}

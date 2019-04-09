@@ -6,8 +6,9 @@ import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
 import {routePrefix} from "./globals"
-import {borrowBook, getAvailableBooks, getCheckedOutBooks, returnBook} from "./methods/book-methods";
+import {borrowBook, getAvailableBooks, getCheckedOutBooks, getOfficeBooks, returnBook} from "./methods/book-methods";
 import BorrowBook from "./components/borrow-book/borrow-book"
+import LibraryBrowsing from "./components/library-browsing/library-browsing";
 
 const renderComponent = (component, routeProps, renderProps) => {
     const allProps = {...routeProps, ...renderProps}
@@ -45,7 +46,8 @@ const App = () => {
         getCheckedOutBooks: getCheckedOutBooks,
         getAvailableBooks: getAvailableBooks,
         returnBook: returnBook,
-        borrowBook: borrowBook
+        borrowBook: borrowBook,
+        getOfficeBooks: getOfficeBooks
     }
 
     const backButtonEnabled = () => backLocation !== null
@@ -67,6 +69,7 @@ const App = () => {
                     <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...componentProps}/>
                     <RouteWithBackNav path={`${routePrefix}/borrow`} component={BorrowBook} {...componentProps}/>
                     <RouteWithBackNav path={`${routePrefix}`} component={Library} {...componentProps}/>
+                    <RouteWithBackNav path={`${routePrefix}/browse`} component={LibraryBrowsing} {...componentProps}/>
                 </div>
             </div>
         </Router>

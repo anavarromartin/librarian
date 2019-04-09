@@ -22,6 +22,21 @@ const bookResponseToBorrowedBookModels = book =>
 
 const booksAvailable = book => book.available_quantity > 0
 
+const bookResponseToBookSummary = bookResponse => (
+    {
+        id: bookResponse.id,
+        book_name: bookResponse.name,
+        quantity: bookResponse.available_quantity,
+        imageLink: bookResponse.imageLink
+    }
+)
+
+export const getOfficeBooks = async (officeId, doGet = performGet) => (
+    (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${officeId}/books`))
+        .data.data.books
+        .map(bookResponseToBookSummary)
+)
+
 export const getCheckedOutBooks = async (book, doGet = performGet) => (
     (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books?search=${book}`))
         .data.data.books

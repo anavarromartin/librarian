@@ -74,14 +74,37 @@ class AddBook extends Component {
         ).pop()
     }
 
-    async getBookDetails(isbn) {
+    async getImageLinkFromIsbn(isbn) {
         var url = `${process.env.REACT_APP_BOOK_API_URL}${isbn}`
+
+        console.log(`Fetching image from: ${url}`)
 
         const response = await fetch(url)
         const res = await response.json()
 
         if (res.totalItems) {
             const book = res.items[0];
+
+
+            const imageLinks = book['volumeInfo']['imageLinks']
+            const imageLink = imageLinks && imageLinks['thumbnail']
+
+            return imageLink
+        }
+    }
+
+    async getBookDetails(isbn) {
+        var url = `${process.env.REACT_APP_BOOK_API_URL}${isbn}`
+
+        console.log(`Fetching image from: ${url}`)
+
+        const response = await fetch(url)
+        const res = await response.json()
+
+        if (res.totalItems) {
+            const book = res.items[0];
+
+            console.log(`Adding this book: ${JSON.stringify(book)}`)
 
             const title = book['volumeInfo']['title']
             const authors = book['volumeInfo']['authors'].join(', ')
@@ -139,11 +162,15 @@ class AddBook extends Component {
     async _saveBook(e) {
         e.preventDefault()
 
+        const imageLink = this.state.imageLink
+            ? this.state.imageLink
+            : await this.getImageLinkFromIsbn(this.state.candidateISBN)
+
         await this.props.saveBook(
             this.state.bookTitle,
             this.state.candidateISBN,
             this.state.authors,
-            this.state.imageLink,
+            imageLink,
             this.state.category,
             this.state.quantity,
         )

@@ -1,0 +1,44 @@
+@import "../../global-styles";
+
+$image-width: 96px;
+$image-height: 147px;
+
+.book-summary__container {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-gap: 4px;
+}
+
+.book-summary__image {
+  width: $image-width;
+  height: $image-height;
+}
+
+.book-summary__no-image {
+  display: flex;
+  width: $image-width;
+  height: $image-height;
+  background-color: #f0f2f2;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-summary__title {
+  grid-row: 2;
+  grid-column: 1;
+  text-overflow: ellipsis;
+  width: 104px;
+}
+
+.book-summary__quantity {
+  grid-row: 3;
+  grid-column: 1;
+  display: flex;
+  font-weight: $semi-bold;
+  flex-direction: row;
+}
+
+.quantity__icon {
+  margin-right: 8px;
+  color: #7f8a90;
+}
