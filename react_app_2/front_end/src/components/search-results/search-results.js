@@ -1,7 +1,7 @@
 import React from 'react'
 import './search-results.scss'
 
-const SearchResults = ({results, onSelectResult}) => (
+const SearchResults = ({results = [], onSelectResult}) => (
     <div className={"search-results__top-container"}>
         {
             results.map(result => (

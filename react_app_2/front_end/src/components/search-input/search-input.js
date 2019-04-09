@@ -73,7 +73,7 @@ const SearchInput = ({
             </div>
             <div
                 className={"search__results"}
-                style={{display: searchResults.length > 0 ? 'block' : 'none'}}
+                style={{display: searchResults && searchResults.length > 0 ? 'block' : 'none'}}
             >
                 <SearchResults
                     results={searchResults}
