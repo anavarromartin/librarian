@@ -36,7 +36,11 @@ const LabelInput = ({
         <input
             style={{display: labels.length > 0 ? 'none' : 'block'}}
             className={"labels-input__input"}
-            onClick={onClick}
+            onClick={() => {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                onClick()
+            }}
             onChange={onChange}
             value={value}
             type="text"
