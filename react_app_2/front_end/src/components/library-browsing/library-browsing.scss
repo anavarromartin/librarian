@@ -3,15 +3,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   cursor: pointer;
+  margin-top: 24px;
 }
 
 .library-browsing__book {
-  padding: 8px;
-  border-radius: 5px;
-}
-
-
-
-.library-browsing__book:hover {
-  background-color: #daedec;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  margin-bottom: 12px;
 }

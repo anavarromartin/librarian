@@ -1,12 +1,19 @@
 @import "../../global-styles";
 
-$image-width: 96px;
-$image-height: 147px;
+$image-width: 90px;
+$image-height: 139px;
 
 .book-summary__container {
   display: grid;
   grid-template-rows: auto auto auto;
+  grid-template-columns: $image-width;
   grid-gap: 4px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.book-summary__container:hover {
+  box-shadow: 0 5px 6px -3px #00000019, 0 3px 16px 2px #0000001e, 0 9px 12px 1px #0000001e;
 }
 
 .book-summary__image {
