@@ -9,10 +9,10 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
-    "node-sass": "^4.11.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-router-dom": "^4.3.1",
+    "node-sass": "4.11.0",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
+    "react-router-dom": "4.3.1",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -35,6 +35,5 @@
     "enzyme-adapter-react-16": "^1.11.2",
     "jasmine-enzyme": "^7.0.2",
     "react-testing-library": "^6.0.3"
-
   }
 }
