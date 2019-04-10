@@ -3,7 +3,7 @@ import './App.scss';
 import classNames from 'classnames'
 import Library from "./components/library/library";
 import AppHeader from "./components/app-header/app-header"
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
 import {routePrefix} from "./globals"
 import {borrowBook, getAvailableBooks, getCheckedOutBooks, getOfficeBooks, returnBook} from "./methods/book-methods";
@@ -19,8 +19,8 @@ const RouteWithBackNav = props => {
 
     return (
         <Route
-            exact
             path={props.path}
+            exact
             render={routeProps => renderComponent(props.component, props, routeProps)}
         />
     )
@@ -53,7 +53,7 @@ const App = () => {
     const backButtonEnabled = () => backLocation !== null
 
     return (
-        <Router>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <div className={"top-container"}>
                 <div className={classNames({"header--hidden": !headerVisible})}>
                     <Route
@@ -66,13 +66,15 @@ const App = () => {
                     />
                 </div>
                 <div className={"content"}>
-                    <RouteWithBackNav path={`${routePrefix}/return`} component={ReturnBook} {...componentProps}/>
-                    <RouteWithBackNav path={`${routePrefix}/borrow`} component={BorrowBook} {...componentProps}/>
-                    <RouteWithBackNav path={`${routePrefix}`} component={Library} {...componentProps}/>
-                    <RouteWithBackNav path={`${routePrefix}/browse`} component={LibraryBrowsing} {...componentProps}/>
+                    <Switch>
+                        <RouteWithBackNav path={`/return`} component={ReturnBook} {...componentProps}/>
+                        <RouteWithBackNav path={`/borrow`} component={BorrowBook} {...componentProps}/>
+                        <RouteWithBackNav path={`/browse`} component={LibraryBrowsing} {...componentProps}/>
+                        <RouteWithBackNav path={`/`} component={Library} {...componentProps}/>
+                    </Switch>
                 </div>
             </div>
-        </Router>
+        </BrowserRouter>
     )
 }
 

@@ -1,1 +1,1 @@
-export const routePrefix = '/fiji'
+export const routePrefix = ''

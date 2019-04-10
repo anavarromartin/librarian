@@ -12,9 +12,17 @@ jwt = JWTManager(app)
 front_end = 'old'
 
 
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text  # or whatever
+
+
 @app.route('/fiji', defaults={'path': ''})
+@app.route('/fiji/', defaults={'path': ''})
 @app.route('/fiji/<path:path>')
 def serve_fiji(path):
+    path = remove_prefix(path, 'fiji/')
     if path != "" and os.path.exists(os.path.join(_fiji_app_dir(), path)):
         return send_from_directory(_fiji_app_dir(), path)
     else:

@@ -10,14 +10,14 @@ const Library = ({history, setBackLocation}) => {
         <div className={"library-container"}>
             <Logo className={"image-container"}  alt={"logo"} />
             <button
-                onClick={() => history.push(`${routePrefix}/return`)}
+                onClick={() => history.push(`/return`)}
                 id={"return-button"}
                 className={"white-button"}
             >
                 RETURN
             </button>
             <button
-                onClick={() => history.push(`${routePrefix}/borrow`)}
+                onClick={() => history.push(`/borrow`)}
                 id={"borrow-button"}
                 className={"teal-button"}
             >
