@@ -1,9 +1,14 @@
 .library-browsing__container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   cursor: pointer;
   margin-top: 24px;
+  justify-content: space-between;
+}
+
+.library-browsing__container::after {
+  content: "";
+  flex: auto;
 }
 
 .library-browsing__book {
