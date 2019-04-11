@@ -98,6 +98,11 @@ label {
 }
 
 @media (min-width: $breakpoint-tablet) {
+    html, body, #root {
+        font-size: $base;
+    }
+
+
     label {
         font-size: 18px;
     }
