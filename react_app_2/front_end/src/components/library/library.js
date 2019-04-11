@@ -1,28 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './library.scss'
 import {routePrefix} from "../../globals"
 import { ReactComponent as Logo } from '../../assets/home_page_img.svg';
 
-const Library = ({history, setBackLocation}) => {
+const Library = ({history, setBackLocation, setHeaderConfig}) => {
     setBackLocation(null)
+
+    useEffect(() => {
+        setHeaderConfig(
+            {
+                displayButtons: true
+            }
+        )
+        return () => setHeaderConfig({})
+    }, [])
+
 
     return (
         <div className={"library-container"}>
             <Logo className={"image-container"}  alt={"logo"} />
-            <button
-                onClick={() => history.push(`/return`)}
-                id={"return-button"}
-                className={"white-button"}
-            >
-                RETURN
-            </button>
-            <button
-                onClick={() => history.push(`/borrow`)}
-                id={"borrow-button"}
-                className={"teal-button"}
-            >
-                BORROW
-            </button>
         </div>
     )
 }

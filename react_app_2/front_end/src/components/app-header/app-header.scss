@@ -1,46 +1,5 @@
 @import "../../global-styles";
 
-.app-header {
-  display: grid;
-  grid-template-columns: 80px 1fr 80px;
-
-  align-items: center;
-  justify-content: center;
-  height: 64px;
-  background-color: #243641;
-  color: white;
-}
-
-.app-header__back-button {
-  grid-column-start: 1;
-  align-self: center;
-  cursor: pointer;
-  padding-left: 24px;
-  font-size: 18px;
-}
-
-.app-header__title {
-  width: 100%;
-  grid-column-start: 2;
-  text-align: center;
-  letter-spacing: 1.5px;
-  font-size: 24px;
-  font-weight: 500;
-  font-stretch: condensed;
-  font-family: "Avenir Next Condensed", sans-serif;
-}
-
-@media (min-width: $breakpoint-tablet) {
-  .app-header {
-    height: 104px;
-  }
-
-  .app-header__title {
-    font-size: 46px;
-  }
-
-  .app-header__back-button {
-    font-size: 24px;
-  }
-}
-
+@import url('app-header.common.scss');
+@import url('app-header.desktop.scss') (min-width: $breakpoint-tablet);
+@import url('app-header.mobile.scss') (max-width: $breakpoint-tablet);

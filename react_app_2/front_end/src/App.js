@@ -29,6 +29,7 @@ const RouteWithBackNav = props => {
 const App = () => {
     const [backLocation, setBackLocation] = useState(null)
     const [headerVisible, setHeaderVisibility] = useState(true)
+    const [headerConfig, setHeaderConfig] = useState({})
 
     const navigateBack = (history) => {
         console.log('back location:' + backLocation)
@@ -47,8 +48,10 @@ const App = () => {
         getAvailableBooks: getAvailableBooks,
         returnBook: returnBook,
         borrowBook: borrowBook,
-        getOfficeBooks: getOfficeBooks
+        getOfficeBooks: getOfficeBooks,
+        setHeaderConfig: setHeaderConfig
     }
+
 
     const backButtonEnabled = () => backLocation !== null
 
@@ -60,7 +63,7 @@ const App = () => {
                         path={"*"}
                         render={props => <AppHeader {...props}
                                                    onNavigateBack={navigateBack}
-
+                                                    headerConfig={headerConfig}
                                                    backButtonEnabled={backButtonEnabled}
                         />}
                     />

@@ -2,13 +2,18 @@ import React, {useState, useEffect} from 'react';
 import BookSummary from "../book-summary/book-summary";
 import './library-browsing.scss'
 
-const LibraryBrowsing = ({getOfficeBooks}) => {
+const LibraryBrowsing = ({getOfficeBooks, setHeaderConfig}) => {
 
     const [books, setBooks] = useState([])
 
     useEffect (() => {
+        setHeaderConfig({
+            displayButtons: true
+        })
         const loadBooks = async () => setBooks(await getOfficeBooks(1))
         loadBooks()
+
+        return () => setHeaderConfig({})
     }, []);
 
 

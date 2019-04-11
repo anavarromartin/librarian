@@ -1,0 +1,28 @@
+@import "../../global-styles";
+
+.app-header {
+  grid-template-columns: repeat(30, 8px) 1fr repeat(30, 8px);
+  height: 80px;
+}
+
+.app-header__title {
+  font-size: 46px;
+  grid-column: 31;
+}
+
+.app-header__back-button {
+  font-size: 24px;
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+
+#header__return-button {
+  grid-column-start: 39;
+  grid-column-end: 48;
+}
+
+#header__borrow-button {
+  grid-column-start: 50;
+  grid-column-end: 59;
+}
