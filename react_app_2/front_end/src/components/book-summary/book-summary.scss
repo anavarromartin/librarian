@@ -15,6 +15,8 @@ $image-height: 139px;
 .book-summary__image {
   width: $image-width;
   height: $image-height;
+  border: 1px solid #9797977a;
+  border-radius: 5px
 }
 
 .book-summary__no-image {
@@ -24,6 +26,8 @@ $image-height: 139px;
   background-color: #f0f2f2;
   justify-content: center;
   align-items: center;
+  border: 1px solid #9797977a;
+  border-radius: 5px
 }
 
 .book-summary__title {
