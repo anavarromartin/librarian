@@ -72,8 +72,7 @@ const App = () => {
                     <Switch>
                         <RouteWithBackNav path={`/return`} component={ReturnBook} {...componentProps}/>
                         <RouteWithBackNav path={`/borrow`} component={BorrowBook} {...componentProps}/>
-                        <RouteWithBackNav path={`/browse`} component={LibraryBrowsing} {...componentProps}/>
-                        <RouteWithBackNav path={`/`} component={Library} {...componentProps}/>
+                        <RouteWithBackNav path={`/`} component={LibraryBrowsing} {...componentProps}/>
                     </Switch>
                 </div>
             </div>

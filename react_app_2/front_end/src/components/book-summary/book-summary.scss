@@ -64,9 +64,14 @@ $image-height: 139px;
     height: $image-height;
   }
 
+  .book-summary__title {
+    line-height: 1.5em;
+  }
+
   .book-summary__container {
     grid-template-columns: $image-width;
     padding: 16px;
+    grid-gap: 8px;
   }
 
   .book-summary__container:hover {
