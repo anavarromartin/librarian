@@ -24,14 +24,12 @@ const AppHeader = ({history, backButtonEnabled, onNavigateBack, headerConfig = {
                     <button
                         onClick={() => history.push(`/return`)}
                         id={"header__return-button"}
-                        className={"white-button-small"}
                     >
                         RETURN
                     </button>
                     <button
                         onClick={() => history.push(`/borrow`)}
                         id={"header__borrow-button"}
-                        className={"teal-button-small"}
                     >
                         BORROW
                     </button>

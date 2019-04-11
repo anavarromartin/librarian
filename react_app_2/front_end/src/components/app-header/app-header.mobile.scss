@@ -18,11 +18,13 @@
 
 
 #header__return-button {
+  @extend .white-button-small;
   grid-column-start: 24;
   grid-column-end: 33;
 }
 
 #header__borrow-button {
+  @extend .teal-button-small;
   grid-column-start: 35;
   grid-column-end:44;
 }
