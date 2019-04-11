@@ -44,12 +44,12 @@ const BorrowBook = ({
             </div>
 
             <div className={"borrow__name"}>
-                <label>Full Name</label>
+                <label>Your Full Name<span style={{color: '#bf1e25'}}>*</span></label>
                 <input type="text" onChange={event => setName(event.target.value)}/>
             </div>
 
             <div className={"borrow__email"}>
-                <label>Email</label>
+                <label>Your Email<span style={{color: '#bf1e25'}}>*</span></label>
                 <input type="text" onChange={event => setEmail(event.target.value)}/>
             </div>
 

@@ -112,7 +112,12 @@ ReactWrapper {
           class="borrow__name"
         >
           <label>
-            Full Name
+            Your Full Name
+            <span
+              style="color: rgb(191, 30, 37);"
+            >
+              *
+            </span>
           </label>
           <input
             type="text"
@@ -122,7 +127,12 @@ ReactWrapper {
           class="borrow__email"
         >
           <label>
-            Email
+            Your Email
+            <span
+              style="color: rgb(191, 30, 37);"
+            >
+              *
+            </span>
           </label>
           <input
             type="text"
@@ -161,7 +171,16 @@ ReactWrapper {
             className="borrow__name"
           >
             <label>
-              Full Name
+              Your Full Name
+              <span
+                style={
+                  Object {
+                    "color": "#bf1e25",
+                  }
+                }
+              >
+                *
+              </span>
             </label>
             <input
               onChange={[Function]}
@@ -172,7 +191,16 @@ ReactWrapper {
             className="borrow__email"
           >
             <label>
-              Email
+              Your Email
+              <span
+                style={
+                  Object {
+                    "color": "#bf1e25",
+                  }
+                }
+              >
+                *
+              </span>
             </label>
             <input
               onChange={[Function]}
@@ -905,7 +933,12 @@ ReactWrapper {
             class="borrow__name"
           >
             <label>
-              Full Name
+              Your Full Name
+              <span
+                style="color: rgb(191, 30, 37);"
+              >
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -916,7 +949,16 @@ ReactWrapper {
           "props": Object {
             "children": Array [
               <label>
-                Full Name
+                Your Full Name
+                <span
+                  style={
+                    Object {
+                      "color": "#bf1e25",
+                    }
+                  }
+                >
+                  *
+                </span>
               </label>,
               <input
                 onChange={[Function]}
@@ -929,16 +971,52 @@ ReactWrapper {
           "rendered": Array [
             Object {
               "instance": <label>
-                Full Name
+                Your Full Name
+                <span
+                  style="color: rgb(191, 30, 37);"
+                >
+                  *
+                </span>
               </label>,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Full Name",
+                "children": Array [
+                  "Your Full Name",
+                  <span
+                    style={
+                      Object {
+                        "color": "#bf1e25",
+                      }
+                    }
+                  >
+                    *
+                  </span>,
+                ],
               },
               "ref": null,
               "rendered": Array [
-                "Full Name",
+                "Your Full Name",
+                Object {
+                  "instance": <span
+                    style="color: rgb(191, 30, 37);"
+                  >
+                    *
+                  </span>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "*",
+                    "style": Object {
+                      "color": "#bf1e25",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "*",
+                  ],
+                  "type": "span",
+                },
               ],
               "type": "label",
             },
@@ -966,7 +1044,12 @@ ReactWrapper {
             class="borrow__email"
           >
             <label>
-              Email
+              Your Email
+              <span
+                style="color: rgb(191, 30, 37);"
+              >
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -977,7 +1060,16 @@ ReactWrapper {
           "props": Object {
             "children": Array [
               <label>
-                Email
+                Your Email
+                <span
+                  style={
+                    Object {
+                      "color": "#bf1e25",
+                    }
+                  }
+                >
+                  *
+                </span>
               </label>,
               <input
                 onChange={[Function]}
@@ -990,16 +1082,52 @@ ReactWrapper {
           "rendered": Array [
             Object {
               "instance": <label>
-                Email
+                Your Email
+                <span
+                  style="color: rgb(191, 30, 37);"
+                >
+                  *
+                </span>
               </label>,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Email",
+                "children": Array [
+                  "Your Email",
+                  <span
+                    style={
+                      Object {
+                        "color": "#bf1e25",
+                      }
+                    }
+                  >
+                    *
+                  </span>,
+                ],
               },
               "ref": null,
               "rendered": Array [
-                "Email",
+                "Your Email",
+                Object {
+                  "instance": <span
+                    style="color: rgb(191, 30, 37);"
+                  >
+                    *
+                  </span>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "*",
+                    "style": Object {
+                      "color": "#bf1e25",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "*",
+                  ],
+                  "type": "span",
+                },
               ],
               "type": "label",
             },
@@ -1136,7 +1264,12 @@ ReactWrapper {
             class="borrow__name"
           >
             <label>
-              Full Name
+              Your Full Name
+              <span
+                style="color: rgb(191, 30, 37);"
+              >
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -1146,7 +1279,12 @@ ReactWrapper {
             class="borrow__email"
           >
             <label>
-              Email
+              Your Email
+              <span
+                style="color: rgb(191, 30, 37);"
+              >
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -1185,7 +1323,16 @@ ReactWrapper {
               className="borrow__name"
             >
               <label>
-                Full Name
+                Your Full Name
+                <span
+                  style={
+                    Object {
+                      "color": "#bf1e25",
+                    }
+                  }
+                >
+                  *
+                </span>
               </label>
               <input
                 onChange={[Function]}
@@ -1196,7 +1343,16 @@ ReactWrapper {
               className="borrow__email"
             >
               <label>
-                Email
+                Your Email
+                <span
+                  style={
+                    Object {
+                      "color": "#bf1e25",
+                    }
+                  }
+                >
+                  *
+                </span>
               </label>
               <input
                 onChange={[Function]}
@@ -1929,7 +2085,12 @@ ReactWrapper {
               class="borrow__name"
             >
               <label>
-                Full Name
+                Your Full Name
+                <span
+                  style="color: rgb(191, 30, 37);"
+                >
+                  *
+                </span>
               </label>
               <input
                 type="text"
@@ -1940,7 +2101,16 @@ ReactWrapper {
             "props": Object {
               "children": Array [
                 <label>
-                  Full Name
+                  Your Full Name
+                  <span
+                    style={
+                      Object {
+                        "color": "#bf1e25",
+                      }
+                    }
+                  >
+                    *
+                  </span>
                 </label>,
                 <input
                   onChange={[Function]}
@@ -1953,16 +2123,52 @@ ReactWrapper {
             "rendered": Array [
               Object {
                 "instance": <label>
-                  Full Name
+                  Your Full Name
+                  <span
+                    style="color: rgb(191, 30, 37);"
+                  >
+                    *
+                  </span>
                 </label>,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Full Name",
+                  "children": Array [
+                    "Your Full Name",
+                    <span
+                      style={
+                        Object {
+                          "color": "#bf1e25",
+                        }
+                      }
+                    >
+                      *
+                    </span>,
+                  ],
                 },
                 "ref": null,
                 "rendered": Array [
-                  "Full Name",
+                  "Your Full Name",
+                  Object {
+                    "instance": <span
+                      style="color: rgb(191, 30, 37);"
+                    >
+                      *
+                    </span>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "*",
+                      "style": Object {
+                        "color": "#bf1e25",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "*",
+                    ],
+                    "type": "span",
+                  },
                 ],
                 "type": "label",
               },
@@ -1990,7 +2196,12 @@ ReactWrapper {
               class="borrow__email"
             >
               <label>
-                Email
+                Your Email
+                <span
+                  style="color: rgb(191, 30, 37);"
+                >
+                  *
+                </span>
               </label>
               <input
                 type="text"
@@ -2001,7 +2212,16 @@ ReactWrapper {
             "props": Object {
               "children": Array [
                 <label>
-                  Email
+                  Your Email
+                  <span
+                    style={
+                      Object {
+                        "color": "#bf1e25",
+                      }
+                    }
+                  >
+                    *
+                  </span>
                 </label>,
                 <input
                   onChange={[Function]}
@@ -2014,16 +2234,52 @@ ReactWrapper {
             "rendered": Array [
               Object {
                 "instance": <label>
-                  Email
+                  Your Email
+                  <span
+                    style="color: rgb(191, 30, 37);"
+                  >
+                    *
+                  </span>
                 </label>,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Email",
+                  "children": Array [
+                    "Your Email",
+                    <span
+                      style={
+                        Object {
+                          "color": "#bf1e25",
+                        }
+                      }
+                    >
+                      *
+                    </span>,
+                  ],
                 },
                 "ref": null,
                 "rendered": Array [
-                  "Email",
+                  "Your Email",
+                  Object {
+                    "instance": <span
+                      style="color: rgb(191, 30, 37);"
+                    >
+                      *
+                    </span>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "*",
+                      "style": Object {
+                        "color": "#bf1e25",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "*",
+                    ],
+                    "type": "span",
+                  },
                 ],
                 "type": "label",
               },
