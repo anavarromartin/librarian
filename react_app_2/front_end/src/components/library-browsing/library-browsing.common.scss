@@ -1,0 +1,15 @@
+@import "../../global-styles";
+
+.library-browsing__container {
+  display: grid;
+  counter-reset: grid-items;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  margin-top: 24px;
+}
+
+.library-browsing__book {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+}

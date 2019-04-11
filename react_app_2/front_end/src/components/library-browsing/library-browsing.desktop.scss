@@ -1,0 +1,7 @@
+@import "../../global-styles";
+
+.library-browsing__container {
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  grid-column-gap: 36px;
+  margin: 40px;
+}

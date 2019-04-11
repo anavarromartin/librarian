@@ -1,15 +1,5 @@
-.library-browsing__container {
-  display: grid;
-  counter-reset: grid-items;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  margin-top: 24px;
-  margin-left: (-8px);
-  margin-right: (-8px);
-}
+@import "../../global-styles";
 
-.library-browsing__book {
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 8px;
-}
+@import url('library-browsing.common.scss');
+@import url('library-browsing.desktop.scss') (min-width: $breakpoint-tablet);
+@import url('library-browsing.mobile.scss') (max-width: $breakpoint-tablet);
