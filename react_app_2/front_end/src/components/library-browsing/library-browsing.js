@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import BookSummary from "../book-summary/book-summary";
 import './library-browsing.scss'
 
-const LibraryBrowsing = ({getOfficeBooks, setHeaderConfig, history}) => {
+const LibraryBrowsing = ({getOfficeBooks, setHeaderConfig, setBackLocation}) => {
+    setBackLocation(null)
 
     const [books, setBooks] = useState([])
 
