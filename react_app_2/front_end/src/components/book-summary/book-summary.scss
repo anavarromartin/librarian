@@ -12,10 +12,6 @@ $image-height: 139px;
   border-radius: 5px;
 }
 
-.book-summary__container:hover {
-  box-shadow: 0 5px 6px -3px #00000019, 0 3px 16px 2px #0000001e, 0 9px 12px 1px #0000001e;
-}
-
 .book-summary__image {
   width: $image-width;
   height: $image-height;
@@ -48,4 +44,10 @@ $image-height: 139px;
 .quantity__icon {
   margin-right: 8px;
   color: #7f8a90;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .book-summary__container:hover {
+    box-shadow: 0 5px 6px -3px #00000019, 0 3px 16px 2px #0000001e, 0 9px 12px 1px #0000001e;
+  }
 }

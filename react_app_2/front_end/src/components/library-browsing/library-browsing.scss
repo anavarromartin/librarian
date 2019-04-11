@@ -1,19 +1,12 @@
 .library-browsing__container {
-  display: flex;
-  flex-flow: row wrap;
-  cursor: pointer;
+  display: grid;
+  counter-reset: grid-items;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   margin-top: 24px;
-  justify-content: space-between;
-}
-
-.library-browsing__container::after {
-  content: "";
-  flex: auto;
 }
 
 .library-browsing__book {
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  margin-bottom: 12px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
