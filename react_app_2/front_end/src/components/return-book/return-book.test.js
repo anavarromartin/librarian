@@ -2,7 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
 import {mount, shallow} from 'enzyme'
-import 'jasmine-enzyme'
 
 const mountComponent = ({
                             setBackLocation = () => {
