@@ -1,7 +1,6 @@
 import React from 'react';
 import AppHeader from "./app-header"
 import {shallow} from 'enzyme'
-import 'enzyme-matchers'
 
 let component
 
