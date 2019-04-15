@@ -6,6 +6,8 @@ import './book-summary.scss'
 
 library.add(faBookOpen)
 
+// tested through <LibraryBrowsing />
+
 const BookSummary = ({bookTitle, quantity, imageLink}) => {
 
     return (

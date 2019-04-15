@@ -1,4 +1,10 @@
-import {getAvailableBooks, getCheckedOutBooks, returnBook, borrowBook} from "./book-methods"
+import {
+    getAvailableBooks,
+    getCheckedOutBooks,
+    returnBook,
+    borrowBook,
+    getOfficeBooks
+} from "./book-methods"
 
 it('search checked out books', async () => {
     await expect(getCheckedOutBooks('book', () => ({
@@ -103,7 +109,11 @@ it('search available books', async () => {
 })
 
 it('returns book', async () => {
-    await expect(returnBook({id: 1, borrower_name: 'Amber', borrower_email: 'amb@er.com'}, (url, body) => ([url, body]))).resolves.toEqual([
+    await expect(returnBook({
+        id: 1,
+        borrower_name: 'Amber',
+        borrower_email: 'amb@er.com'
+    }, (url, body) => ([url, body]))).resolves.toEqual([
         'http://localhost/api/books/1?checkout=false',
         {
             name: 'Amber',
@@ -120,4 +130,29 @@ it('borrows book', async () => {
             email: 'amb@er.com'
         }
     ])
+})
+
+it('fetches office books', async () => {
+    await expect(getOfficeBooks(1, url => {
+        expect(url).toContain('/api/offices/1/books')
+        return {
+            data: {
+                data: {
+                    books: [
+                        {
+                            id: 1,
+                            name: 'I are book',
+                            available_quantity: 0,
+                            imageLink: 'link'
+                        }
+                    ]
+                }
+            }
+        }
+    })).resolves.toEqual([{
+        id: 1,
+        book_name: 'I are book',
+        quantity: 0,
+        imageLink: 'link'
+    }])
 })
