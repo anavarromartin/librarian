@@ -9,40 +9,42 @@ library.add(faChevronLeft)
 
 const AppHeader = ({
                        history = {},
-                       backButtonEnabled = () => {},
-                       onNavigateBack = () => {},
+                       backButtonEnabled = () => {
+                       },
+                       onNavigateBack = () => {
+                       },
                        headerConfig = {}
-                   }) => {
+                   }) => (
+    <div className="app-header">
+        {
+            backButtonEnabled() &&
+            <div
+                className={"app-header__back-button"}
+                onClick={() => onNavigateBack(history)}
+            >
+                <FontAwesomeIcon icon={faChevronLeft}/>
+            </div>
+        }
+        <div className={"app-header__title"}> DALLAS LIBRARY</div>
+        {
+            headerConfig.displayButtons &&
+            <>
+                <button
+                    onClick={() => history.push(`/return`)}
+                    id={"header__return-button"}
+                >
+                    RETURN
+                </button>
+                <button
+                    onClick={() => history.push(`/borrow`)}
+                    id={"header__borrow-button"}
+                >
+                    BORROW
+                </button>
+            </>
+        }
 
-    const backButtonElement = backButtonEnabled()
-        ? <FontAwesomeIcon icon={faChevronLeft} onClick={() => onNavigateBack(history)}/>
-        : null
-
-
-    return (
-        <div className="app-header">
-            <div className={"app-header__back-button"}> {backButtonElement} </div>
-            <div className={"app-header__title"}> DALLAS LIBRARY</div>
-            {
-                headerConfig.displayButtons &&
-                <>
-                    <button
-                        onClick={() => history.push(`/return`)}
-                        id={"header__return-button"}
-                    >
-                        RETURN
-                    </button>
-                    <button
-                        onClick={() => history.push(`/borrow`)}
-                        id={"header__borrow-button"}
-                    >
-                        BORROW
-                    </button>
-                </>
-            }
-
-        </div>
-    )
-}
+    </div>
+)
 
 export default AppHeader

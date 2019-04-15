@@ -8,8 +8,14 @@ let component
 const BORROW_BUTTON_SELECTOR = '#header__borrow-button'
 const RETURN_BUTTON_SELECTOR = '#header__return-button'
 
+const BACK_BUTTON_SELECTOR = '.app-header__back-button'
+
 const BORROW_BOOK_URL = '/borrow'
 const RETURN_BOOK_URL = '/return'
+
+const clickOn = selector => {
+    component.find(selector).simulate('click')
+}
 
 describe('<AppHeader />', () => {
     describe('when buttons are enabled', () => {
@@ -48,7 +54,35 @@ describe('<AppHeader />', () => {
             expect(component.find(RETURN_BUTTON_SELECTOR)).not.toExist()
         })
     })
-    const clickOn = selector => {
-        component.find(selector).simulate('click')
-    }
+
+    describe('back button', () => {
+        describe('when is enabled', () => {
+            let historySpy
+            beforeEach(() => {
+                component = shallow(<AppHeader
+                    backButtonEnabled={() => true}
+                    onNavigateBack={actualHistory => {historySpy = actualHistory}}
+                    history={'TEST_HISTORY'}
+                />)
+            })
+
+            it('clicking on it triggers back navigation', () => {
+                clickOn(BACK_BUTTON_SELECTOR)
+
+                expect(historySpy).toEqual('TEST_HISTORY')
+            })
+        })
+
+        describe('when is disabled', () => {
+            beforeEach(() => {
+                component = shallow(<AppHeader
+                    backButtonEnabled={() => false}
+                />)
+            })
+
+            it('is not rendered', () => {
+                expect(component.find(BACK_BUTTON_SELECTOR)).not.toExist()
+            })
+        })
+    })
 })
