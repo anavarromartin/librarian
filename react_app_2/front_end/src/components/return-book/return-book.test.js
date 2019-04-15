@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ReturnBook from "./return-book"
-import {mount, shallow} from 'enzyme'
+import {mount} from 'enzyme'
 
 const mountComponent = ({
                             setBackLocation = () => {
@@ -11,14 +11,21 @@ const mountComponent = ({
                             getCheckedOutBooks = () => {
                             },
                             returnBook = () => {
+                            },
+                            setHeaderConfig = () => {
                             }
                         } = {}) => (
     mount(<ReturnBook
-        history={{push: () => {}}}
+        history={{
+            push: () => {
+            }
+        }}
+        match={{params: {officeId: 1}}}
         setBackLocation={setBackLocation}
         setHeaderVisibility={setHeaderVisibility}
         getCheckedOutBooks={getCheckedOutBooks}
         returnBook={returnBook}
+        setHeaderConfig={setHeaderConfig}
     />)
 )
 
@@ -43,8 +50,11 @@ describe('<ReturnBook />', () => {
     describe('display', () => {
         it('renders the component', () => {
             let component
-                component = renderer.create(<ReturnBook setBackLocation={() => {
-                }}/>)
+            component = renderer.create(<ReturnBook
+                setBackLocation={() => {
+                }}
+                match={{params: {officeId: 1}}}
+            />)
             expect(component.toJSON()).toMatchSnapshot()
         })
 
@@ -113,16 +123,14 @@ describe('<ReturnBook />', () => {
     })
 
     describe('behavior', () => {
-        it('when typing it performs search', () => {
-            let searchInput = ''
-
+        it('when typing it performs search', done => {
             typeOnSearchInput('Test', mountComponent({
-                getCheckedOutBooks: search => {
-                    searchInput = search
+                getCheckedOutBooks: (officeId, search) => {
+                    expect(officeId).toEqual(1)
+                    expect(search).toEqual('Test')
+                    done()
                 }
             }))
-
-            expect(searchInput).toEqual('Test')
         })
 
         it('when input is empty it does not search', () => {
@@ -136,5 +144,25 @@ describe('<ReturnBook />', () => {
 
             expect(wasCalled).toBeFalsy()
         })
+    })
+
+    it('sets back location to office root', done => {
+        mount(<ReturnBook
+            match={{params: {officeId: 1}}}
+            setBackLocation={location => {
+                expect(location).toEqual('/1')
+                done()
+            }}
+        />)
+    })
+
+    it('sets the header buttons as not visible', done => {
+        mount(<ReturnBook
+            match={{params: {officeId: 1}}}
+            setHeaderConfig={config => {
+                expect(config.displayButtons).toBeFalsy()
+                done()
+            }}
+        />)
     })
 })

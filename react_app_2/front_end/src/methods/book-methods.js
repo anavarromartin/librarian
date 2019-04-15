@@ -37,8 +37,8 @@ export const getOfficeBooks = async (officeId, doGet = performGet) => (
         .map(bookResponseToBookSummary)
 )
 
-export const getCheckedOutBooks = async (book, doGet = performGet) => (
-    (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books?search=${book}`))
+export const getCheckedOutBooks = async (officeId, book, doGet = performGet) => (
+    (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${officeId}/books?search=${book}`))
         .data.data.books
         .filter(booksWithCheckoutHistories)
         .flatMap(bookResponseToBorrowedBookModels)
@@ -51,8 +51,8 @@ const booksToAvailableBookModel = book => (
     }
 )
 
-export const getAvailableBooks = async (book, doGet = performGet) => (
-    (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/1/books?search=${book}`))
+export const getAvailableBooks = async (officeId, book, doGet = performGet) => (
+    (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${officeId}/books?search=${book}`))
         .data.data.books
         .filter(booksAvailable)
         .map(booksToAvailableBookModel)

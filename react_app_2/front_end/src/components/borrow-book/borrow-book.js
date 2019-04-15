@@ -2,20 +2,26 @@ import React, {useEffect, useState} from 'react';
 import './borrow-book.scss'
 import classNames from 'classnames'
 import SearchInput from "../search-input/search-input";
-import {routePrefix} from "../../globals";
 
 const BorrowBook = ({
-                        getAvailableBooks,
-                        setHeaderVisibility,
-                        borrowBook,
-                        setBackLocation,
-                        history
+                        getAvailableBooks = () => {},
+                        setHeaderVisibility = () => {},
+                        borrowBook = () => {},
+                        setBackLocation = () => {},
+                        setHeaderConfig = () => {},
+                        history = {},
+                        match = {}
 }) => {
 
     const [searching, setSearching] = useState(false)
     const [selectedBook, setSelectedBook] = useState(null)
     const [name, setName] = useState(null)
     const [email, setEmail] = useState(null)
+
+    useEffect(() => {
+        setBackLocation(`/${match.params.officeId}`)
+        setHeaderConfig({displayButtons: false})
+    }, [])
 
     useEffect(() => {
         searching ? setHeaderVisibility(false) : setHeaderVisibility(true)
@@ -25,11 +31,9 @@ const BorrowBook = ({
     const handleBorrow = async () => {
         if (selectedBook && name.trim() !== '' && email.trim() !== '') {
             await borrowBook(selectedBook.id, name, email)
-            history.push(`${routePrefix}`)
+            history.push(`/${match.params.officeId}`)
         }
     }
-
-    setBackLocation(`${routePrefix}`)
 
     return (
         <div className={classNames("borrow__top-container", {searching: searching})}>
@@ -38,7 +42,7 @@ const BorrowBook = ({
                 <label className={"borrow__find-label"}>Find an Available Book</label>
                 <SearchInput
                     isSearching={setSearching}
-                    search={getAvailableBooks}
+                    search={term => getAvailableBooks(match.params.officeId, term)}
                     onSelectResult={setSelectedBook}
                 />
             </div>

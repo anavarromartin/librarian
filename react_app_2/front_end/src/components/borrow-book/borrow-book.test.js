@@ -2,6 +2,8 @@ import {mount} from "enzyme/build";
 import React from "react";
 import BorrowBook from "./borrow-book";
 
+const OFFICE_ID_AS_URL_PARAM = 1
+
 const mountComponent = ({
                             setBackLocation = () => {},
                             setHeaderVisibility = () => {},
@@ -10,6 +12,7 @@ const mountComponent = ({
                         } = {}) => (
     mount(<BorrowBook
         history={{push: () => {}}}
+        match={{params: {officeId: OFFICE_ID_AS_URL_PARAM}}}
         setBackLocation={setBackLocation}
         setHeaderVisibility={setHeaderVisibility}
         getAvailableBooks={getAvailableBooks}
@@ -45,7 +48,7 @@ describe('<BorrowBook />', () => {
 
     describe('borrow book flow', () => {
         let component
-        let borrowedBookId, borrowerName, borrowerEmail
+        let borrowedBookId, borrowerName, borrowerEmail, officeIdUsedToSearch, termUsedToSearch
         beforeEach(async (done) => {
             const availableBooksPromise = Promise.resolve(
                 [
@@ -56,7 +59,9 @@ describe('<BorrowBook />', () => {
                 ]
             )
             component = mountComponent({
-                getAvailableBooks: () => {
+                getAvailableBooks: (actualOfficeId, term) => {
+                    officeIdUsedToSearch = actualOfficeId
+                    termUsedToSearch = term
                     return availableBooksPromise
                 },
                 borrowBook: (bookId, name, email) => {
@@ -76,9 +81,31 @@ describe('<BorrowBook />', () => {
         })
 
         it('borrows book', () => {
+            expect(officeIdUsedToSearch).toEqual(OFFICE_ID_AS_URL_PARAM)
+            expect(termUsedToSearch).toEqual('a book')
             expect(borrowedBookId).toEqual(1)
             expect(borrowerName).toEqual('adria')
             expect(borrowerEmail).toEqual('adria@pivotal.io')
         })
+    })
+
+    it('sets back location to office root', done => {
+        mount(<BorrowBook
+            match={{params: {officeId: 1}}}
+            setBackLocation={location => {
+                expect(location).toEqual('/1')
+                done()
+            }}
+        />)
+    })
+
+    it('sets the header buttons as not visible', done => {
+        mount(<BorrowBook
+            match={{params: {officeId: 1}}}
+            setHeaderConfig={config => {
+                expect(config.displayButtons).toBeFalsy()
+                done()
+            }}
+        />)
     })
 })

@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import './App.scss';
 import classNames from 'classnames'
-import Library from "./components/library/library";
 import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
-import {routePrefix} from "./globals"
 import {borrowBook, getAvailableBooks, getCheckedOutBooks, getOfficeBooks, returnBook} from "./methods/book-methods";
 import BorrowBook from "./components/borrow-book/borrow-book"
 import LibraryBrowsing from "./components/library-browsing/library-browsing";
@@ -42,7 +40,7 @@ const App = () => {
     }
 
     const componentProps = {
-        setBackLocation: customSetBackLocation,
+        setBackLocation: setBackLocation,
         setHeaderVisibility: setHeaderVisibility,
         getCheckedOutBooks: getCheckedOutBooks,
         getAvailableBooks: getAvailableBooks,
@@ -60,19 +58,19 @@ const App = () => {
             <div className={"top-container"}>
                 <div className={classNames({"header--hidden": !headerVisible})}>
                     <Route
-                        path={"*"}
+                        path={"/:officeId"}
                         render={props => <AppHeader {...props}
-                                                   onNavigateBack={navigateBack}
+                                                    onNavigateBack={navigateBack}
                                                     headerConfig={headerConfig}
-                                                   backButtonEnabled={backButtonEnabled}
+                                                    backButtonEnabled={backButtonEnabled}
                         />}
                     />
                 </div>
                 <div className={"content"}>
                     <Switch>
-                        <RouteWithBackNav path={`/return`} component={ReturnBook} {...componentProps}/>
-                        <RouteWithBackNav path={`/borrow`} component={BorrowBook} {...componentProps}/>
-                        <RouteWithBackNav path={`/`} component={LibraryBrowsing} {...componentProps}/>
+                        <RouteWithBackNav path={`/:officeId/return`} component={ReturnBook} {...componentProps}/>
+                        <RouteWithBackNav path={`/:officeId/borrow`} component={BorrowBook} {...componentProps}/>
+                        <RouteWithBackNav path={`/:officeId`} component={LibraryBrowsing} {...componentProps}/>
                     </Switch>
                 </div>
             </div>

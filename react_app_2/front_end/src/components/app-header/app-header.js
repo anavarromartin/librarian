@@ -8,6 +8,7 @@ library.add(faChevronLeft)
 
 
 const AppHeader = ({
+                       match,
                        history = {},
                        backButtonEnabled = () => {
                        },
@@ -30,13 +31,13 @@ const AppHeader = ({
             headerConfig.displayButtons &&
             <>
                 <button
-                    onClick={() => history.push(`/return`)}
+                    onClick={() => history.push(`/${match.params.officeId}/return`)}
                     id={"header__return-button"}
                 >
                     RETURN
                 </button>
                 <button
-                    onClick={() => history.push(`/borrow`)}
+                    onClick={() => history.push(`/${match.params.officeId}/borrow`)}
                     id={"header__borrow-button"}
                 >
                     BORROW

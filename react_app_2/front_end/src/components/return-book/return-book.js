@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import './return-book.scss'
 import classNames from 'classnames'
-import {routePrefix} from "../../globals"
 import SearchInput from "../search-input/search-input";
 
 const ReturnBook = ({
-                        setBackLocation,
-                        setHeaderVisibility,
-                        getCheckedOutBooks,
-                        returnBook,
-                        history
+                        setBackLocation = () => {},
+                        setHeaderVisibility = () => {},
+                        getCheckedOutBooks = () => {},
+                        returnBook = () => {},
+                        setHeaderConfig = () => {},
+                        history = {},
+                        match = {}
                     }) => {
 
     const [searching, setSearching] = useState(false)
     const [selectedResult, selectResult] = useState(null)
 
     useEffect(() => {
-        setBackLocation(`${routePrefix}`)
-    })
+        setBackLocation(`/${match.params.officeId}`)
+        setHeaderConfig({displayButtons: false})
+    }, [])
 
     useEffect(() => {
         searching ? setHeaderVisibility(false) : setHeaderVisibility(true)
@@ -27,7 +29,7 @@ const ReturnBook = ({
     const handleReturnBook = async () => {
         if (selectedResult) {
             await returnBook(selectedResult)
-            history.push(`${routePrefix}`)
+            history.push(`/${match.params.officeId}`)
         }
     }
 
@@ -42,7 +44,7 @@ const ReturnBook = ({
                 </label>
                 <SearchInput
                     isSearching={setSearching}
-                    search={getCheckedOutBooks}
+                    search={term => getCheckedOutBooks(match.params.officeId, term)}
                     onSelectResult={selectResult}
                 />
                 <button className={

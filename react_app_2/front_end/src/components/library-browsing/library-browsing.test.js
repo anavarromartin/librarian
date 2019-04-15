@@ -9,7 +9,11 @@ const renderWithABookAndWait = async () => {
         imageLink: 'a link'
     }])
     const component = mount(<LibraryBrowsing
-        getOfficeBooks={() => booksPromise}
+        match={{params: {officeId: 1}}}
+        getOfficeBooks={officeId => {
+            expect(officeId).toEqual(1)
+            return booksPromise
+        }}
     />)
 
     await booksPromise

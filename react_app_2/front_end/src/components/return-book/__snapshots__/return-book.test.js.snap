@@ -105,8 +105,16 @@ exports[`<ReturnBook /> display when clicking on search input renders search mod
       "push": [Function],
     }
   }
+  match={
+    Object {
+      "params": Object {
+        "officeId": 1,
+      },
+    }
+  }
   returnBook={[Function]}
   setBackLocation={[Function]}
+  setHeaderConfig={[Function]}
   setHeaderVisibility={[Function]}
 >
   <div
@@ -264,8 +272,16 @@ exports[`<ReturnBook /> display when clicking on search input when searching ren
       "push": [Function],
     }
   }
+  match={
+    Object {
+      "params": Object {
+        "officeId": 1,
+      },
+    }
+  }
   returnBook={[Function]}
   setBackLocation={[Function]}
+  setHeaderConfig={[Function]}
   setHeaderVisibility={[Function]}
 >
   <div
@@ -423,8 +439,16 @@ exports[`<ReturnBook /> display when clicking on search input when searching whe
       "push": [Function],
     }
   }
+  match={
+    Object {
+      "params": Object {
+        "officeId": 1,
+      },
+    }
+  }
   returnBook={[Function]}
   setBackLocation={[Function]}
+  setHeaderConfig={[Function]}
   setHeaderVisibility={[Function]}
 >
   <div

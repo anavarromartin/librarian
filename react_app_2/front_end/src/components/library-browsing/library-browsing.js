@@ -10,6 +10,7 @@ const LibraryBrowsingRenderer = ({
             books
                 .map((book) => (
                     <div
+                        key={book.id}
                         className={"library-browsing__book"}
                         onClick={() => {
                             // window.location.href = `${process.env.REACT_APP_API_URL || window.location.origin}/Dallas/books/${book.id}`
@@ -35,7 +36,7 @@ class LibraryBrowsing extends React.Component {
         this.props.setHeaderConfig && this.props.setHeaderConfig({
             displayButtons: true
         })
-        this.props.getOfficeBooks && this.props.getOfficeBooks(1)
+        this.props.getOfficeBooks && this.props.getOfficeBooks(this.props.match.params.officeId)
             .then(fetchedBooks => this.setState({books: fetchedBooks}))
     }
 

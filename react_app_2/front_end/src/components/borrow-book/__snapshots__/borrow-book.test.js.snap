@@ -9,6 +9,13 @@ exports[`<BorrowBook /> renders according to snapshot 1`] = `
       "push": [Function],
     }
   }
+  match={
+    Object {
+      "params": Object {
+        "officeId": 1,
+      },
+    }
+  }
   setBackLocation={[Function]}
   setHeaderVisibility={[Function]}
 >

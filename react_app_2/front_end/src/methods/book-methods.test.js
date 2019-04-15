@@ -7,56 +7,60 @@ import {
 } from "./book-methods"
 
 it('search checked out books', async () => {
-    await expect(getCheckedOutBooks('book', () => ({
-        data: {
+    await expect(getCheckedOutBooks(2, 'book', url => {
+        expect(url).toContain('/api/offices/2/books?search=book')
+
+        return {
             data: {
-                books: [
-                    {
-                        id: 1,
-                        name: 'I am checked out',
-                        checkout_histories: [
-                            {
-                                checkin_time: null,
-                                name: 'adria',
-                                email: 'adr@ia.com',
-                                book_id: 1,
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: "I am checked out by two people because there's 2 of me",
-                        checkout_histories: [
-                            {
-                                checkin_time: null,
-                                name: 'vinod',
-                                email: 'vin@od.com',
-                                book_id: 2,
-                            },
-                            {
-                                checkin_time: null,
-                                name: 'sneha',
-                                email: 'sne@ha.com',
-                                book_id: 3,
-                            }
-                        ]
-                    },
-                    {
-                        name: 'I am not checked out',
-                        checkout_histories: []
-                    },
-                    {
-                        name: 'I am also not checked out',
-                        checkout_histories: [
-                            {
-                                checkin_time: 'some time'
-                            }
-                        ]
-                    },
-                ]
+                data: {
+                    books: [
+                        {
+                            id: 1,
+                            name: 'I am checked out',
+                            checkout_histories: [
+                                {
+                                    checkin_time: null,
+                                    name: 'adria',
+                                    email: 'adr@ia.com',
+                                    book_id: 1,
+                                }
+                            ]
+                        },
+                        {
+                            id: 2,
+                            name: "I am checked out by two people because there's 2 of me",
+                            checkout_histories: [
+                                {
+                                    checkin_time: null,
+                                    name: 'vinod',
+                                    email: 'vin@od.com',
+                                    book_id: 2,
+                                },
+                                {
+                                    checkin_time: null,
+                                    name: 'sneha',
+                                    email: 'sne@ha.com',
+                                    book_id: 3,
+                                }
+                            ]
+                        },
+                        {
+                            name: 'I am not checked out',
+                            checkout_histories: []
+                        },
+                        {
+                            name: 'I am also not checked out',
+                            checkout_histories: [
+                                {
+                                    checkin_time: 'some time'
+                                }
+                            ]
+                        },
+                    ]
+                }
             }
         }
-    }))).resolves.toEqual(
+    })).resolves.toEqual(
         [
             {
                 id: 1,
@@ -81,24 +85,28 @@ it('search checked out books', async () => {
 })
 
 it('search available books', async () => {
-    await expect(getAvailableBooks('book', () => ({
-        data: {
+    await expect(getAvailableBooks(2, 'book', url => {
+        expect(url).toContain('/api/offices/2/books?search=book')
+
+        return {
             data: {
-                books: [
-                    {
-                        id: 1,
-                        name: 'I am checked out',
-                        available_quantity: 0
-                    },
-                    {
-                        id: 4,
-                        name: 'I am available',
-                        available_quantity: 2
-                    },
-                ]
+                data: {
+                    books: [
+                        {
+                            id: 1,
+                            name: 'I am checked out',
+                            available_quantity: 0
+                        },
+                        {
+                            id: 4,
+                            name: 'I am available',
+                            available_quantity: 2
+                        },
+                    ]
+                }
             }
         }
-    }))).resolves.toEqual(
+    })).resolves.toEqual(
         [
             {
                 id: 4,
