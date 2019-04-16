@@ -20,7 +20,7 @@ const mountComponent = ({
             push: () => {
             }
         }}
-        match={{params: {officeId: 1}}}
+        office={{id: 1, name: 'dallas'}}
         setBackLocation={setBackLocation}
         setHeaderVisibility={setHeaderVisibility}
         getCheckedOutBooks={getCheckedOutBooks}
@@ -148,9 +148,9 @@ describe('<ReturnBook />', () => {
 
     it('sets back location to office root', done => {
         mount(<ReturnBook
-            match={{params: {officeId: 1}}}
+            office={{id: 1, name: 'dallas'}}
             setBackLocation={location => {
-                expect(location).toEqual('/1')
+                expect(location).toEqual('/dallas')
                 done()
             }}
         />)
@@ -158,7 +158,7 @@ describe('<ReturnBook />', () => {
 
     it('sets the header buttons as not visible', done => {
         mount(<ReturnBook
-            match={{params: {officeId: 1}}}
+            office={{id: 1, name: 'dallas'}}
             setHeaderConfig={config => {
                 expect(config.displayButtons).toBeFalsy()
                 done()

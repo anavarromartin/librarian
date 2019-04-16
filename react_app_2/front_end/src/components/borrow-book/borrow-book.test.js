@@ -2,7 +2,8 @@ import {mount} from "enzyme/build";
 import React from "react";
 import BorrowBook from "./borrow-book";
 
-const OFFICE_ID_AS_URL_PARAM = 1
+const OFFICE_ID = 1
+const OFFICE_NAME = 'dallas'
 
 const mountComponent = ({
                             setBackLocation = () => {},
@@ -12,7 +13,7 @@ const mountComponent = ({
                         } = {}) => (
     mount(<BorrowBook
         history={{push: () => {}}}
-        match={{params: {officeId: OFFICE_ID_AS_URL_PARAM}}}
+        office={{id: OFFICE_ID, name: OFFICE_NAME}}
         setBackLocation={setBackLocation}
         setHeaderVisibility={setHeaderVisibility}
         getAvailableBooks={getAvailableBooks}
@@ -81,7 +82,7 @@ describe('<BorrowBook />', () => {
         })
 
         it('borrows book', () => {
-            expect(officeIdUsedToSearch).toEqual(OFFICE_ID_AS_URL_PARAM)
+            expect(officeIdUsedToSearch).toEqual(OFFICE_ID)
             expect(termUsedToSearch).toEqual('a book')
             expect(borrowedBookId).toEqual(1)
             expect(borrowerName).toEqual('adria')
@@ -91,9 +92,9 @@ describe('<BorrowBook />', () => {
 
     it('sets back location to office root', done => {
         mount(<BorrowBook
-            match={{params: {officeId: 1}}}
+            office={{id: OFFICE_ID, name: OFFICE_NAME}}
             setBackLocation={location => {
-                expect(location).toEqual('/1')
+                expect(location).toEqual(`/${OFFICE_NAME}`)
                 done()
             }}
         />)
@@ -101,7 +102,7 @@ describe('<BorrowBook />', () => {
 
     it('sets the header buttons as not visible', done => {
         mount(<BorrowBook
-            match={{params: {officeId: 1}}}
+            office={{id: OFFICE_ID, name: OFFICE_NAME}}
             setHeaderConfig={config => {
                 expect(config.displayButtons).toBeFalsy()
                 done()

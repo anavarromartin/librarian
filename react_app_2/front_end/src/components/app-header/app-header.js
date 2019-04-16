@@ -31,13 +31,13 @@ const AppHeader = ({
             headerConfig.displayButtons &&
             <>
                 <button
-                    onClick={() => history.push(`/${match.params.officeId}/return`)}
+                    onClick={() => history.push(`/${match.params.officeName.toLowerCase()}/return`)}
                     id={"header__return-button"}
                 >
                     RETURN
                 </button>
                 <button
-                    onClick={() => history.push(`/${match.params.officeId}/borrow`)}
+                    onClick={() => history.push(`/${match.params.officeName.toLowerCase()}/borrow`)}
                     id={"header__borrow-button"}
                 >
                     BORROW

@@ -105,11 +105,10 @@ exports[`<ReturnBook /> display when clicking on search input renders search mod
       "push": [Function],
     }
   }
-  match={
+  office={
     Object {
-      "params": Object {
-        "officeId": 1,
-      },
+      "id": 1,
+      "name": "dallas",
     }
   }
   returnBook={[Function]}
@@ -272,11 +271,10 @@ exports[`<ReturnBook /> display when clicking on search input when searching ren
       "push": [Function],
     }
   }
-  match={
+  office={
     Object {
-      "params": Object {
-        "officeId": 1,
-      },
+      "id": 1,
+      "name": "dallas",
     }
   }
   returnBook={[Function]}
@@ -439,11 +437,10 @@ exports[`<ReturnBook /> display when clicking on search input when searching whe
       "push": [Function],
     }
   }
-  match={
+  office={
     Object {
-      "params": Object {
-        "officeId": 1,
-      },
+      "id": 1,
+      "name": "dallas",
     }
   }
   returnBook={[Function]}

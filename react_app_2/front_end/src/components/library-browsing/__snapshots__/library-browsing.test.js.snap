@@ -3,11 +3,10 @@
 exports[`<LibraryBrowsing /> basic rendering with book matches snapshot 1`] = `
 <LibraryBrowsing
   getOfficeBooks={[Function]}
-  match={
+  office={
     Object {
-      "params": Object {
-        "officeId": 1,
-      },
+      "id": 1,
+      "name": "dallas",
     }
   }
 >

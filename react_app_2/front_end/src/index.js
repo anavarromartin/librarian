@@ -4,7 +4,21 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+fetch(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices`, {
+    method: 'GET',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    },
+}).then(offices => {
+   return offices.json()
+}).then(offices => {
+    ReactDOM.render(<App offices={offices.data.offices}/>,
+        document.getElementById('root'));
+})
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

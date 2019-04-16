@@ -11,7 +11,7 @@ exports[`matches the snapshot 1`] = `
       className=""
     >
       <Route
-        path="/:officeId"
+        path="/:officeName"
         render={[Function]}
       />
     </div>
@@ -19,37 +19,37 @@ exports[`matches the snapshot 1`] = `
       className="content"
     >
       <Switch>
-        <RouteWithBackNav
+        <RouteWithProps
           borrowBook={[Function]}
           component={[Function]}
           getAvailableBooks={[Function]}
           getCheckedOutBooks={[Function]}
           getOfficeBooks={[Function]}
-          path="/:officeId/return"
+          path="/:officeName/return"
           returnBook={[Function]}
           setBackLocation={[Function]}
           setHeaderConfig={[Function]}
           setHeaderVisibility={[Function]}
         />
-        <RouteWithBackNav
+        <RouteWithProps
           borrowBook={[Function]}
           component={[Function]}
           getAvailableBooks={[Function]}
           getCheckedOutBooks={[Function]}
           getOfficeBooks={[Function]}
-          path="/:officeId/borrow"
+          path="/:officeName/borrow"
           returnBook={[Function]}
           setBackLocation={[Function]}
           setHeaderConfig={[Function]}
           setHeaderVisibility={[Function]}
         />
-        <RouteWithBackNav
+        <RouteWithProps
           borrowBook={[Function]}
           component={[Function]}
           getAvailableBooks={[Function]}
           getCheckedOutBooks={[Function]}
           getOfficeBooks={[Function]}
-          path="/:officeId"
+          path="/:officeName"
           returnBook={[Function]}
           setBackLocation={[Function]}
           setHeaderConfig={[Function]}

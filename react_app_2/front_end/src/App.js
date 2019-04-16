@@ -13,18 +13,29 @@ const renderComponent = (component, routeProps, renderProps) => {
     return React.createElement(component, {...allProps}, null)
 }
 
-const RouteWithBackNav = props => {
-
+const RouteWithProps = props => {
     return (
         <Route
             path={props.path}
             exact
-            render={routeProps => renderComponent(props.component, props, routeProps)}
+            render={routeProps => renderComponent(OfficeIdComponentWrapper, props, routeProps)}
         />
     )
 }
 
-const App = () => {
+const getOffice = (offices, officeName) => {
+    return offices.filter(office => office.name.toLowerCase() === officeName.toLowerCase())[0]
+}
+
+const OfficeIdComponentWrapper = props => (
+    React.createElement(
+        props.component,
+        {office: getOffice(props.offices, props.match.params.officeName), ...props},
+        null
+    )
+)
+
+const App = offices => {
     const [backLocation, setBackLocation] = useState(null)
     const [headerVisible, setHeaderVisibility] = useState(true)
     const [headerConfig, setHeaderConfig] = useState({})
@@ -32,11 +43,6 @@ const App = () => {
     const navigateBack = (history) => {
         console.log('back location:' + backLocation)
         history.push(backLocation)
-    }
-
-    const customSetBackLocation = (loc) => {
-        console.log(`setting location: ${loc}`)
-        setBackLocation(loc)
     }
 
     const componentProps = {
@@ -47,7 +53,8 @@ const App = () => {
         returnBook: returnBook,
         borrowBook: borrowBook,
         getOfficeBooks: getOfficeBooks,
-        setHeaderConfig: setHeaderConfig
+        setHeaderConfig: setHeaderConfig,
+        offices: offices.offices,
     }
 
 
@@ -58,7 +65,7 @@ const App = () => {
             <div className={"top-container"}>
                 <div className={classNames({"header--hidden": !headerVisible})}>
                     <Route
-                        path={"/:officeId"}
+                        path={"/:officeName"}
                         render={props => <AppHeader {...props}
                                                     onNavigateBack={navigateBack}
                                                     headerConfig={headerConfig}
@@ -68,9 +75,9 @@ const App = () => {
                 </div>
                 <div className={"content"}>
                     <Switch>
-                        <RouteWithBackNav path={`/:officeId/return`} component={ReturnBook} {...componentProps}/>
-                        <RouteWithBackNav path={`/:officeId/borrow`} component={BorrowBook} {...componentProps}/>
-                        <RouteWithBackNav path={`/:officeId`} component={LibraryBrowsing} {...componentProps}/>
+                        <RouteWithProps path={`/:officeName/return`} component={ReturnBook} {...componentProps}/>
+                        <RouteWithProps path={`/:officeName/borrow`} component={BorrowBook} {...componentProps}/>
+                        <RouteWithProps path={`/:officeName`} component={LibraryBrowsing} {...componentProps}/>
                     </Switch>
                 </div>
             </div>

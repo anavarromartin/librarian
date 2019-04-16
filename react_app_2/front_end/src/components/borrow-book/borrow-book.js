@@ -10,7 +10,7 @@ const BorrowBook = ({
                         setBackLocation = () => {},
                         setHeaderConfig = () => {},
                         history = {},
-                        match = {}
+                        office
 }) => {
 
     const [searching, setSearching] = useState(false)
@@ -19,7 +19,7 @@ const BorrowBook = ({
     const [email, setEmail] = useState(null)
 
     useEffect(() => {
-        setBackLocation(`/${match.params.officeId}`)
+        setBackLocation(`/${office.name.toLowerCase()}`)
         setHeaderConfig({displayButtons: false})
     }, [])
 
@@ -31,7 +31,7 @@ const BorrowBook = ({
     const handleBorrow = async () => {
         if (selectedBook && name.trim() !== '' && email.trim() !== '') {
             await borrowBook(selectedBook.id, name, email)
-            history.push(`/${match.params.officeId}`)
+            history.push(`/${office.name}`)
         }
     }
 
@@ -42,7 +42,7 @@ const BorrowBook = ({
                 <label className={"borrow__find-label"}>Find an Available Book</label>
                 <SearchInput
                     isSearching={setSearching}
-                    search={term => getAvailableBooks(match.params.officeId, term)}
+                    search={term => getAvailableBooks(office.id, term)}
                     onSelectResult={setSelectedBook}
                 />
             </div>

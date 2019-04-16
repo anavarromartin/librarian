@@ -9,11 +9,10 @@ exports[`<BorrowBook /> renders according to snapshot 1`] = `
       "push": [Function],
     }
   }
-  match={
+  office={
     Object {
-      "params": Object {
-        "officeId": 1,
-      },
+      "id": 1,
+      "name": "dallas",
     }
   }
   setBackLocation={[Function]}

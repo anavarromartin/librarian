@@ -10,14 +10,14 @@ const ReturnBook = ({
                         returnBook = () => {},
                         setHeaderConfig = () => {},
                         history = {},
-                        match = {}
+                        office
                     }) => {
 
     const [searching, setSearching] = useState(false)
     const [selectedResult, selectResult] = useState(null)
 
     useEffect(() => {
-        setBackLocation(`/${match.params.officeId}`)
+        setBackLocation(`/${office.name.toLowerCase()}`)
         setHeaderConfig({displayButtons: false})
     }, [])
 
@@ -29,7 +29,7 @@ const ReturnBook = ({
     const handleReturnBook = async () => {
         if (selectedResult) {
             await returnBook(selectedResult)
-            history.push(`/${match.params.officeId}`)
+            history.push(`/${office.name}`)
         }
     }
 
@@ -44,7 +44,7 @@ const ReturnBook = ({
                 </label>
                 <SearchInput
                     isSearching={setSearching}
-                    search={term => getCheckedOutBooks(match.params.officeId, term)}
+                    search={term => getCheckedOutBooks(office.id, term)}
                     onSelectResult={selectResult}
                 />
                 <button className={

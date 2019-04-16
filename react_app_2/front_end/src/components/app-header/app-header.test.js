@@ -4,15 +4,15 @@ import {shallow} from 'enzyme'
 
 let component
 
-const OFFICE_ID = 1
+const OFFICE_NAME = 'dallas'
 
 const BORROW_BUTTON_SELECTOR = '#header__borrow-button'
 const RETURN_BUTTON_SELECTOR = '#header__return-button'
 
 const BACK_BUTTON_SELECTOR = '.app-header__back-button'
 
-const BORROW_BOOK_URL = `/${OFFICE_ID}/borrow`
-const RETURN_BOOK_URL = `/${OFFICE_ID}/return`
+const BORROW_BOOK_URL = `/${OFFICE_NAME}/borrow`
+const RETURN_BOOK_URL = `/${OFFICE_NAME}/return`
 
 const clickOn = selector => {
     component.find(selector).simulate('click')
@@ -23,7 +23,7 @@ describe('<AppHeader />', () => {
         let actualUrl
         beforeEach(() => {
             component = shallow(<AppHeader
-                match={{params: {officeId: OFFICE_ID}}}
+                match={{params: {officeName: OFFICE_NAME}}}
                 history={{push: urlPassedIn => actualUrl = urlPassedIn}}
                 headerConfig={{displayButtons: true}}
             />)

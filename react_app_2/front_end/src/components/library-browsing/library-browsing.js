@@ -36,7 +36,7 @@ class LibraryBrowsing extends React.Component {
         this.props.setHeaderConfig && this.props.setHeaderConfig({
             displayButtons: true
         })
-        this.props.getOfficeBooks && this.props.getOfficeBooks(this.props.match.params.officeId)
+        this.props.getOfficeBooks && this.props.getOfficeBooks(this.props.office.id)
             .then(fetchedBooks => this.setState({books: fetchedBooks}))
     }
 
