@@ -26,7 +26,7 @@ const AppHeader = ({
                 <FontAwesomeIcon icon={faChevronLeft}/>
             </div>
         }
-        <div className={"app-header__title"}> DALLAS LIBRARY</div>
+        <div className={"app-header__title"}>THE BOOKSHELF</div>
         {
             headerConfig.displayButtons &&
             <>

@@ -94,20 +94,21 @@ h1 {
 }
 
 label {
-    font-size: $small-base;
+    font-size: $base;
 }
 
 @media (min-width: $breakpoint-tablet) {
     html, body, #root {
-        font-size: $base;
-    }
+        font-size: 14px;
 
 
-    label {
-        font-size: 18px;
-    }
-    h1{
-        font-size: $medium-title;
+        label {
+            font-size: 16px;
+        }
 
+        h1 {
+            font-size: 24px;
+
+        }
     }
 }

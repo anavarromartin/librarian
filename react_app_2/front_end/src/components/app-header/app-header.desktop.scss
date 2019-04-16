@@ -2,11 +2,11 @@
 
 .app-header {
   grid-template-columns: repeat(32, 8px) [header-start] 1fr [header-end] repeat(32, 8px);
-  height: 80px;
+  height: 96px;
 }
 
 .app-header__title {
-  font-size: 36px;
+  font-size: 40px;
   grid-column-start: header-start;
   grid-column-end: header-end;
 }
