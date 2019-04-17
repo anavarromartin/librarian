@@ -19,6 +19,7 @@ code {
     font-family: 'SegoeUI';
     font-style: normal;
     font-weight: 400;
+    // this is a workaround for using the font in prod... I don't know any better... :(
     src: url(/fonts/segoeui.ttf) url(/fiji/fonts/segoeui.ttf) format('truetype');
 }
 
