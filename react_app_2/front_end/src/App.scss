@@ -35,3 +35,41 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+// Toast
+
+.toast_container {
+  position: absolute;
+  visibility: hidden;
+  bottom: 8px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 346px;
+  height: 52px;
+  line-height: 52px;
+  justify-self: center;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 7px 8px -4px #00000033, 0 5px 22px 4px #0000001e, 0 12px 17px 2px #00000023;
+  background-color: #1eccc1;
+}
+
+.toast_container--trigger {
+  visibility: visible;
+  animation: show 0.3s cubic-bezier(0.0, 0.0, 0.2, 1), hide 0.3s cubic-bezier(0.4, 0.0, 1, 1) 2.5s forwards;
+}
+
+@keyframes show {
+  from {bottom: -52px;}
+  to {bottom: 8px;}
+}
+
+@keyframes hide {
+  from {bottom: 8px}
+  to {bottom: -52px}
+}

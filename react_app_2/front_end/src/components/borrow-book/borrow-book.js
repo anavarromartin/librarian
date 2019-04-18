@@ -10,6 +10,7 @@ const BorrowBook = ({
                         setBackLocation = () => {},
                         setHeaderConfig = () => {},
                         history = {},
+                        displayToastMessage = () => {},
                         office
 }) => {
 
@@ -29,8 +30,9 @@ const BorrowBook = ({
     })
 
     const handleBorrow = async () => {
-        if (selectedBook && name.trim() !== '' && email.trim() !== '') {
+        if (selectedBook && name && name.trim() !== '' && email && email.trim() !== '') {
             await borrowBook(selectedBook.id, name, email)
+            displayToastMessage("Book borrowed successfully!")
             history.push(`/${office.name}`)
         }
     }

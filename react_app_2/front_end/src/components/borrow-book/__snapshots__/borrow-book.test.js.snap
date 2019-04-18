@@ -3,6 +3,7 @@
 exports[`<BorrowBook /> renders according to snapshot 1`] = `
 <BorrowBook
   borrowBook={[Function]}
+  displayToastMessage={[Function]}
   getAvailableBooks={[Function]}
   history={
     Object {

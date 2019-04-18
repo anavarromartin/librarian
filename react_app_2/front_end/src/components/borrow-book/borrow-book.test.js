@@ -9,7 +9,8 @@ const mountComponent = ({
                             setBackLocation = () => {},
                             setHeaderVisibility = () => {},
                             getAvailableBooks = () => {},
-                            borrowBook = () => {}
+                            borrowBook = () => {},
+                            displayToastMessage = () => {}
                         } = {}) => (
     mount(<BorrowBook
         history={{push: () => {}}}
@@ -18,6 +19,7 @@ const mountComponent = ({
         setHeaderVisibility={setHeaderVisibility}
         getAvailableBooks={getAvailableBooks}
         borrowBook={borrowBook}
+        displayToastMessage={displayToastMessage}
     />)
 )
 
@@ -49,7 +51,7 @@ describe('<BorrowBook />', () => {
 
     describe('borrow book flow', () => {
         let component
-        let borrowedBookId, borrowerName, borrowerEmail, officeIdUsedToSearch, termUsedToSearch
+        let borrowedBookId, borrowerName, borrowerEmail, officeIdUsedToSearch, termUsedToSearch, toastMessage
         beforeEach(async (done) => {
             const availableBooksPromise = Promise.resolve(
                 [
@@ -69,6 +71,9 @@ describe('<BorrowBook />', () => {
                     borrowedBookId = bookId
                     borrowerName = name
                     borrowerEmail = email
+                },
+                displayToastMessage: (message) => {
+                    toastMessage = message;
                 }
             })
 
@@ -87,6 +92,10 @@ describe('<BorrowBook />', () => {
             expect(borrowedBookId).toEqual(1)
             expect(borrowerName).toEqual('adria')
             expect(borrowerEmail).toEqual('adria@pivotal.io')
+        })
+
+        it('displays toast message', () => {
+            expect(toastMessage).toEqual("Book borrowed successfully!")
         })
     })
 

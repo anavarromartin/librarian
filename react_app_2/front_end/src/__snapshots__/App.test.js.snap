@@ -22,6 +22,7 @@ exports[`matches the snapshot 1`] = `
         <RouteWithProps
           borrowBook={[Function]}
           component={[Function]}
+          displayToastMessage={[Function]}
           getAvailableBooks={[Function]}
           getCheckedOutBooks={[Function]}
           getOfficeBooks={[Function]}
@@ -34,6 +35,7 @@ exports[`matches the snapshot 1`] = `
         <RouteWithProps
           borrowBook={[Function]}
           component={[Function]}
+          displayToastMessage={[Function]}
           getAvailableBooks={[Function]}
           getCheckedOutBooks={[Function]}
           getOfficeBooks={[Function]}
@@ -46,6 +48,7 @@ exports[`matches the snapshot 1`] = `
         <RouteWithProps
           borrowBook={[Function]}
           component={[Function]}
+          displayToastMessage={[Function]}
           getAvailableBooks={[Function]}
           getCheckedOutBooks={[Function]}
           getOfficeBooks={[Function]}
@@ -57,6 +60,9 @@ exports[`matches the snapshot 1`] = `
         />
       </Switch>
     </div>
+    <ToastMessage
+      message={null}
+    />
   </div>
 </BrowserRouter>
 `;

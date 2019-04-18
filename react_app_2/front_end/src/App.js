@@ -39,10 +39,18 @@ const App = offices => {
     const [backLocation, setBackLocation] = useState(null)
     const [headerVisible, setHeaderVisibility] = useState(true)
     const [headerConfig, setHeaderConfig] = useState({})
+    const [toastMessage, setToastMessage] = useState(null)
 
     const navigateBack = (history) => {
         console.log('back location:' + backLocation)
         history.push(backLocation)
+    }
+
+    const displayToastMessage = message => {
+        setToastMessage(message)
+        setTimeout(() => {
+            setToastMessage(null)
+        }, 3500)
     }
 
     const componentProps = {
@@ -55,8 +63,8 @@ const App = offices => {
         getOfficeBooks: getOfficeBooks,
         setHeaderConfig: setHeaderConfig,
         offices: offices.offices,
+        displayToastMessage: displayToastMessage,
     }
-
 
     const backButtonEnabled = () => backLocation !== null
 
@@ -80,10 +88,18 @@ const App = offices => {
                         <RouteWithProps path={`/:officeName`} component={LibraryBrowsing} {...componentProps}/>
                     </Switch>
                 </div>
+                <ToastMessage message={toastMessage}/>
             </div>
         </BrowserRouter>
     )
 }
 
+const ToastMessage = ({message}) => {
+    return (
+        <div className={classNames("toast_container", {"toast_container--trigger": message  !== null})}>
+            {message}
+        </div>
+    )
+}
 
 export default App;
