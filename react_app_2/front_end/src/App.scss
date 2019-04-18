@@ -45,7 +45,7 @@
 .toast_container {
   position: absolute;
   visibility: hidden;
-  bottom: 8px;
+  bottom: -52px;
   right: 0;
   left: 0;
   margin: auto;
@@ -60,17 +60,24 @@
   background-color: #14e0d3;
 }
 
-.toast_container--trigger {
+.toast_container--show {
   visibility: visible;
-  animation: show 0.3s cubic-bezier(0.0, 0.0, 0.2, 1), hide 0.3s cubic-bezier(0.4, 0.0, 1, 1) 2.5s forwards;
+  animation: show 0.3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  animation-fill-mode: forwards;
+}
+
+.toast_container--hide {
+  visibility: visible;
+  animation: hide 0.3s cubic-bezier(0.4, 0.0, 1, 1);
+  animation-fill-mode: forwards;
 }
 
 @keyframes show {
-  from {bottom: -52px;}
-  to {bottom: 8px;}
+  from {bottom: -52px; visibility: visible}
+  to {bottom: 8px; visibility: visible}
 }
 
 @keyframes hide {
-  from {bottom: 8px}
-  to {bottom: -52px}
+  from {bottom: 8px; visibility: visible}
+  to {bottom: -52px; visibility: hidden}
 }

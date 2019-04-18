@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.scss';
 import classNames from 'classnames'
 import AppHeader from "./components/app-header/app-header"
@@ -95,9 +95,22 @@ const App = offices => {
 }
 
 const ToastMessage = ({message}) => {
+    const [displayMessage, setDisplayMessage] = useState(message)
+    useEffect(() => {
+        if (message === null) {
+            setTimeout(() => {
+                setDisplayMessage(null)
+            }, 2000)
+        } else {
+            setDisplayMessage(message)
+        }
+    })
     return (
-        <div className={classNames("toast_container", {"toast_container--trigger": message  !== null})}>
-            {message}
+        <div className={classNames("toast_container", {
+            "toast_container--show": message !== null,
+            "toast_container--hide": message === null,
+        })}>
+            {displayMessage}
         </div>
     )
 }
