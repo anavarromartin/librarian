@@ -99,6 +99,7 @@ exports[`<ReturnBook /> display renders the component 1`] = `
 
 exports[`<ReturnBook /> display when clicking on search input renders search mode 1`] = `
 <ReturnBook
+  displayToastMessage={[Function]}
   getCheckedOutBooks={[Function]}
   history={
     Object {
@@ -265,6 +266,7 @@ exports[`<ReturnBook /> display when clicking on search input renders search mod
 
 exports[`<ReturnBook /> display when clicking on search input when searching renders search results 1`] = `
 <ReturnBook
+  displayToastMessage={[Function]}
   getCheckedOutBooks={[Function]}
   history={
     Object {
@@ -431,6 +433,7 @@ exports[`<ReturnBook /> display when clicking on search input when searching ren
 
 exports[`<ReturnBook /> display when clicking on search input when searching when selecting book renders selected result 1`] = `
 <ReturnBook
+  displayToastMessage={[Function]}
   getCheckedOutBooks={[Function]}
   history={
     Object {

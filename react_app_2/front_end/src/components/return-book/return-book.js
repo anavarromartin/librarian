@@ -10,6 +10,7 @@ const ReturnBook = ({
                         returnBook = () => {},
                         setHeaderConfig = () => {},
                         history = {},
+                        displayToastMessage = () => {},
                         office
                     }) => {
 
@@ -29,6 +30,7 @@ const ReturnBook = ({
     const handleReturnBook = async () => {
         if (selectedResult) {
             await returnBook(selectedResult)
+            displayToastMessage("Book returned successfully!")
             history.push(`/${office.name}`)
         }
     }

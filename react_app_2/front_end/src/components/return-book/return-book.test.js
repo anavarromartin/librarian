@@ -13,6 +13,8 @@ const mountComponent = ({
                             returnBook = () => {
                             },
                             setHeaderConfig = () => {
+                            },
+                            displayToastMessage = () => {
                             }
                         } = {}) => (
     mount(<ReturnBook
@@ -26,6 +28,7 @@ const mountComponent = ({
         getCheckedOutBooks={getCheckedOutBooks}
         returnBook={returnBook}
         setHeaderConfig={setHeaderConfig}
+        displayToastMessage={displayToastMessage}
     />)
 )
 
@@ -70,7 +73,7 @@ describe('<ReturnBook />', () => {
             })
 
             describe('when searching', () => {
-                let returnedBook
+                let returnedBook, toastMessage
                 beforeEach(async (done) => {
                     const booksPromise = Promise.resolve(
                         [
@@ -87,7 +90,11 @@ describe('<ReturnBook />', () => {
                         },
                         returnBook: book => {
                             returnedBook = book
+                        },
+                        displayToastMessage: message => {
+                            toastMessage = message
                         }
+
                     })
 
                     typeOnSearchInput('a book', component)
@@ -115,6 +122,10 @@ describe('<ReturnBook />', () => {
 
                         it('returns selected book', () => {
                             expect(returnedBook.book_name).toEqual('a book')
+                        })
+
+                        it('displays toast message', () => {
+                            expect(toastMessage).toEqual('Book returned successfully!')
                         })
                     })
                 })

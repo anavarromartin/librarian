@@ -96,19 +96,22 @@ const App = offices => {
 
 const ToastMessage = ({message}) => {
     const [displayMessage, setDisplayMessage] = useState(message)
+    const [displaying, setDisplaying] = useState(false)
     useEffect(() => {
         if (message === null) {
             setTimeout(() => {
                 setDisplayMessage(null)
+                setDisplaying(false)
             }, 2000)
         } else {
+            setDisplaying(true)
             setDisplayMessage(message)
         }
-    })
+    }, [message])
     return (
         <div className={classNames("toast_container", {
-            "toast_container--show": message !== null,
-            "toast_container--hide": message === null,
+            "toast_container--show": message !== null && displaying,
+            "toast_container--hide": message === null && displaying,
         })}>
             {displayMessage}
         </div>
