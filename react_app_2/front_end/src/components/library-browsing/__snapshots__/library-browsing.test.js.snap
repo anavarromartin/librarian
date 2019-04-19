@@ -20,6 +20,12 @@ exports[`<LibraryBrowsing /> basic rendering with book matches snapshot 1`] = `
         },
       ]
     }
+    office={
+      Object {
+        "id": 1,
+        "name": "dallas",
+      }
+    }
   >
     <div
       className="library-browsing__container"

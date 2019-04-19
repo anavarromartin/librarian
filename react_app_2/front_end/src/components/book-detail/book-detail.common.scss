@@ -1,0 +1,48 @@
+.book-detail__container {
+  display: grid;
+}
+
+.book-detail__title {
+  grid-row-start: title-start;
+  grid-row-end: title-end;
+}
+
+.book-detail__author {
+  grid-row-start: author-start;
+  grid-row-end: author-end;
+
+  font-weight: 600;
+}
+
+.book-detail__cover {
+  grid-row-start: cover-start;
+  grid-row-end: cover-end;
+
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+
+  justify-items: center;
+}
+
+.book-detail__available {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  font-weight: 600;
+}
+
+.book-detail__description {
+  grid-row-start: decription-start;
+  grid-row-end: description-end;
+}
+
+.book-detail__no-image {
+  display: flex;
+  background-color: #f0f2f2;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #9797977a;
+  border-radius: 5px
+}

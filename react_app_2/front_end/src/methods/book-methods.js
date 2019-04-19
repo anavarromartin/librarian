@@ -27,7 +27,9 @@ const bookResponseToBookSummary = bookResponse => (
         id: bookResponse.id,
         book_name: bookResponse.name,
         quantity: bookResponse.available_quantity,
-        imageLink: bookResponse.imageLink
+        imageLink: bookResponse.imageLink,
+        isbn: bookResponse.isbn,
+        authors: bookResponse.authors
     }
 )
 
@@ -72,3 +74,18 @@ export const borrowBook = async (bookId, borrowerName, borrowerEmail, doPatch = 
         {name: borrowerName, email: borrowerEmail}
     )
 )
+
+export const getBooksByIsbn = async (officeId, isbn, doGet = performGet) => (
+    (await doGet(`${process.env.REACT_APP_API_URL || window.location.origin}/api/offices/${officeId}/books/${isbn}`))
+        .data.data.books
+        .map(bookResponseToBookSummary)
+)
+
+export const getBookDescriptionByIsbn = async (isbn, doGet = performGet) => {
+    try {
+        return (await doGet(`${process.env.REACT_APP_BOOK_API_URL}${isbn}`))
+            .data.items[0].volumeInfo.description
+    } catch (error) {
+        return ''
+    }
+}

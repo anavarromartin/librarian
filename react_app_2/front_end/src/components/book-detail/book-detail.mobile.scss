@@ -1,0 +1,32 @@
+.book-detail__container {
+  grid-template-rows: 24px [title-start] auto [title-end] 8px [author-start] auto [author-end] 32px [cover-start]
+  auto [cover-end] 32px [description-start] auto [description-end];
+  justify-items: center;
+}
+
+.book-detail__title {
+  font-size: 24px;
+}
+
+.book-detail__author {
+  font-size: 16px;
+}
+
+.book-detail__image {
+  width: 138px;
+  height: 209px;
+}
+
+.book-detail__no-image {
+  width: 138px;
+  height: 209px;
+}
+
+.book-detail__available {
+  font-size: 16px;
+  margin-top: 18px;
+}
+
+.book-detail__description {
+  font-size: 14px;
+}

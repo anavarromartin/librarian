@@ -4,6 +4,8 @@ import './library-browsing.scss'
 
 const LibraryBrowsingRenderer = ({
                                      books = [],
+                                     history,
+                                     office,
                                  }) => (
     <div className={"library-browsing__container"}>
         {
@@ -13,6 +15,8 @@ const LibraryBrowsingRenderer = ({
                         key={book.id}
                         className={"library-browsing__book"}
                         onClick={() => {
+                            console.log(`BOOK: ${JSON.stringify(book)}`)
+                            history.push(`/${office.name.toLowerCase()}/books/${book.isbn}`)
                             // window.location.href = `${process.env.REACT_APP_API_URL || window.location.origin}/Dallas/books/${book.id}`
                         }}
 
@@ -43,6 +47,8 @@ class LibraryBrowsing extends React.Component {
     render() {
         return <LibraryBrowsingRenderer
             books={this.state.books}
+            history={this.props.history}
+            office={this.props.office}
             setHeaderConfig={this.props.setHeaderConfig}
             setBackLocation={this.props.setBackLocation}
         />

@@ -4,9 +4,17 @@ import classNames from 'classnames'
 import AppHeader from "./components/app-header/app-header"
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import ReturnBook from "./components/return-book/return-book"
-import {borrowBook, getAvailableBooks, getCheckedOutBooks, getOfficeBooks, returnBook} from "./methods/book-methods";
+import {
+    borrowBook,
+    getAvailableBooks, getBookDescriptionByIsbn,
+    getBooksByIsbn,
+    getCheckedOutBooks,
+    getOfficeBooks,
+    returnBook
+} from "./methods/book-methods";
 import BorrowBook from "./components/borrow-book/borrow-book"
 import LibraryBrowsing from "./components/library-browsing/library-browsing";
+import BookDetail from "./components/book-detail/book-detail";
 
 const renderComponent = (component, routeProps, renderProps) => {
     const allProps = {...routeProps, ...renderProps}
@@ -61,6 +69,8 @@ const App = offices => {
         returnBook: returnBook,
         borrowBook: borrowBook,
         getOfficeBooks: getOfficeBooks,
+        getBooksByIsbn: getBooksByIsbn,
+        getBookDescriptionByIsbn: getBookDescriptionByIsbn,
         setHeaderConfig: setHeaderConfig,
         offices: offices.offices,
         displayToastMessage: displayToastMessage,
@@ -85,6 +95,7 @@ const App = offices => {
                     <Switch>
                         <RouteWithProps path={`/:officeName/return`} component={ReturnBook} {...componentProps}/>
                         <RouteWithProps path={`/:officeName/borrow`} component={BorrowBook} {...componentProps}/>
+                        <RouteWithProps path={`/:officeName/books/:isbn`} component={BookDetail} {...componentProps}/>
                         <RouteWithProps path={`/:officeName`} component={LibraryBrowsing} {...componentProps}/>
                     </Switch>
                 </div>

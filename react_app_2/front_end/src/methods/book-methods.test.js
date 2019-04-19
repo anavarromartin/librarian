@@ -3,7 +3,8 @@ import {
     getCheckedOutBooks,
     returnBook,
     borrowBook,
-    getOfficeBooks
+    getOfficeBooks,
+    getBooksByIsbn, getBookDescriptionByIsbn
 } from "./book-methods"
 
 it('search checked out books', async () => {
@@ -151,7 +152,8 @@ it('fetches office books', async () => {
                             id: 1,
                             name: 'I are book',
                             available_quantity: 0,
-                            imageLink: 'link'
+                            imageLink: 'link',
+                            isbn: '123'
                         }
                     ]
                 }
@@ -161,6 +163,52 @@ it('fetches office books', async () => {
         id: 1,
         book_name: 'I are book',
         quantity: 0,
-        imageLink: 'link'
+        imageLink: 'link',
+        isbn: '123'
     }])
+})
+
+
+it('fetches office books by isbn', async () => {
+    await expect(getBooksByIsbn(1, 123, url => {
+        expect(url).toContain('/api/offices/1/books/123')
+        return {
+            data: {
+                data: {
+                    books: [
+                        {
+                            id: 1,
+                            name: 'I are book',
+                            available_quantity: 0,
+                            imageLink: 'link',
+                            authors: 'Adria'
+                        }
+                    ]
+                }
+            }
+        }
+    })).resolves.toEqual([{
+        id: 1,
+        book_name: 'I are book',
+        quantity: 0,
+        imageLink: 'link',
+        authors: 'Adria'
+    }])
+})
+
+it('fetches the book description from google api', async () => {
+    await expect(getBookDescriptionByIsbn(123, url => {
+        expect(url).toEqual('https://www.googleapis.com/books/v1/volumes?q=isbn:123')
+        return {
+            data: {
+                items: [
+                    {
+                        volumeInfo: {
+                            description: 'very interesting book'
+                        }
+                    }
+                ]
+            }
+        }
+    })).resolves.toEqual('very interesting book')
 })
