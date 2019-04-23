@@ -34,7 +34,10 @@ const BookDetail = ({
 
     return (
         <div className={"book-detail__container"}>
-            <div className={"book-detail__title"}>{book.book_name}</div>
+            <div className={"book-detail__header"}>
+                <div className={"book-detail__title"}>{book.book_name}</div>
+                <div className={"book-detail__author"}>By {book.authors}</div>
+            </div>
             <div className={"book-detail__cover"}>
                 {
                     book.imageLink
@@ -42,11 +45,14 @@ const BookDetail = ({
                         : (<div className={"book-detail__no-image"}>No Image</div>)
                 }
                 <div className={"book-detail__available"}>
-                    <FontAwesomeIcon style={{color: '#24364196', marginRight: '8px'}} icon={faBookOpen}/>
-                    <span>{book.quantity} available</span>
+                    <span className={"book-detail__available-icon"}>
+                        <FontAwesomeIcon style={{color: '#24364196', marginRight: '8px'}} icon={faBookOpen}/>
+                    </span>
+                    <span className={"book-detail__available-text"}>
+                        <span>{book.quantity} available</span>
+                    </span>
                 </div>
             </div>
-            <div className={"book-detail__author"}>By {book.authors}</div>
             <div className={"book-detail__description"}>{bookDescription}</div>
         </div>
     )

@@ -2,16 +2,18 @@
   display: grid;
 }
 
-.book-detail__title {
+.book-detail__header {
+  display: flex;
+  flex-direction: column;
+
+
   grid-row-start: title-start;
   grid-row-end: title-end;
 }
 
 .book-detail__author {
-  grid-row-start: author-start;
-  grid-row-end: author-end;
-
   font-weight: 600;
+  margin-top: 4px;
 }
 
 .book-detail__cover {
@@ -45,4 +47,9 @@
   align-items: center;
   border: 1px solid #9797977a;
   border-radius: 5px
+}
+
+.book-detail__image{
+  border: 1px solid #9797977a;
+  border-radius: 5px;
 }
