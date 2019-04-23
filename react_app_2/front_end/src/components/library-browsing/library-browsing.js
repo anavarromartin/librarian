@@ -1,35 +1,44 @@
 import React from 'react';
 import BookSummary from "../book-summary/book-summary";
 import './library-browsing.scss'
+import loadingIcon from "../../assets/LoadingIconBookshelfApp.gif";
 
 const LibraryBrowsingRenderer = ({
                                      books = [],
                                      history,
                                      office,
                                  }) => (
-    <div className={"library-browsing__container"}>
-        {
-            books
-                .map((book) => (
-                    <div
-                        key={book.id}
-                        className={"library-browsing__book"}
-                        onClick={() => {
-                            console.log(`BOOK: ${JSON.stringify(book)}`)
-                            history.push(`/${office.name.toLowerCase()}/books/${book.isbn}`)
-                            // window.location.href = `${process.env.REACT_APP_API_URL || window.location.origin}/Dallas/books/${book.id}`
-                        }}
 
-                    >
-                        <BookSummary
-                            bookTitle={book.book_name}
-                            quantity={book.quantity}
-                            imageLink={book.imageLink}
-                        />
-                    </div>
-                ))
-        }
-    </div>
+    books.length > 0
+        ?
+        <div className={"library-browsing__container"}>
+            {
+                books
+                    .map((book) => (
+                        <div
+                            key={book.id}
+                            className={"library-browsing__book"}
+                            onClick={() => {
+                                console.log(`BOOK: ${JSON.stringify(book)}`)
+                                history.push(`/${office.name.toLowerCase()}/books/${book.isbn}`)
+                                // window.location.href = `${process.env.REACT_APP_API_URL || window.location.origin}/Dallas/books/${book.id}`
+                            }}
+
+                        >
+                            <BookSummary
+                                bookTitle={book.book_name}
+                                quantity={book.quantity}
+                                imageLink={book.imageLink}
+                            />
+                        </div>
+                    ))
+            }
+        </div>
+        :
+        <div className={"library-browsing__loading"}>
+            <img className={"library-browsing__loading-icon"} src={loadingIcon} alt={"loading image"}/>
+        </div>
+
 )
 
 class LibraryBrowsing extends React.Component {
