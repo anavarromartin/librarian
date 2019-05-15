@@ -33,6 +33,8 @@ class AddBook extends Component {
         super(props)
         this.state = initialState
 
+
+        this.ISBNElement = React.createRef();
         this._saveBook = this._saveBook.bind(this)
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this)
@@ -157,6 +159,7 @@ class AddBook extends Component {
         )
 
         this.setState(initialState)
+        this.ISBNElement.current.focus();
     }
 
     handleChange = name => event => {
@@ -185,6 +188,7 @@ class AddBook extends Component {
                         <div>
                             <TextField
                                 autoFocus={true}
+                                inputRef={this.ISBNElement}
                                 label="ISBN"
                                 value={this.state.candidateISBN}
                                 onChange={this.handleChange('candidateISBN')}
