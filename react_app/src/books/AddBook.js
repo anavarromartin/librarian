@@ -182,7 +182,14 @@ class AddBook extends Component {
         this.setState({
             [name]: event.target.value,
         })
-    }
+    };
+
+    handleISBNKeyPress = event => {
+        console.log('event', event.key);
+        if (event.key === 'Enter') {
+            this.getBookDetails(event.target.value)
+        }
+    };
 
     render() {
         return (
@@ -204,9 +211,11 @@ class AddBook extends Component {
                         <div style={{ fontWeight: 'bold', fontSize: '2em' }}>Add Book</div>
                         <div>
                             <TextField
+                                autoFocus={true}
                                 label="ISBN"
                                 value={this.state.candidateISBN}
                                 onChange={this.handleChange('candidateISBN')}
+                                onKeyPress={this.handleISBNKeyPress}
                                 margin="normal"
                                 required={true}
                             />
