@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Scanner from '../scanner/Scanner'
 import './AddBook.css'
-import { Line } from 'rc-progress'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
@@ -19,7 +17,6 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
 const initialState = {
-    scanning: false,
     results: [],
     bookTitle: '',
     candidateISBN: '',
@@ -31,21 +28,12 @@ const initialState = {
     open: false,
 }
 
-const SCAN_THRESHOLD_SIZE = 20
-
 class AddBook extends Component {
     constructor(props) {
         super(props)
         this.state = initialState
 
-        this._scan = this._scan.bind(this)
-        this._onDetected = this._onDetected.bind(this)
-        this._continueScanning = this._continueScanning.bind(this)
-        this._reachedMaxResults = this._reachedMaxResults.bind(this)
-        this.mode = this.mode.bind(this)
-        this._resultThresholdAchieved = this._resultThresholdAchieved.bind(this)
         this._saveBook = this._saveBook.bind(this)
-        this._percentage = this._percentage.bind(this)
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.checkDuplicateBook = this.checkDuplicateBook.bind(this)
@@ -65,13 +53,6 @@ class AddBook extends Component {
         this.setState({
             open: false
         })
-    }
-
-    // TODO: figure out how to do a secondary sort when a > b
-    mode(arr) {
-        return arr.sort((a, b) =>
-            arr.filter(v => v === a).length - arr.filter(v => v === b).length
-        ).pop()
     }
 
     async getImageLinkFromIsbn(isbn) {
@@ -185,7 +166,6 @@ class AddBook extends Component {
     };
 
     handleISBNKeyPress = event => {
-        console.log('event', event.key);
         if (event.key === 'Enter') {
             this.getBookDetails(event.target.value)
         }
@@ -198,13 +178,6 @@ class AddBook extends Component {
                     <Link to={{ pathname: `/${this.props.officeName}`, state: { officeId: this.props.officeId } }} style={{ textDecoration: 'none', marginRight: '10px', marginLeft: '10px' }}>
                         <Button variant="contained" color="primary">Back</Button>
                     </Link>
-                    <Button onClick={this._scan} variant="contained" color="primary">{this.state.scanning ? 'Stop Scanning' : 'Scan Book ISBN'}</Button>
-                </div>
-                {this.state.scanning && <div style={{ marginTop: '10px', marginBottom: '10px', maxWidth: '500px' }}><Line percent={this._percentage()} strokeWidth="1" strokeColor="#7ce26c" /></div>}
-                {this.state.scanning && <div><div>Scanning<span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span><span className={this.state.scanning ? 'loader__dot' : null}>.</span></div><Scanner onDetected={this._onDetected} /></div>}
-                <div style={{ margin: '10px' }}>
-                    {this._resultThresholdAchieved() && !this.state.scanning && <img src={this.state.imageLink} alt='Missing' />}
-                    {this._resultThresholdAchieved() && !this.state.scanning && <div>{this.state.error}</div>}
                 </div>
                 <Paper>
                     <form style={{ margin: '20px' }}>
@@ -313,7 +286,6 @@ class AddBook extends Component {
 
     componentWillUnmount() {
         this.setState({
-            scanning: false,
             results: [],
             error: null,
             candidateISBN: '',
@@ -321,59 +293,6 @@ class AddBook extends Component {
         })
     }
 
-    _percentage() {
-        return (this.state.results.length / SCAN_THRESHOLD_SIZE) * 100
-    }
-
-    _resultThresholdAchieved() {
-        return this.state.results.length >= SCAN_THRESHOLD_SIZE
-    }
-
-    _scan() {
-        this.setState({
-            results: [],
-            scanning: !this.state.scanning,
-            bookTitle: '',
-            candidateISBN: '',
-            imageLink: '',
-            authors: '',
-            category: '',
-            quantity: 1,
-            error: null,
-            open: false,
-        })
-    }
-
-    _onDetected(result) {
-        const nextResults = this.state.results.concat([result])
-        this.setState(
-            {
-                results: nextResults,
-                scanning: this._continueScanning(nextResults)
-            }
-        )
-
-        if (this._reachedMaxResults(nextResults)) {
-            const candidateISBN = this.mode(this.state.results.map((result) => result.codeResult.code))
-            this.setState({
-                candidateISBN: candidateISBN
-            })
-            this.getBookDetails(candidateISBN)
-        }
-        return this._reachedMaxResults(nextResults)
-    }
-
-    _continueScanning(nextResults) {
-        if (this._reachedMaxResults(nextResults)) {
-            return false
-        }
-
-        return this.state.scanning
-    }
-
-    _reachedMaxResults(nextResults) {
-        return nextResults.length >= SCAN_THRESHOLD_SIZE
-    }
 }
 
 AddBook.propTypes = {
