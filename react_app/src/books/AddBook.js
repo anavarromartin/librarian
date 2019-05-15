@@ -159,7 +159,7 @@ class AddBook extends Component {
         )
 
         this.setState(initialState)
-        this.ISBNElement.current.focus();
+        this.ISBNElement && this.ISBNElement.current && this.ISBNElement.current.focus();
     }
 
     handleChange = name => event => {

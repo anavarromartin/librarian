@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from flask import Blueprint
+from datetime import timedelta
 
 loginController = Blueprint('loginController', __name__)
 
@@ -17,5 +18,5 @@ def login():
     if username != 'admin' or password != 'admin':
         return jsonify({"error": "Bad username or password"}), 401
 
-    access_token = create_access_token(identity=username)
+    access_token = create_access_token(identity=username, expires_delta=timedelta(hours=8))
     return jsonify(access_token=access_token), 200
