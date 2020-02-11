@@ -2,7 +2,8 @@ import os
 
 
 class Config(object):
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    UPDATED_MYSQL_DATABASE_URI = os.environ['DATABASE_URL'].replace('mysql2://', 'mysql+pymysql://').replace('?reconnect=true', '')
+    SQLALCHEMY_DATABASE_URI = UPDATED_MYSQL_DATABASE_URI
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'bulgogi'
 

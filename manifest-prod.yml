@@ -1,10 +1,11 @@
 applications:
-- name: librarian
-  memory: 512MB
-  timeout: 180
-  buildpack: https://github.com/cloudfoundry/python-buildpack.git
-  command: flask db upgrade && flask run --port 8080 --host 0.0.0.0
-  services:
-  - librarian-psql
-  routes:
-  - route: librarian.apps.pcfone.io
+  - name: librarian
+    memory: 512MB
+    timeout: 180
+    buildpacks:
+      - python_buildpack
+    command: flask db upgrade && flask run --port 8080 --host 0.0.0.0
+    services:
+      - mysql-librarian
+    routes:
+      - route: librarian.apps.pcfone.io

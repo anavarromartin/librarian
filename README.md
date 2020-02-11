@@ -18,6 +18,13 @@
 1. Run `flask run`
 1. Visit [http://localhost:3000](http://localhost:3000)
 
+## Initializing new DB instance
+```
+flask db stamp head
+flask db migrate
+flask db upgrade
+```
+
 ## Adding new migrations
 1. `flask db migrate`
 

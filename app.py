@@ -11,7 +11,6 @@ jwt = JWTManager(app)
 
 front_end = 'old'
 
-
 def remove_prefix(text, prefix):
     if text.startswith(prefix):
         return text[len(prefix):]
@@ -59,4 +58,4 @@ def _react_app_dir():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port, use_reloader=True, threaded=True)
+   app.run(host='0.0.0.0', port=port, use_reloader=True, threaded=True)
